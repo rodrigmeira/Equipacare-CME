@@ -1,6 +1,7 @@
 getClient = (req, res) => {
   let salas = req.body;
-  res.status(200).send(salas);
+  console.log(salas);
+  res.status(200).json("Yes");
 };
 
 module.exports = { getClient };

@@ -38,7 +38,7 @@ export default function Page() {
 
     try {
       const formResponse = await fetch(
-        "http://localhost:6000/calculadora",
+        "http://localhost:8080/calculadora",
         sendFormData
       );
       if (formResponse.ok) {

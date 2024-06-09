@@ -1,7 +1,14 @@
+const formData = [];
+
 getClient = (req, res) => {
-  let salas = req.body;
-  console.log(salas);
-  res.status(200).json("Yes");
+  res.status(200).send(formData);
 };
 
-module.exports = { getClient };
+postClient = (req, res) => {
+  let salas = req.body;
+  formData.push(salas);
+  console.log(salas);
+  res.status(200).send(salas);
+};
+
+module.exports = { postClient, getClient };

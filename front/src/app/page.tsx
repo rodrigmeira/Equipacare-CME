@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
 
 export default function Page() {
@@ -12,6 +13,8 @@ export default function Page() {
   const [numeroLeitosInternacoes, setNumeroLeitosInternacoes] = useState("");
   const [numeroAutoclaves, setNumeroAutoclaves] = useState("");
   const [numeroLavadorasTermo, setNumeroLavadorasTermo] = useState("");
+  const [resposta, setResposta] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -28,21 +31,16 @@ export default function Page() {
       numeroLavadorasTermo,
     };
 
-    const sendFormData = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    };
+    const formResponse = await axios.post(
+      "http://localhost:8080/calculadora",
+      formData
+    );
+    const getResponse = await axios.get("http://localhost:8080/calculadora");
+    await setResposta(getResponse.data[getResponse.data.length - 1]);
 
     try {
-      const formResponse = await fetch(
-        "http://localhost:8080/calculadora",
-        sendFormData
-      );
-      if (formResponse.ok) {
-        alert("Formulario enviado com sucesso!");
+      if (formResponse.status == 200) {
+        console.log(getResponse.data[getResponse.data.length - 1]);
         setNumeroSalas("");
         setNumeroCirurgias("");
         setProcessaTecidos("");
@@ -56,6 +54,8 @@ export default function Page() {
     } catch (error) {
       console.error(error);
     }
+
+    setShow(true);
   };
 
   return (
@@ -162,6 +162,46 @@ export default function Page() {
           </button>
         </div>
       </form>
+
+      {show && (
+        <div>
+          <div className="flex flex-row gap-2">
+            <p>Número de salas:</p> <p>{Object.values(resposta)[0]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Número cirúrgias/sala/dia:</p>{" "}
+            <p>{Object.values(resposta)[1]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Processos de tecidos?:</p> <p>{Object.values(resposta)[2]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>As cirúrgias serão realizadas em quais dias da semana?:</p>{" "}
+            <p>{Object.values(resposta)[3]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>
+              Qual o interval o de pico de funcionamento / da CME (período de
+              processamento de 90% do material?):
+            </p>{" "}
+            <p>{Object.values(resposta)[4]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Número leitos UTI:</p> <p>{Object.values(resposta)[5]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Número leitos Internação, RPA, Observações, HD...:</p>{" "}
+            <p>{Object.values(resposta)[6]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Número de Autoclaves:</p> <p>{Object.values(resposta)[7]}</p>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>Número de Lavadoras Termo:</p>{" "}
+            <p>{Object.values(resposta)[8]}</p>{" "}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

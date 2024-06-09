@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Page() {
+export const Form = () => {
   const [numeroSalas, setNumeroSalas] = useState("");
   const [numeroCirurgias, setNumeroCirurgias] = useState("");
   const [processaTecidos, setProcessaTecidos] = useState("");
@@ -61,7 +61,7 @@ export default function Page() {
   return (
     <div className="border p-5 flex flex-col justify-center items-center">
       <h1 className="text-3xl mb-6 font-bold">Calculadora</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form action={handleSubmit} className="flex flex-col gap-3">
         <label htmlFor="numeroSalas" className="flex flex-col" />
         Número de salas cirúrgicas
         <input
@@ -164,4 +164,4 @@ export default function Page() {
       </form>
     </div>
   );
-}
+};

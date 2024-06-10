@@ -1,0 +1,48 @@
+import iconFace from "@/../public/icons/icon-face.svg";
+import logo from "@/../public/logo.png";
+import Image from "next/image";
+
+export const Footer = () => {
+  return (
+    <div className="bg-[#454545] w-screen">
+      <div>
+        <Image src={logo} alt="Logo Equipacare" width={141} height={51} />
+        <p>
+          Empresa de Engenharia para Clínicas e Hospitais com foco na
+          Inteligência do Negócio.
+        </p>
+      </div>
+      <div>
+        <h3>Mapa do Site</h3>
+        <nav>
+          <li>Home</li>
+          <li>Blog</li>
+          <li>Serviços</li>
+          <li>Engenharia Hospitalar</li>
+          <li>Consultoria e Projetos</li>
+          <li>Engenharia Clinica</li>
+          <li>Manutenção e Calibração</li>
+          <li>Materiais</li>
+          <li>Clientes</li>
+          <li>Equipacare Edu</li>
+          <li>Fix System</li>
+          <li>Contato</li>
+        </nav>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li>contato@equipacare.com.br</li>
+          <li>+55(24)3348-7157</li>
+          <li>+55(24)98119-1448</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Acompanhe Nossas Redes Sociais</h3>
+        <div>
+          <Image src={iconFace} alt="Facebook" />
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -1,4 +1,4 @@
-interface Caracteristicas {
+interface CaracteristicasLavadora {
   CaracteristicasGerais: string;
   modelos: ModelosLavadora[];
 }
@@ -42,7 +42,7 @@ interface ModelosLavadora {
   percentualDeUtilizaçãoDaCapacidadeMaxDeProcessamentoDasTermos?: number; //  Demanda de Tempo por Dia [minutos] / Minutos Disponíveis Diariamente Somando Todos os Equipamentos
 }
 
-const mockModelosLavadora: Caracteristicas[] = [
+const mockModelosLavadora: CaracteristicasLavadora[] = [
   {
     CaracteristicasGerais: "MARCA A",
     modelos: [

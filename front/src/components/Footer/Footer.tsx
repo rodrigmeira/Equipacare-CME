@@ -11,7 +11,7 @@ import { SubTitleFooter } from "./SubTitleFooter";
 
 export const Footer = () => {
   return (
-    <div className="bg-[#454545] w-screen grid grid-cols-4 p-16 gap-8 text-base">
+    <div className="bg-[#454545] w-full grid grid-cols-4 p-16 gap-8 text-base">
       <div>
         <Image
           src={logo}
@@ -44,23 +44,55 @@ export const Footer = () => {
       </div>
       <div>
         <SubTitleFooter>Contato</SubTitleFooter>
-        <ul>
+        <ul className="flex flex-col gap-4">
           <ListItemFooter>contato@equipacare.com.br</ListItemFooter>
           <ListItemFooter>+55(24)3348-7157</ListItemFooter>
           <ListItemFooter>+55(24)98119-1448</ListItemFooter>
         </ul>
       </div>
       <div>
-        <SubTitleFooter>Acompanhe Nossas Redes Sociais</SubTitleFooter>
-        <div>
-          <Image src={iconFace} alt="Facebook" />
-          <Image src={iconLinkedin} alt="Linkedin" />
-          <Image src={iconYoutube} alt="Youtube" />
-          <Image src={iconInsta} alt="Instagram" />
+        <SubTitleFooter>
+          Acompanhe Nossas <br /> Redes Sociais
+        </SubTitleFooter>
+        <div className="flex gap-1 mb-4">
+          <Image
+            className="cursor-pointer"
+            src={iconFace}
+            alt="Facebook"
+            width={50}
+          />
+          <Image
+            className="cursor-pointer"
+            src={iconLinkedin}
+            alt="Linkedin"
+            width={50}
+          />
+          <Image
+            className="cursor-pointer"
+            src={iconYoutube}
+            alt="Youtube"
+            width={50}
+          />
+          <Image
+            className="cursor-pointer"
+            src={iconInsta}
+            alt="Instagram"
+            width={50}
+          />
         </div>
-        <div>
-          <Image src={seloQualificacao} alt="Selo de Qualificação" />
-          <Image src={greatPlace} alt="Selo  Great Place to Work" />
+        <div className="flex gap-2">
+          <Image
+            className="cursor-pointer"
+            src={seloQualificacao}
+            alt="Selo de Qualificação"
+            width={100}
+          />
+          <Image
+            className="cursor-pointer"
+            src={greatPlace}
+            alt="Selo  Great Place to Work"
+            width={60}
+          />
         </div>
       </div>
     </div>

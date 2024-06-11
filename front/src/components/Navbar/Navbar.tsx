@@ -1,4 +1,4 @@
-import logo from "@/../public/logo.png";
+import logo from "@/../public/logo-eqpc.webp";
 import search from "@/../public/search.svg";
 import Image from "next/image";
 

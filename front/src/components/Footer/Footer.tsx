@@ -6,6 +6,7 @@ import logo from "@/../public/logo-eqpc.webp";
 import greatPlace from "@/../public/selos/greatPlaceToWork.svg";
 import seloQualificacao from "@/../public/selos/seloQualificacao.svg";
 import Image from "next/image";
+import { ListItem } from "./ListItem";
 
 export const Footer = () => {
   return (
@@ -18,34 +19,34 @@ export const Footer = () => {
           height={51}
           className="mb-8"
         />
-        <p>
+        <p className="text-slate-200 font-extralight">
           Empresa de Engenharia para Clínicas e Hospitais com foco na
           Inteligência do Negócio.
         </p>
       </div>
       <div>
-        <h3>Mapa do Site</h3>
-        <nav>
-          <li>Home</li>
-          <li>Blog</li>
-          <li>Serviços</li>
-          <li>Engenharia Hospitalar</li>
-          <li>Consultoria e Projetos</li>
-          <li>Engenharia Clinica</li>
-          <li>Manutenção e Calibração</li>
-          <li>Materiais</li>
-          <li>Clientes</li>
-          <li>Equipacare Edu</li>
-          <li>Fix System</li>
-          <li>Contato</li>
+        <h3 className="text-white font-bold text-lg">Mapa Do Site</h3>
+        <nav className="list-none">
+          <ListItem>Home</ListItem>
+          <ListItem>Blog</ListItem>
+          <ListItem>Serviços</ListItem>
+          <ListItem>Engenharia Hospitalar</ListItem>
+          <ListItem>Consultoria e Projetos</ListItem>
+          <ListItem>Engenharia Clinica</ListItem>
+          <ListItem>Manutenção e Calibração</ListItem>
+          <ListItem>Materiais</ListItem>
+          <ListItem>Clientes</ListItem>
+          <ListItem>Equipacare Edu</ListItem>
+          <ListItem>Fix System</ListItem>
+          <ListItem>Contato</ListItem>
         </nav>
       </div>
       <div>
         <h3>Contato</h3>
         <ul>
-          <li>contato@equipacare.com.br</li>
-          <li>+55(24)3348-7157</li>
-          <li>+55(24)98119-1448</li>
+          <ListItem>contato@equipacare.com.br</ListItem>
+          <ListItem>+55(24)3348-7157</ListItem>
+          <ListItem>+55(24)98119-1448</ListItem>
         </ul>
       </div>
       <div>

@@ -6,7 +6,8 @@ import logo from "@/../public/logo-eqpc.webp";
 import greatPlace from "@/../public/selos/greatPlaceToWork.svg";
 import seloQualificacao from "@/../public/selos/seloQualificacao.svg";
 import Image from "next/image";
-import { ListItem } from "./ListItem";
+import { ListItemFooter } from "./ListItemFooter";
+import { SubTitleFooter } from "./SubTitleFooter";
 
 export const Footer = () => {
   return (
@@ -25,32 +26,32 @@ export const Footer = () => {
         </p>
       </div>
       <div>
-        <h3 className="text-white font-bold text-lg">Mapa Do Site</h3>
+        <SubTitleFooter>Mapa Do Site</SubTitleFooter>
         <nav className="list-none">
-          <ListItem>Home</ListItem>
-          <ListItem>Blog</ListItem>
-          <ListItem>Serviços</ListItem>
-          <ListItem>Engenharia Hospitalar</ListItem>
-          <ListItem>Consultoria e Projetos</ListItem>
-          <ListItem>Engenharia Clinica</ListItem>
-          <ListItem>Manutenção e Calibração</ListItem>
-          <ListItem>Materiais</ListItem>
-          <ListItem>Clientes</ListItem>
-          <ListItem>Equipacare Edu</ListItem>
-          <ListItem>Fix System</ListItem>
-          <ListItem>Contato</ListItem>
+          <ListItemFooter>Home</ListItemFooter>
+          <ListItemFooter>Blog</ListItemFooter>
+          <ListItemFooter>Serviços</ListItemFooter>
+          <ListItemFooter>Engenharia Hospitalar</ListItemFooter>
+          <ListItemFooter>Consultoria e Projetos</ListItemFooter>
+          <ListItemFooter>Engenharia Clinica</ListItemFooter>
+          <ListItemFooter>Manutenção e Calibração</ListItemFooter>
+          <ListItemFooter>Materiais</ListItemFooter>
+          <ListItemFooter>Clientes</ListItemFooter>
+          <ListItemFooter>Equipacare Edu</ListItemFooter>
+          <ListItemFooter>Fix System</ListItemFooter>
+          <ListItemFooter>Contato</ListItemFooter>
         </nav>
       </div>
       <div>
-        <h3>Contato</h3>
+        <SubTitleFooter>Contato</SubTitleFooter>
         <ul>
-          <ListItem>contato@equipacare.com.br</ListItem>
-          <ListItem>+55(24)3348-7157</ListItem>
-          <ListItem>+55(24)98119-1448</ListItem>
+          <ListItemFooter>contato@equipacare.com.br</ListItemFooter>
+          <ListItemFooter>+55(24)3348-7157</ListItemFooter>
+          <ListItemFooter>+55(24)98119-1448</ListItemFooter>
         </ul>
       </div>
       <div>
-        <h3>Acompanhe Nossas Redes Sociais</h3>
+        <SubTitleFooter>Acompanhe Nossas Redes Sociais</SubTitleFooter>
         <div>
           <Image src={iconFace} alt="Facebook" />
           <Image src={iconLinkedin} alt="Linkedin" />

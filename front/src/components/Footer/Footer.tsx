@@ -12,7 +12,7 @@ import { SubTitleFooter } from "./SubTitleFooter";
 export const Footer = () => {
   return (
     <div className="bg-[#454545] w-full flex justify-center items-center">
-      <div className="w-[1400px] grid grid-cols-4 p-16 gap-8 text-base">
+      <div className="w-full max-w-[1400px] p-8 md:p-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-base">
         <div>
           <Image
             src={logo}

@@ -10,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 export const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer = (open) => () => {
+  const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
   };
 

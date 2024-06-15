@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
 import logo from "@/../public/logo-eqpc.webp";
 import search from "@/../public/search.svg";
-import Image from "next/image";
-import { Drawer, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import Image from "next/image";
+import { useState } from "react";
 
 export const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -20,12 +26,36 @@ export const Navbar = () => {
         <Image src={logo} alt="Logo Equipacare" width={140} height={50} />
       </div>
       <nav className="md:hidden flex-shrink" style={{ marginRight: "10px" }}>
-        <IconButton edge="end" color="inherit" aria-label="menu" onClick={toggleDrawer(true)} style={{ color: "white", backgroundColor: "#91AB29", borderRadius: "5px" }}>
+        <IconButton
+          edge="end"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleDrawer(true)}
+          style={{
+            color: "white",
+            backgroundColor: "#91AB29",
+            borderRadius: "5px",
+          }}
+        >
           <MenuIcon />
         </IconButton>
-        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)} sx={{ width: "500px" }}>
+        <Drawer
+          anchor="left"
+          open={drawerOpen}
+          onClose={toggleDrawer(false)}
+          sx={{ width: "500px" }}
+        >
           <List onClick={toggleDrawer(false)}>
-            {["HOME", "BLOG", "SERVIÇOS", "MATERIAIS", "CLIENTES", "EQUIPACARE EDU", "FIX SYSTEM", "CONTATO"].map((text) => (
+            {[
+              "HOME",
+              "BLOG",
+              "SERVIÇOS",
+              "MATERIAIS",
+              "CLIENTES",
+              "EQUIPACARE EDU",
+              "FIX SYSTEM",
+              "CONTATO",
+            ].map((text) => (
               <ListItem key={text}>
                 <ListItemText primary={text} />
               </ListItem>
@@ -38,8 +68,22 @@ export const Navbar = () => {
       </nav>
       <nav className="hidden md:flex flex-shrink">
         <ul className="flex flex-row items-center gap-4">
-          {["HOME", "BLOG", "SERVIÇOS", "MATERIAIS", "CLIENTES", "EQUIPACARE EDU", "FIX SYSTEM", "CONTATO"].map((text) => (
-            <li key={text} className="text-[#91AB29] text-sm font-semibold">{text}</li>
+          {[
+            "HOME",
+            "BLOG",
+            "SERVIÇOS",
+            "MATERIAIS",
+            "CLIENTES",
+            "EQUIPACARE EDU",
+            "FIX SYSTEM",
+            "CONTATO",
+          ].map((text) => (
+            <li
+              key={text}
+              className="text-[#91AB29] text-sm font-semibold cursor-pointer"
+            >
+              {text}
+            </li>
           ))}
           <li>
             <Image src={search} alt="Busca" width={16} height={16} />

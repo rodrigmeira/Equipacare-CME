@@ -1,30 +1,34 @@
 "use client";
 
 import { InputForm } from "@/components";
+import { useContextForm } from "@/context/Context";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
-
-interface FormData {
-  nomeCompleto: string;
-  telefone: string;
-  email: string;
-  cepHospital: string;
-  cargo: string;
-  possuiConhecimentoTecnico1: boolean;
-  possuiConhecimentoTecnico2: boolean;
-}
+import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 
 export default function CadastroPage() {
-  const [nomeCompleto, setNomeCompleto] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [email, setEmail] = useState("");
-  const [cepHospital, setCepHospital] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [conhecimentoTecnico1, setConhecimentoTecnico1] = useState(false);
-  const [conhecimentoTecnico2, setConhecimentoTecnico2] = useState(false);
+  const {
+    nomeCompleto,
+    setNomeCompleto,
+    telefone,
+    setTelefone,
+    email,
+    setEmail,
+    cepHospital,
+    setCepHospital,
+    cargo,
+    setCargo,
+    conhecimentoTecnico1,
+    setConhecimentoTecnico1,
+    conhecimentoTecnico2,
+    setConhecimentoTecnico2,
+  } = useContextForm();
+
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    router.push("/formulario/calculadora");
   };
 
   return (

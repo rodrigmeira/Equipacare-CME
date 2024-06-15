@@ -59,7 +59,7 @@ export default function CadastroPage() {
             onChange={(e) => setTelefone(e.target.value)}
             required
             maxLength={14}
-            minLength={14}
+            minLength={13}
           >
             Telefone
           </InputForm>

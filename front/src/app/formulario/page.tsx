@@ -2,6 +2,8 @@
 
 import { InputForm } from "@/components";
 import { useContextForm } from "@/context/Context";
+import { insertMaskInCep } from "@/utils/insertMaskInCep";
+import { insertMaskInTel } from "@/utils/insertMaskInTel";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
@@ -50,13 +52,14 @@ export default function CadastroPage() {
           </InputForm>
 
           <InputForm
-            type="tel"
+            type="text"
             id="telefone"
             placeholder="(00)00000-0000"
-            value={telefone}
+            value={insertMaskInTel(telefone)}
             onChange={(e) => setTelefone(e.target.value)}
             required
             maxLength={14}
+            minLength={14}
           >
             Telefone
           </InputForm>
@@ -74,11 +77,13 @@ export default function CadastroPage() {
 
           <div className="md:grid md:grid-cols-2 md:gap-4">
             <InputForm
-              type="number"
+              type="text"
               id="cepHospital"
               placeholder="00000-000"
-              value={cepHospital}
+              value={insertMaskInCep(cepHospital)}
               onChange={(e) => setCepHospital(e.target.value)}
+              maxLength={9}
+              minLength={9}
               required
             >
               Cep do Hospital

@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function Page() {
   const [numeroSalas, setNumeroSalas] = useState("");
@@ -16,7 +16,7 @@ export default function Page() {
   const [resposta, setResposta] = useState("");
   const [show, setShow] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {

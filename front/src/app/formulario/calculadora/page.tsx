@@ -1,10 +1,27 @@
 "use client";
 
 import { ButtonForm, InputForm } from "@/components";
+import { useContextForm } from "@/context/Context";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function Page() {
+  const { nomeCompleto, telefone, email, cepHospital, cargo } =
+    useContextForm();
+
+  const router = useRouter();
+
+  if (
+    nomeCompleto.length === 0 &&
+    telefone.length === 0 &&
+    email.length === 0 &&
+    cepHospital.length === 0 &&
+    cargo.length === 0
+  ) {
+    router.push("/formulario");
+  }
+
   const [numeroSalas, setNumeroSalas] = useState("");
   const [numeroCirurgias, setNumeroCirurgias] = useState("");
   const [processaTecidos, setProcessaTecidos] = useState("");

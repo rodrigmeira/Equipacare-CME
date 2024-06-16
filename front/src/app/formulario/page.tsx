@@ -1,6 +1,6 @@
 "use client";
 
-import { InputForm } from "@/components";
+import { ButtonForm, InputForm } from "@/components";
 import { useContextForm } from "@/context/Context";
 import { insertMaskInCep } from "@/utils/insertMaskInCep";
 import { insertMaskInTel } from "@/utils/insertMaskInTel";
@@ -47,9 +47,8 @@ export default function CadastroPage() {
             value={nomeCompleto}
             onChange={(e) => setNomeCompleto(e.target.value)}
             required
-          >
-            Nome Completo
-          </InputForm>
+            children="Nome Completo"
+          />
 
           <InputForm
             type="text"
@@ -60,9 +59,8 @@ export default function CadastroPage() {
             required
             maxLength={14}
             minLength={13}
-          >
-            Telefone
-          </InputForm>
+            children="Telefone"
+          />
 
           <InputForm
             type="email"
@@ -71,9 +69,8 @@ export default function CadastroPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          >
-            E-mail
-          </InputForm>
+            children="E-mail"
+          />
 
           <div className="md:grid md:grid-cols-2 md:gap-4">
             <InputForm
@@ -85,9 +82,8 @@ export default function CadastroPage() {
               maxLength={9}
               minLength={9}
               required
-            >
-              Cep do Hospital
-            </InputForm>
+              children="Cep do Hospital"
+            />
 
             <InputForm
               type="text"
@@ -96,9 +92,8 @@ export default function CadastroPage() {
               value={cargo}
               onChange={(e) => setCargo(e.target.value)}
               required
-            >
-              Cargo
-            </InputForm>
+              children="Cargo"
+            />
           </div>
 
           <label
@@ -141,12 +136,7 @@ export default function CadastroPage() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="border bg-color-primary hover:bg-color-primary-focus font-semibold tracking-widest text-slate-50 py-2 px-5 rounded-lg"
-          >
-            Avançar
-          </button>
+          <ButtonForm children="Avançar" />
         </form>
       </div>
       <div className="flex justify-center items-center">

@@ -1,5 +1,6 @@
 "use client";
 
+import { ButtonForm, InputForm } from "@/components";
 import axios from "axios";
 import { FormEvent, useState } from "react";
 
@@ -14,7 +15,6 @@ export default function Page() {
   const [numeroAutoclaves, setNumeroAutoclaves] = useState("");
   const [numeroLavadorasTermo, setNumeroLavadorasTermo] = useState("");
   const [resposta, setResposta] = useState("");
-  const [show, setShow] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,153 +54,89 @@ export default function Page() {
     } catch (error) {
       console.error(error);
     }
-
-    setShow(true);
   };
 
   return (
-    <div className="border p-5 flex flex-col justify-center items-center">
+    <div className="w-11/12 py-14 px-8 bg-white border-2 border-color-primary rounded-3xl transform -translate-y-6 p-5 flex flex-col justify-center items-center">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <label htmlFor="numeroSalas" className="flex flex-col" />
-        Número de salas cirúrgicas
-        <input
+        <InputForm
+          type="number"
           id="numeroSalas"
           value={numeroSalas}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroSalas(e.target.value)}
           required
+          children="Número de salas cirúrgicas"
         />
-        <label htmlFor="numeroCirurgias" className="flex flex-col" />
-        Número cirúrgias/sala/dia
-        <input
+        <InputForm
+          type="number"
           id="numeroCirurgias"
           value={numeroCirurgias}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroCirurgias(e.target.value)}
           required
+          children="Número cirúrgias/sala/dia"
         />
-        <label htmlFor="processaTecidos" className="flex flex-col" />
-        Processos de tecidos?
-        <input
+        <InputForm
+          type="text"
           id="processaTecidos"
           value={processaTecidos}
-          type="text"
-          className="border"
           onChange={(e) => setProcessaTecidos(e.target.value)}
           required
+          children="Processos de tecidos?"
         />
-        <label htmlFor="diasDeCirurgias" className="flex flex-col" />
-        As cirúrgias serão realizadas em quais dias da semana?
-        <input
+        <InputForm
+          type="text"
           id="diasDeCirurgias"
           value={diasDeCirurgias}
-          type="text"
-          className="border"
           onChange={(e) => setDiasDeCirurgias(e.target.value)}
           required
+          children="As cirúrgias serão realizadas em quais dias da semana?"
         />
-        <label htmlFor="intervaloPico" className="flex flex-col" />
-        Qual o interval o de pico de funcionamento / da CME (período de
-        processamento de 90% do material?)
-        <input
+        <InputForm
+          type="number"
           id="intervaloPico"
           value={intervaloPico}
-          type="number"
-          className="border"
           onChange={(e) => setIntervaloPico(e.target.value)}
           required
+          children="Qual o interval o de pico de funcionamento / da CME (período de
+        processamento de 90% do material?)"
         />
-        <label htmlFor="numeroLeitosUti" className="flex flex-col" />
-        Número leitos UTI
-        <input
+        <InputForm
+          type="number"
           id="numeroLeitosUti"
           value={numeroLeitosUti}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroLeitosUti(e.target.value)}
           required
+          children="Número leitos UTI"
         />
-        <label htmlFor="numeroLeitosInternacoes" className="flex flex-col" />
-        Número leitos Internação, RPA, Observações, HD...
-        <input
+        <InputForm
+          type="number"
           id="numeroLeitosInternacoes"
           value={numeroLeitosInternacoes}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroLeitosInternacoes(e.target.value)}
           required
+          children="Número leitos Internação, RPA, Observações, HD..."
         />
-        <label htmlFor="numeroAutoclaves" className="flex flex-col" />
-        Número de Autoclaves
-        <input
+        <InputForm
+          type="number"
           id="numeroAutoclaves"
           value={numeroAutoclaves}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroAutoclaves(e.target.value)}
           required
+          children="Número de Autoclaves"
         />
-        <label htmlFor="numeroLavadorasTermo" className="flex flex-col" />
-        Número de Lavadoras Termo
-        <input
+        <InputForm
+          type="number"
           id="numeroLavadorasTermo"
           value={numeroLavadorasTermo}
-          type="number"
-          className="border"
           onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
           required
+          children="Número de Lavadoras Termo"
         />
+
         <div className="flex items-center justify-center">
-          <button
-            type="submit"
-            className="border bg-black text-slate-50 py-2 px-5"
-          >
-            Calcular
-          </button>
+          <ButtonForm children="Calcular" />
         </div>
       </form>
-
-      {show && (
-        <div>
-          <div className="flex flex-row gap-2">
-            <p>Número de salas:</p> <p>{Object.values(resposta)[0]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Número cirúrgias/sala/dia:</p>{" "}
-            <p>{Object.values(resposta)[1]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Processos de tecidos?:</p> <p>{Object.values(resposta)[2]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>As cirúrgias serão realizadas em quais dias da semana?:</p>{" "}
-            <p>{Object.values(resposta)[3]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>
-              Qual o interval o de pico de funcionamento / da CME (período de
-              processamento de 90% do material?):
-            </p>{" "}
-            <p>{Object.values(resposta)[4]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Número leitos UTI:</p> <p>{Object.values(resposta)[5]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Número leitos Internação, RPA, Observações, HD...:</p>{" "}
-            <p>{Object.values(resposta)[6]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Número de Autoclaves:</p> <p>{Object.values(resposta)[7]}</p>{" "}
-          </div>
-          <div className="flex flex-row gap-2">
-            <p>Número de Lavadoras Termo:</p>{" "}
-            <p>{Object.values(resposta)[8]}</p>{" "}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

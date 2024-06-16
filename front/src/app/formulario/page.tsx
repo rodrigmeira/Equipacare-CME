@@ -98,7 +98,7 @@ export default function CadastroPage() {
 
           <label
             htmlFor="nivelTecnico"
-            className="font-semibold text-base mb-2"
+            className="font-semibold text-base mb-2 select-none"
           >
             Nível de conhecimento técnico:
           </label>

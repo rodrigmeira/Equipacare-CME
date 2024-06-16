@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
+      <body className={`bg-[#F2F2F2] ${inter.className}`}>
         <Navbar />
         {children}
         <Footer />

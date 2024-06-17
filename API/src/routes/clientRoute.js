@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const clientController = require("../controllers/clientController");
+const calculadoraController = require('../controllers/calculadoraController');
 
-router.post("/", clientController.postClient);
-router.get("/", clientController.getClient);
+router.get('/calcular', calculadoraController.calcular);
+router.post('/calcular-dados', calculadoraController.calcularDados);
 
 module.exports = router;

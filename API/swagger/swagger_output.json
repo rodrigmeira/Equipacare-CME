@@ -1,0 +1,34 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Equipacare-CME",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/",
+      "description": "Servidor localhost"
+    }
+  ],
+  "paths": {
+    "/calculadora/": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

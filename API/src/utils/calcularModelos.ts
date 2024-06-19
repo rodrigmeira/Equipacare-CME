@@ -1,13 +1,14 @@
+import { Modelo } from "../mock/Autoclaves_a_vapor";
 import { formatarPercentual } from "./formatarPercentual";
 
-export const calcularModelos = ({
+export const calcularModelos = async ({
   VolumeDiarioDeMaterialLitros,
   IntervaloDePicoCME,
   modelos,
 }: {
   VolumeDiarioDeMaterialLitros: number;
   IntervaloDePicoCME: number;
-  modelos: any[];
+  modelos: Modelo[];
 }) => {
   const resultadoModelos = modelos.map((modelo) => {
     const NomeModelo = modelo.modelo;

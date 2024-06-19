@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const clientRoute = require("./routes/clientRoute");
+const calculadoraRoutes = require("./routes/calculadoraRoutes");
 const cors = require("cors");
 
 let corsOptions = {
@@ -13,6 +13,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/calculadora", cors(corsOptions), clientRoute);
+app.use("/calculadora", cors(corsOptions), calculadoraRoutes);
 
 module.exports = app;

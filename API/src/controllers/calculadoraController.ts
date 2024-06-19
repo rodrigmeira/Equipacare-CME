@@ -9,8 +9,9 @@ import { modelosF } from "../mock/modelos_F";
 import { calculadoraDados } from "../utils/calculadoraDados";
 import { calcularModelos } from "../utils/calcularModelos";
 
-export const calcularDados = (req: Request, res: Response) => {
-  const todosModelos = [
+export const calcularDados = async (req: Request, res: Response) => {
+  // Uni todos os modelos de todas as marcas
+  const todosModelos = await [
     ...modelosA,
     ...modelosB,
     ...modelosC,
@@ -21,8 +22,10 @@ export const calcularDados = (req: Request, res: Response) => {
 
   const inputsCalculadora = req.body;
 
-  const resultado = calculadoraDados(inputsCalculadora);
+  // Calcula o Volume Diário de Material em Litros usando os inputs passados pelo usuario
+  const resultado = await calculadoraDados(inputsCalculadora);
 
+  // Faz o calculo do percentual de todos os modelos de todas as marcas
   const todosResultadosDosModelos = todosModelos.map((modelo) => {
     const inputsCalcularModelos = {
       VolumeDiarioDeMaterialLitros: resultado,
@@ -34,5 +37,17 @@ export const calcularDados = (req: Request, res: Response) => {
     return resultadoDeCadaModelo;
   });
 
-  res.status(200).json(todosResultadosDosModelos);
+  // Faz a filtragem dos modelos da marca A
+  const resultadosModelosA = await Promise.all(
+    todosResultadosDosModelos.map(async (modelo, index) => {
+      const modelosResolvidos = await modelo;
+      const nomeDeCadaModelo = modelosResolvidos.filter((modelo) => {
+        return modelo.NomeModelo === "A" + (index + 1);
+      });
+
+      return nomeDeCadaModelo;
+    })
+  );
+
+  res.status(200).json(resultadosModelosA);
 };

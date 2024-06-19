@@ -20,6 +20,7 @@ export default function CalculadoraPage() {
   const [numeroLeitosInternacoes, setNumeroLeitosInternacoes] = useState("");
   const [numeroAutoclaves, setNumeroAutoclaves] = useState("");
   const [numeroLavadorasTermo, setNumeroLavadorasTermo] = useState("");
+ 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,6 +43,7 @@ export default function CalculadoraPage() {
       const resposta = getResponse.data[getResponse.data.length - 1];
 
       if (formResponse.status === 200) {
+        console.log(getResponse.data[getResponse.data.length - 1]);
         setNumeroSalas("");
         setNumeroCirurgias("");
         setProcessaTecidos("");
@@ -53,7 +55,7 @@ export default function CalculadoraPage() {
         setNumeroLavadorasTermo("");
 
         // Redirecionar para a página de resultado e passar os dados calculados
-        router.push("/formulario/resultado");
+         router.push("/formulario/resultado"); //descomentar ao calcular leva para page resultado
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);

@@ -8,7 +8,7 @@ export const modelosA: Modelo[] = [
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
     tempoDeCargaEDescargaMin: 10.0,
     tempoParaTesteDiarioDeBDMin: 30.0,
-    tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
+    tempoParaProcedimentoDiarioDeAquecimentoMin: 20,
   },
   {
     modelo: "A2",

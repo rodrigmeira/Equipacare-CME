@@ -1,92 +1,7 @@
 import { modelosA } from "../mock/modelos_A";
-import { modelosB } from "../mock/modelos_B";
-import { modelosC } from "../mock/modelos_C";
-import { modelosD } from "../mock/modelos_D";
-import { modelosE } from "../mock/modelos_E";
-import { modelosF } from "../mock/modelos_F";
 
 import { Request, Response } from "express";
-import { Modelo } from "../mock/Autoclaves_a_vapor";
-
-// const calcularModelo = (modelo: Modelo) => {
-//   const numeroDeAutoclaves = modelo.numeroDeAutoclaves ?? 0;
-
-//   modelo.tempoDoCicloConsiderandoCargaEDescargaMin =
-//     modelo.tempoTotalMedioDoCicloInclindoSecagemMin +
-//     modelo.tempoDeCargaEDescargaMin;
-
-//   const horasTrabalhoDiario = 24;
-//   modelo.tempoDisponivelDiarioMin =
-//     horasTrabalhoDiario * 60 -
-//     (modelo.tempoParaTesteDiarioDeBDMin +
-//       modelo.tempoParaProcedimentoDiarioDeAquecimentoMin);
-
-//   modelo.producaoDoHospitalVolumeDiarioLitros = 14089;
-
-//   modelo.volumeProcessadoNoIntervaloDePicoLitros =
-//     modelo.producaoDoHospitalVolumeDiarioLitros * 0.9;
-
-//   modelo.intervaloDiarioDePicoMin =
-//     horasTrabalhoDiario * 60 -
-//     (modelo.tempoParaTesteDiarioDeBDMin +
-//       modelo.tempoParaProcedimentoDiarioDeAquecimentoMin);
-
-//   modelo.numeroMaximoDeCiclosPorDia =
-//     modelo.tempoDisponivelDiarioMin /
-//     modelo.tempoDoCicloConsiderandoCargaEDescargaMin;
-
-//   modelo.numeroMaximoDeCiclosDuranteIntervaloDePico =
-//     modelo.intervaloDiarioDePicoMin /
-//     modelo.tempoDoCicloConsiderandoCargaEDescargaMin;
-
-//   modelo.percentualAproveitamentoCamara =
-//     (modelo.volumeUtilDaCamaraLitros / modelo.volumeTotalDaCamaraLitros) * 100;
-
-//   modelo.numeroDeAutoclavesEmManutencao = numeroDeAutoclaves - 1;
-
-//   modelo.capacidadeProcessamentoIntervaloDePico =
-//     numeroDeAutoclaves *
-//     modelo.numeroMaximoDeCiclosDuranteIntervaloDePico *
-//     modelo.volumeUtilDaCamaraLitros;
-
-//   modelo.horasNecessariasParaAtenderVolumeTotalCasoUmaAltoClaveEstejaEmManutencao =
-//     ((modelo.volumeProcessadoNoIntervaloDePicoLitros /
-//       modelo.volumeUtilDaCamaraLitros) *
-//       modelo.tempoDoCicloConsiderandoCargaEDescargaMin +
-//       modelo.tempoParaTesteDiarioDeBDMin +
-//       modelo.tempoParaProcedimentoDiarioDeAquecimentoMin) /
-//     60 /
-//     modelo.numeroDeAutoclavesEmManutencao;
-
-//   modelo.percentualUtilizacaoCapacidadeNoPico =
-//     (modelo.volumeProcessadoNoIntervaloDePicoLitros /
-//       modelo.capacidadeProcessamentoIntervaloDePico) *
-//     100;
-
-//   return modelo;
-// };
-
-// const calcularDadosMock = (dados: DadosMockInstrumentosTecidos) => {
-
-//   dados.cirurgias.numeroPorDiaInstr = dados.cirurgias.numeroPorDiaInstr;
-//   dados.cirurgias.numeroPorDiaTec = dados.cirurgias.numeroPorDiaTec;
-//   dados.cirurgias.volumeTotalDiarioInstr = dados.cirurgias.volumePorCirurgiaInstr * dados.cirurgias.numeroPorDiaInstr;
-//   dados.cirurgias.volumeTotalDiarioTec = dados.cirurgias.volumePorCirurgiaTec * dados.cirurgias.numeroPorDiaTec;
-
-//   dados.uti.volumeTotalDiarioInstr = dados.uti.volumePorLeitoPorDiaInstr * dados.uti.numeroLeitosInstr;
-//   dados.uti.volumeTotalDiarioTec = dados.uti.volumePorLeitoPorDiaTec * dados.uti.numeroLeitosTec;
-
-//   dados.internacoes.volumeTotalDiarioInstr = dados.internacoes.volumePorLeitoPorDiaInstr * dados.internacoes.numeroLeitosInstr;
-//   dados.internacoes.volumeTotalDiarioTec = dados.internacoes.volumePorLeitoPorDiaTec * dados.internacoes.numeroLeitosTec;
-
-//   dados.materiais.estimativaVolumeTotalDiarioInstr = dados.cirurgias.volumeTotalDiarioInstr + dados.uti.volumeTotalDiarioInstr + dados.internacoes.volumeTotalDiarioInstr;
-//   dados.materiais.estimativaVolumeTotalDiarioTec = dados.cirurgias.volumeTotalDiarioTec + dados.uti.volumeTotalDiarioTec + dados.internacoes.volumeTotalDiarioTec;
-
-//   dados.totalVolumeDiario.estimativaVolumeTotalDiarioUE = dados.materiais.estimativaVolumeTotalDiarioInstr + dados.materiais.estimativaVolumeTotalDiarioTec;
-//   dados.totalVolumeDiario.estimativaVolumeTotalDiarioLitros = dados.totalVolumeDiario.estimativaVolumeTotalDiarioUE * 54;
-
-//   return dados;
-// };
+import { FormatarResposta } from "../utils/formatarPercentual";
 
 const calculadoraDadosMock = ({
   NumeroSalasCirurgicas,
@@ -125,32 +40,43 @@ const calcularModelo = ({
   VolumeDiarioDeMaterialLitros: number;
   IntervaloDePicoCME: number;
 }) => {
-  const VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros = Math.round(
-    VolumeDiarioDeMaterialLitros * 0.9
-  );
-  const IntervaloDiarioDePicoMinutos = (IntervaloDePicoCME * 60) - ();
+  const resultadoModeloA = modelosA.map((modelo) => {
+    const NomeModelo = modelo.modelo;
 
-  return {
-    VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros,
-  };
-};
+    const VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros =
+      VolumeDiarioDeMaterialLitros * 0.9;
 
-export const calcular = (req: Request, res: Response) => {
-  const todosModelos: Modelo[] = [
-    ...modelosA,
-    ...modelosB,
-    ...modelosC,
-    ...modelosD,
-    ...modelosE,
-    ...modelosF,
-  ];
+    const IntervaloDiarioDePicoMinutos =
+      IntervaloDePicoCME * 60 -
+      (modelo.tempoParaTesteDiarioDeBDMin +
+        modelo.tempoParaProcedimentoDiarioDeAquecimentoMin);
 
-  // const caracteristicas: Caracteristicas = {
-  //   CaracteristicasGerais: "MARCA",
-  //   modelos: todosModelos.map(calcularModelo),
-  // };
+    const NumeroMaximoDeCiclosDuranteIntervaloDePico =
+      ((IntervaloDiarioDePicoMinutos /
+        (modelo.tempoDeCargaEDescargaMin +
+          modelo.tempoTotalMedioDoCicloInclindoSecagemMin)) *
+        100) /
+      100;
 
-  // res.json(caracteristicas);
+    const CapacidadeDeProcessamentoNoIntervaloDePico =
+      3 * // Numero de Autoclaves, verificar se será preciso alterar
+      modelo.volumeUtilDaCamaraLitros *
+      NumeroMaximoDeCiclosDuranteIntervaloDePico;
+
+    const PercentualDeUltilizacao =
+      (VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros /
+        CapacidadeDeProcessamentoNoIntervaloDePico) *
+      100;
+
+    const PercentualFormatado = FormatarResposta(PercentualDeUltilizacao);
+
+    return {
+      NomeModelo,
+      PercentualFormatado,
+    };
+  });
+
+  return resultadoModeloA;
 };
 
 export const calcularDados = (req: Request, res: Response) => {
@@ -166,8 +92,4 @@ export const calcularDados = (req: Request, res: Response) => {
   const retultadoModelos = calcularModelo(inputsCalcularModelos);
 
   res.status(200).json(retultadoModelos);
-
-  // const resultados = calcularDadosMock(dados);
-
-  // res.json(resultados);
 };

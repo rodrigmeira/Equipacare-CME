@@ -1,4 +1,4 @@
-export const FormatarResposta = (num: number) => {
+export const formatarPercentual = (num: number) => {
   const stringNum = num.toString();
   const pontoIndex = stringNum.indexOf(".");
   if (pontoIndex === -1) {

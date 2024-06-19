@@ -48,6 +48,19 @@ export default function Layout({
         </Banner>
       )}
 
+      {pathName === "/formulario/resultado" && (
+        <Banner
+          style={{
+            backgroundImage: "url(/image-calculadora.png)",
+          }}
+        >
+          <CopyForm
+            h1="CALCULADORA"
+            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material"
+          />
+        </Banner>
+      )}
+
       <Provider>{children}</Provider>
     </div>
   );

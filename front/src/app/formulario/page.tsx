@@ -118,6 +118,7 @@ export default function CadastroPage() {
                 Possuo conhecimento técnico
               </label>
             </div>
+            
             <div className="flex justify-start items-center">
               <input
                 type="checkbox"
@@ -135,7 +136,6 @@ export default function CadastroPage() {
               </label>
             </div>
           </div>
-
           <ButtonForm children="Avançar" />
         </form>
       </div>

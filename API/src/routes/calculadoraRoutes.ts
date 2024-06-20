@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
+import { calcularDados } from "../controllers/calculadoraController";
 const router = express.Router();
-const calculadoraController = require("../controllers/calculadoraController");
 
 // router.get("/calcular", calculadoraController.calcular);
-router.post("/calcular-dados", calculadoraController.calcularDados);
+router.post("/calcular-dados", calcularDados);
 
-module.exports = router;
+export default router;

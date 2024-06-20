@@ -11,7 +11,7 @@ import { calcularModelos } from "../utils/calcularModelos";
 
 export const calcularDados = async (req: Request, res: Response) => {
   // Uni todos os modelos de todas as marcas
-  const todosModelos = await [
+  const todosModelos = [
     ...modelosA,
     ...modelosB,
     ...modelosC,
@@ -23,31 +23,42 @@ export const calcularDados = async (req: Request, res: Response) => {
   const inputsCalculadora = req.body;
 
   // Calcula o Volume Diário de Material em Litros usando os inputs passados pelo usuario
-  const resultado = await calculadoraDados(inputsCalculadora);
+  const resultado = calculadoraDados(inputsCalculadora);
 
   // Faz o calculo do percentual de todos os modelos de todas as marcas
-  const todosResultadosDosModelos = todosModelos.map((modelo) => {
-    const inputsCalcularModelos = {
-      VolumeDiarioDeMaterialLitros: resultado,
-      IntervaloDePicoCME: inputsCalculadora.IntervaloDePicoCME,
-      modelos: [modelo],
-    };
+  const todosResultadosDosModelos = await Promise.all(
+    todosModelos.map(async (modelo) => {
+      const inputsCalcularModelos = {
+        VolumeDiarioDeMaterialLitros: resultado,
+        IntervaloDePicoCME: inputsCalculadora.IntervaloDePicoCME,
+        modelos: [modelo],
+      };
 
-    const resultadoDeCadaModelo = calcularModelos(inputsCalcularModelos);
-    return resultadoDeCadaModelo;
-  });
+      const resultadoDeCadaModelo = await calcularModelos(
+        inputsCalcularModelos
+      );
 
-  // Faz a filtragem dos modelos da marca A
-  const resultadosModelosA = await Promise.all(
-    todosResultadosDosModelos.map(async (modelo, index) => {
-      const modelosResolvidos = await modelo;
-      const nomeDeCadaModelo = modelosResolvidos.filter((modelo) => {
-        return modelo.NomeModelo === "A" + (index + 1);
-      });
+      console.log(resultadoDeCadaModelo);
 
-      return nomeDeCadaModelo;
+      return resultadoDeCadaModelo;
     })
   );
 
-  res.status(200).json(resultadosModelosA);
+  const todosResultados: any = [];
+  todosResultadosDosModelos.forEach((item: any) => {
+    item.forEach((subItem: any) => {
+      if (subItem) {
+        todosResultados.push(subItem);
+      }
+    });
+  });
+
+  const resultadosModelosA = todosResultados
+    .filter(
+      (item: any) =>
+        item.NomeModelo.includes("A") && item.PercentualFormatado < 90
+    )
+    .sort((a: any, b: any) => b.PercentualFormatado - a.PercentualFormatado);
+
+  res.status(200).json([resultadosModelosA[0], resultadosModelosA[1]]);
 };

@@ -8,6 +8,7 @@ import { modelosF } from "../mock/modelos_F";
 
 import { calculadoraDados } from "../utils/calculadoraDados";
 import { calcularModelos } from "../utils/calcularModelos";
+import { filtroModelos } from "../utils/filtroModelos";
 
 export const calcularDados = async (req: Request, res: Response) => {
   // Uni todos os modelos de todas as marcas
@@ -27,7 +28,7 @@ export const calcularDados = async (req: Request, res: Response) => {
 
   // Faz o calculo do percentual de todos os modelos de todas as marcas
   const todosResultadosDosModelos = await Promise.all(
-    todosModelos.map(async (modelo) => {
+    todosModelos.map(async (modelo: any) => {
       const inputsCalcularModelos = {
         VolumeDiarioDeMaterialLitros: resultado,
         IntervaloDePicoCME: inputsCalculadora.IntervaloDePicoCME,
@@ -37,8 +38,6 @@ export const calcularDados = async (req: Request, res: Response) => {
       const resultadoDeCadaModelo = await calcularModelos(
         inputsCalcularModelos
       );
-
-      console.log(resultadoDeCadaModelo);
 
       return resultadoDeCadaModelo;
     })
@@ -53,12 +52,22 @@ export const calcularDados = async (req: Request, res: Response) => {
     });
   });
 
-  const resultadosModelosA = todosResultados
-    .filter(
-      (item: any) =>
-        item.NomeModelo.includes("A") && item.PercentualFormatado < 90
-    )
-    .sort((a: any, b: any) => b.PercentualFormatado - a.PercentualFormatado);
+  const resultadosModelosA = filtroModelos(todosResultados, "A");
+  const resultadosModelosB = filtroModelos(todosResultados, "B");
+  const resultadosModelosC = filtroModelos(todosResultados, "C");
+  const resultadosModelosD = filtroModelos(todosResultados, "D");
+  const resultadosModelosE = filtroModelos(todosResultados, "E");
+  const resultadosModelosF = filtroModelos(todosResultados, "F");
 
-  res.status(200).json([resultadosModelosA[0], resultadosModelosA[1]]);
+  res
+    .status(200)
+    .json([
+      resultadosModelosA,
+      resultadosModelosB,
+      resultadosModelosC,
+      resultadosModelosD,
+      resultadosModelosE,
+      resultadosModelosF,
+    ]);
+  // res.status(200).json(todosResultadosDosModelos);
 };

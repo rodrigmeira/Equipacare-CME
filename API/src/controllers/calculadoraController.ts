@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { modelosA } from "../mock/modelos_A";
-import { modelosB } from "../mock/modelos_B";
-import { modelosC } from "../mock/modelos_C";
-import { modelosD } from "../mock/modelos_D";
-import { modelosE } from "../mock/modelos_E";
-import { modelosF } from "../mock/modelos_F";
+import { modelosA } from "../mock/autoClaveModels/modelos_A";
+import { modelosB } from "../mock/autoClaveModels/modelos_B";
+import { modelosC } from "../mock/autoClaveModels/modelos_C";
+import { modelosD } from "../mock/autoClaveModels/modelos_D";
+import { modelosE } from "../mock/autoClaveModels/modelos_E";
+import { modelosF } from "../mock/autoClaveModels/modelos_F";
 
 import { calculadoraDados } from "../utils/calculadoraDados";
 import { calcularModelos } from "../utils/calcularModelos";

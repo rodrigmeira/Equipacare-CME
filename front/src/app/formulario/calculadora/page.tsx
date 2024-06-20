@@ -89,12 +89,12 @@ export default function CalculadoraPage() {
         <div>
           <InputForm
             type="number"
-            id="numeroSalas"
+            id="populacaoRegiao"
             value={numeroSalas}
             onChange={(e) => setNumeroSalas(e.target.value)}
             required
           >
-            Número de salas cirúrgicas
+            População da Região
           </InputForm>
         </div>
         <div>
@@ -105,7 +105,7 @@ export default function CalculadoraPage() {
             onChange={(e) => setNumeroCirurgias(e.target.value)}
             required
           >
-            Número cirurgias/sala/dia
+            Número de Salas Cirúrgicas
           </InputForm>
         </div>
         <div>
@@ -116,48 +116,26 @@ export default function CalculadoraPage() {
             onChange={(e) => setProcessaTecidos(e.target.value)}
             required
           >
-            Processos de tecidos?
+           Processamento de Tecidos?
           </InputForm>
         </div>
         <div>
           <InputForm
             type="text"
-            id="diasDeCirurgias"
+            id="intervaloPico"
             value={diasDeCirurgias}
             onChange={(e) => setDiasDeCirurgias(e.target.value)}
             required
           >
-            As cirurgias serão realizadas em quais dias da semana?
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="intervaloPico"
-            value={intervaloPico}
-            onChange={(e) => setIntervaloPico(e.target.value)}
-            required
-          >
-            Qual o intervalo de pico de funcionamento da CME?
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroLeitosUti"
-            value={numeroLeitosUti}
-            onChange={(e) => setNumeroLeitosUti(e.target.value)}
-            required
-          >
-            Número leitos UTI
+            Intervalo de Pico de Funcionamento da CME
           </InputForm>
         </div>
         <div>
           <InputForm
             type="number"
             id="numeroLeitosInternacoes"
-            value={numeroLeitosInternacoes}
-            onChange={(e) => setNumeroLeitosInternacoes(e.target.value)}
+            value={intervaloPico}
+            onChange={(e) => setIntervaloPico(e.target.value)}
             required
           >
             Número leitos Internação, RPA, Observações, HD...
@@ -166,9 +144,53 @@ export default function CalculadoraPage() {
         <div>
           <InputForm
             type="number"
-            id="numeroAutoclaves"
+            id="numeroHospitaisRegiao"
+            value={numeroLeitosUti}
+            onChange={(e) => setNumeroLeitosUti(e.target.value)}
+            required
+          >
+            Número de Hospitais na Região
+          </InputForm>
+        </div>
+        <div>
+          <InputForm
+            type="number"
+            id="numeroCirurgiasPorSalaDia"
+            value={numeroLeitosInternacoes}
+            onChange={(e) => setNumeroLeitosInternacoes(e.target.value)}
+            required
+          >
+            Número de Cirurgias por Sala/Dias
+          </InputForm>
+        </div>
+        <div>
+          <InputForm
+            type="number"
+            id="diasSemanaCirurgias"
             value={numeroAutoclaves}
             onChange={(e) => setNumeroAutoclaves(e.target.value)}
+            required
+          >
+            Dias da Semana para Realização das Cirurgias
+          </InputForm>
+        </div>
+        <div>
+          <InputForm
+            type="number"
+            id="numeroLeitos"
+            value={numeroLavadorasTermo}
+            onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
+            required
+          >
+            Número de Leitos UTI
+          </InputForm>
+        </div>
+        <div>
+          <InputForm
+            type="number"
+            id="numeroAutoclaves"
+            value={numeroLavadorasTermo}
+            onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
             required
           >
             Número de Autoclaves

@@ -43,7 +43,7 @@ export default function Layout({
         >
           <CopyForm
             h1="CALCULADORA"
-            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material"
+            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material."
           />
         </Banner>
       )}
@@ -56,7 +56,7 @@ export default function Layout({
         >
           <CopyForm
             h1="CALCULADORA"
-            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material"
+            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material."
           />
         </Banner>
       )}

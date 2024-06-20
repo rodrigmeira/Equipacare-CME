@@ -1,11 +1,11 @@
-// src/app/formulario/calculadora/page.tsx
 "use client";
 
 import { ButtonForm, InputForm } from "@/components";
 import { validationContext } from "@/middleware/validationContext";
 import axios from "axios";
 import { FormEvent, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import { CirclesWithBar } from "react-loader-spinner";
 
 export default function CalculadoraPage() {
   validationContext();
@@ -20,10 +20,14 @@ export default function CalculadoraPage() {
   const [numeroLeitosInternacoes, setNumeroLeitosInternacoes] = useState("");
   const [numeroAutoclaves, setNumeroAutoclaves] = useState("");
   const [numeroLavadorasTermo, setNumeroLavadorasTermo] = useState("");
- 
+
+  const [loading, setLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setLoadingMessage("Carregando resultado...");
 
     const formData = {
       numeroSalas,
@@ -38,12 +42,15 @@ export default function CalculadoraPage() {
     };
 
     try {
-      const formResponse = await axios.post("http://localhost:8080/calculadora", formData);
+      const formResponse = await axios.post(
+        "http://localhost:8080/calculadora",
+        formData
+      );
       const getResponse = await axios.get("http://localhost:8080/calculadora");
       const resposta = getResponse.data[getResponse.data.length - 1];
 
       if (formResponse.status === 200) {
-        console.log(getResponse.data[getResponse.data.length - 1]);
+        console.log(resposta);
         setNumeroSalas("");
         setNumeroCirurgias("");
         setProcessaTecidos("");
@@ -54,8 +61,9 @@ export default function CalculadoraPage() {
         setNumeroAutoclaves("");
         setNumeroLavadorasTermo("");
 
-        // Redirecionar para a página de resultado e passar os dados calculados
-         router.push("/formulario/resultado"); //descomentar ao calcular leva para page resultado
+        setTimeout(() => {  //ATRASO colocado de proposito para aparecer o spinner
+        router.push("/formulario/resultado");
+        }, 4000);
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
@@ -63,8 +71,21 @@ export default function CalculadoraPage() {
   };
 
   return (
-    <div className="w-11/12 py-14 px-8 bg-white border-2 border-color-primary rounded-3xl transform -translate-y-6 p-5 flex flex-col justify-center items-center">
-      <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+    <div className="relative w-11/12 py-14 px-8 bg-white border-2 border-color-primary rounded-3xl transform -translate-y-6 p-5 flex flex-col justify-center items-center">
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
+          <div className="text-center">
+            <div className="flex justify-center items-center mb-3">
+              <CirclesWithBar color="#5A9B1B" height={150} width={150} />
+            </div>
+            <p className="text-black text-3xl font-bold">{loadingMessage}</p>
+          </div>
+        </div>
+      )}
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
+      >
         <div>
           <InputForm
             type="number"

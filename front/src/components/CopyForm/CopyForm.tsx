@@ -6,6 +6,7 @@ export const CopyForm = ({ h1, p }: { h1: string; p: string }) => {
   const pathName = usePathname();
   const pathForm = pathName === "/formulario";
   const pathCalculadora = pathName === "/formulario/calculadora";
+  const pathResultado = pathName === "/formulario/resultado";
 
   return (
     <div className="flex flex-col justify-center items-center text-white transform translate-y-6 drop-shadow-h1Banner">
@@ -13,8 +14,8 @@ export const CopyForm = ({ h1, p }: { h1: string; p: string }) => {
         {h1}
       </h1>
       {pathForm && <p className="font-bold text-xl">{p}</p>}
-      {pathCalculadora && (
-        <p className="font-bold md:text-xl text-base md:w-11/12 select-none">
+      {(pathCalculadora || pathResultado) && (
+        <p className="font-bold md:text-xl text-base md:w-11/12 select-none max-w-3xl text-justify">
           {p}
         </p>
       )}

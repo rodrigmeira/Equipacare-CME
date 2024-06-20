@@ -1,4 +1,4 @@
-import { Modelo } from "./Autoclaves_a_vapor";
+import { Modelo } from "../Autoclaves_a_vapor";
 
 export const modelosA: Modelo[] = [
   {

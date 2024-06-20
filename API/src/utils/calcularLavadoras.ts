@@ -2,14 +2,12 @@ import { formatarPercentual } from "./formatarPercentual";
 
 export const calcularLavadoras = ({
     EstimativaVolumeTotalDiarioMaterial,
-    VolumeDiarioDeMaterialLitros,
     cirurgiasPorDia,
     NumeroleitosUTI,
     TotalDeLavadorasTermo,
     
-    marca,
+
     modelos,
-    VolumeTotalCamaraLitros,
     CapacidadeCargaBandejasDeInstrumentos,
     CapacidadeCargaDeTraqueias,
     TempoMedioCicloInstrumentosCargaMaximaMinuto,
@@ -30,7 +28,7 @@ export const calcularLavadoras = ({
     TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto: number;
 }) => {
     const resultadoLavadoras = modelos.map((modelo) => {
-        const NomeModelo = modelo.modelos;
+        const NomeModeloLavadora = modelo.modelos;
 
         const ProducaoUEInstrumentosDia = EstimativaVolumeTotalDiarioMaterial
         const numeroCirurgiasDia = cirurgiasPorDia
@@ -40,7 +38,29 @@ export const calcularLavadoras = ({
         const CapacidadeProcessamentoUEInstrumentos = CapacidadeCargaBandejasDeInstrumentos / BandejasPorUE
         const QuantidadeDeCiclosNecessariosDiariamenteParaIntru = Math.ceil(ProducaoUEInstrumentosDia / CapacidadeProcessamentoUEInstrumentos)
         const IntervaloMedioEntreCiclos = 10
-        const TempoNecessarioParaProcessarADemandaDeInstrumentosMin = NumeroCiclosNecessariosDiariamenteParaInstrumentos * (TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto + IntervaloMedioEntreCiclos)
+        const TempoNecessarioParaProcessarADemandaDeInstrumentosMin = QuantidadeDeCiclosNecessariosDiariamenteParaIntru  * (TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto + IntervaloMedioEntreCiclos)
         const QuantidadeTraqueiasPorCirurgia = 3
-        const QuantidadeTraqueiasPorDiaCirurgia = numeroCirurgiasDia *
+        const QuantidadeTraqueiasPorDiaCirurgia = numeroCirurgiasDia * QuantidadeTraqueiasPorCirurgia
+        const QuantidadeTraqueiasPorLeitoUTIDia = 3
+        const QuantidadeTraqueiasPorDiaUTI = numeroLeitosUTI * QuantidadeTraqueiasPorLeitoUTIDia
+        const QuantidadeTraqueiasPorDiaTOTAL = QuantidadeTraqueiasPorDiaCirurgia + QuantidadeTraqueiasPorDiaUTI
+
+        const QuantidadeCiclosNecessariosDiariamenteParaAssistVent = Math.ceil(QuantidadeTraqueiasPorDiaTOTAL / CapacidadeCargaDeTraqueias)
+        const TempoNecessarioParaProcessarADemandaDeAssistenciaVentilatoriasMin = QuantidadeCiclosNecessariosDiariamenteParaAssistVent * (TempoMedioCicloInstrumentosCargaMaximaMinuto + IntervaloMedioEntreCiclos)
+
+        const DemandaCiclosDia = Math.ceil(QuantidadeCiclosNecessariosDiariamenteParaAssistVent + QuantidadeDeCiclosNecessariosDiariamenteParaIntru)
+        const DemandaCiclosMin = TempoNecessarioParaProcessarADemandaDeInstrumentosMin + TempoNecessarioParaProcessarADemandaDeAssistenciaVentilatoriasMin
+
+        const MinutosDisponiveisDiariamenteSomandoEquipamentos = 60 * 24 * TotalDeLavadorasTermo
+        const PercentualUtilizacaoCapacidadeMaxima = DemandaCiclosMin / MinutosDisponiveisDiariamenteSomandoEquipamentos * 100
+
+        const PercentualFormatadoLavadora = formatarPercentual(PercentualUtilizacaoCapacidadeMaxima)
+
+        return {
+            NomeModeloLavadora,
+            PercentualFormatadoLavadora,
+        };
+    });
+
+    return resultadoLavadoras;
 }

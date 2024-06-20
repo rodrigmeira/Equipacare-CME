@@ -1,7 +1,7 @@
-const express = require("express");
+import bodyParser from "body-parser";
+import express from "express";
+import calculadoraRoutes from "./routes/calculadoraRoutes";
 const app = express();
-const bodyParser = require("body-parser");
-const clientRoute = require("./routes/clientRoute");
 const cors = require("cors");
 
 let corsOptions = {
@@ -13,6 +13,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/calculadora", cors(corsOptions), clientRoute);
+app.use("/calculadora", cors(corsOptions), calculadoraRoutes);
 
-module.exports = app;
+export default app;

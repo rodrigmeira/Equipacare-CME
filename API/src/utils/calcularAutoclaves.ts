@@ -1,20 +1,14 @@
-import { Modelo } from "../mock/Autoclaves_a_vapor";
+import {
+  calcularAutoclavesInterface,
+  resultadoTodosModelosInterface,
+} from "../interfaces";
 import { formatarPercentual } from "./formatarPercentual";
 
 export const calcularAutoclaves = async ({
   VolumeDiarioDeMaterialLitros,
   IntervaloDePicoCME,
   modelos,
-}: {
-  VolumeDiarioDeMaterialLitros: number;
-  IntervaloDePicoCME: number;
-  modelos: Modelo[];
-}) => {
-  interface resultadoTodosModelosInterface {
-    NomeModelo: string;
-    PercentualFormatado: string;
-  }
-
+}: calcularAutoclavesInterface) => {
   const resultadoTodosModelos: resultadoTodosModelosInterface[] = [];
 
   modelos.forEach((modelo) => {

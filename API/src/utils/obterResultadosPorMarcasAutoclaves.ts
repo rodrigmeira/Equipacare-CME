@@ -1,6 +1,6 @@
 import { filtrarModelos } from "./filtrarModelos";
 
-export const obterResultadosPorMarcaAutoclaves = (
+export const obterResultadosPorMarcasAutoclaves = (
   resultados: any[],
   marcas: string[]
 ) => {

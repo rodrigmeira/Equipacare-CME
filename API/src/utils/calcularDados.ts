@@ -1,15 +1,11 @@
+import { calcularDadosInterface } from "../interfaces";
+
 export const calcularDados = ({
   NumeroSalasCirurgicas,
   NumeroCirurgiasSalaDia,
   NumeroLeitosUTI,
   NumeroLeitosInternacao,
-}: {
-  NumeroSalasCirurgicas: number;
-  NumeroCirurgiasSalaDia: number;
-  IntervaloDePicoCME: number;
-  NumeroLeitosUTI: number;
-  NumeroLeitosInternacao: number;
-}) => {
+}: calcularDadosInterface) => {
   const NumeroDeCirurgiasPorDia =
     NumeroSalasCirurgicas * NumeroCirurgiasSalaDia;
   const VolumeTotalDiarioCirurgias = 1.5 * NumeroDeCirurgiasPorDia;

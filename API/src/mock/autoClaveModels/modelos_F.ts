@@ -1,4 +1,4 @@
-import { Modelo } from "../Autoclaves_a_vapor";
+import { Modelo } from "../../interfaces";
 
 export const modelosF: Modelo[] = [
   {

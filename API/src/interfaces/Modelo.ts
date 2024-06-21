@@ -1,8 +1,3 @@
-export interface Caracteristicas {
-  CaracteristicasGerais: string;
-  modelos: Modelo[];
-}
-
 export interface Modelo {
   modelo: string;
   volumeTotalDaCamaraLitros: number;

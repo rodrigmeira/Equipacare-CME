@@ -1,7 +1,7 @@
 import { Modelo } from "../mock/Autoclaves_a_vapor";
 import { formatarPercentual } from "./formatarPercentual";
 
-export const calcularModelos = async ({
+export const calcularAutoclaves = async ({
   VolumeDiarioDeMaterialLitros,
   IntervaloDePicoCME,
   modelos,

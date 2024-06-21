@@ -1,8 +1,8 @@
 import express from "express";
-import { calcularDados } from "../controllers/calculadoraController";
+import { calcular } from "../controllers/calculadoraController";
 const router = express.Router();
 
 // router.get("/calcular", calculadoraController.calcular);
-router.post("/calcular-dados", calcularDados);
+router.post("/calcular-dados", calcular);
 
 export default router;

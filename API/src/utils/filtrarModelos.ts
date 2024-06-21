@@ -1,4 +1,4 @@
-export const filtroModelos = (resultados: any[], marca: string) => {
+export const filtrarModelos = (resultados: any[], marca: string) => {
   const resultadoModelos = resultados
     .filter(
       (item: any) =>

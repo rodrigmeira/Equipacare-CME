@@ -21,5 +21,9 @@ export const calcularDados = ({
     EstimativaDeVolumeTotalDiarioUE * 54
   );
 
-  return EstimativaDeVolumeTotalDiarioLitros;
+  return {
+    EstimativaDeVolumeTotalDiarioLitros,
+    EstimativaVolumeTotalDiarioPorMaterial,
+    NumeroDeCirurgiasPorDia,
+  };
 };

@@ -12,6 +12,7 @@ import {
   calcularResultadosAutoclaves,
   obterResultadosPorMarcasAutoclaves,
 } from "../utils";
+import { calcularLavadoras } from "../utils/calcularLavadoras";
 
 const obterTodosModelosAutoclaves = () => {
   return [
@@ -40,7 +41,7 @@ export const calcular = async (req: Request, res: Response) => {
   const todosResultados = await calcularResultadosAutoclaves(
     todosModelosAutoclaves,
     inputsCalculadora,
-    volumeDiario
+    volumeDiario.EstimativaDeVolumeTotalDiarioLitros
   );
 
   // Pega os dois resultados abaixo e mais proximos de 90% das Autoclaves
@@ -50,6 +51,13 @@ export const calcular = async (req: Request, res: Response) => {
   );
 
   // ----- CALCULO LAVADORAS TERMO -----
+
+  const resultadoLavadoras = calcularLavadoras(
+    volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
+    volumeDiario.NumeroDeCirurgiasPorDia,
+    inputsCalculadora.NumeroleitosUTI,
+    2
+  );
 
   res.status(200).json(resultadoTodasMarcasAutoclaves);
 };

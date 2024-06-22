@@ -7,12 +7,14 @@ import {
   modelosE,
   modelosF,
 } from "../mock";
+import { modelosLavadorasA } from "../mock/Lavadora_Termodesinfectora";
 import {
   calcularDados,
   calcularResultadosAutoclaves,
   obterResultadosPorMarcasAutoclaves,
 } from "../utils";
 import { calcularLavadoras } from "../utils/calcularLavadoras";
+import { filtrarModelos } from "../utils/filtrarModelos";
 
 const obterTodosModelosAutoclaves = () => {
   return [
@@ -27,10 +29,28 @@ const obterTodosModelosAutoclaves = () => {
 
 export const calcular = async (req: Request, res: Response) => {
   //Recebe os inputs do usuario
-  const inputsCalculadora = req.body;
+  const {
+    NumeroSalasCirurgicas,
+    NumeroCirurgiasSalaDia,
+    IntervaloDePicoCME,
+    NumeroLeitosUTI,
+    NumeroLeitosInternacao,
+  }: {
+    NumeroSalasCirurgicas: number;
+    NumeroCirurgiasSalaDia: number;
+    IntervaloDePicoCME: number;
+    NumeroLeitosUTI: number;
+    NumeroLeitosInternacao: number;
+  } = req.body;
 
   // Calcula o Volume Diário de Material em Litros usando os inputs passados pelo usuario
-  const volumeDiario = calcularDados(inputsCalculadora);
+  const volumeDiario = calcularDados({
+    NumeroSalasCirurgicas,
+    NumeroCirurgiasSalaDia,
+    IntervaloDePicoCME,
+    NumeroLeitosUTI,
+    NumeroLeitosInternacao,
+  });
 
   // ----- CALCULO AUTOCLAVES -----
 
@@ -38,26 +58,38 @@ export const calcular = async (req: Request, res: Response) => {
   const todosModelosAutoclaves = obterTodosModelosAutoclaves();
 
   // Calcula o percentual de cada modelo das Autoclaves
-  const todosResultados = await calcularResultadosAutoclaves(
+  const todosResultadosAutoclaves = await calcularResultadosAutoclaves(
     todosModelosAutoclaves,
-    inputsCalculadora,
+    IntervaloDePicoCME,
     volumeDiario.EstimativaDeVolumeTotalDiarioLitros
   );
 
   // Pega os dois resultados abaixo e mais proximos de 90% das Autoclaves
   const resultadoTodasMarcasAutoclaves = obterResultadosPorMarcasAutoclaves(
-    todosResultados,
+    todosResultadosAutoclaves,
     ["A", "B", "C", "D", "E", "F"]
   );
 
   // ----- CALCULO LAVADORAS TERMO -----
 
-  const resultadoLavadoras = calcularLavadoras(
-    volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
-    volumeDiario.NumeroDeCirurgiasPorDia,
-    inputsCalculadora.NumeroleitosUTI,
-    2
-  );
+  const obterTodosModelosLavadoras = () => {
+    return [...modelosLavadorasA];
+  };
 
-  res.status(200).json(resultadoTodasMarcasAutoclaves);
+  const todosModelosLavadoras = obterTodosModelosLavadoras();
+
+  const parametrosLavadoras = {
+    EstimativaVolumeTotalDiarioMaterial:
+      volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
+    cirurgiasPorDia: volumeDiario.NumeroDeCirurgiasPorDia,
+    NumeroleitosUTI: NumeroLeitosUTI,
+    quantidadeDeTermos: 2,
+    modelos: todosModelosLavadoras,
+  };
+
+  const resultadoLavadoras = await calcularLavadoras(parametrosLavadoras);
+
+  const resultadoFiltrados = filtrarModelos(resultadoLavadoras, "A");
+
+  res.status(200).json(resultadoFiltrados);
 };

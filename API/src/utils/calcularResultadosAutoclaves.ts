@@ -2,14 +2,14 @@ import { calcularAutoclaves } from "./calcularAutoclaves";
 
 export const calcularResultadosAutoclaves = async (
   modelos: any[],
-  inputs: any,
+  IntervaloDePicoCME: any,
   volumeDiario: number
 ) => {
   const resultados: any[] = await Promise.all(
     modelos.map(async (modelo) => {
       const inputsCalcularModelos = {
         VolumeDiarioDeMaterialLitros: volumeDiario,
-        IntervaloDePicoCME: inputs.IntervaloDePicoCME,
+        IntervaloDePicoCME: IntervaloDePicoCME,
         modelos: [modelo],
       };
 

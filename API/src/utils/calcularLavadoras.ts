@@ -1,80 +1,65 @@
+import { ModelosLavadora } from "../mock/Lavadora_Termodesinfectora";
 import { formatarPercentual } from "./formatarPercentual";
 
 export const calcularLavadoras = ({
   EstimativaVolumeTotalDiarioMaterial,
   cirurgiasPorDia,
   NumeroleitosUTI,
-  TotalDeLavadorasTermo,
-
+  quantidadeDeTermos,
   modelos,
-  CapacidadeCargaBandejasDeInstrumentos,
-  CapacidadeCargaDeTraqueias,
-  TempoMedioCicloInstrumentosCargaMaximaMinuto,
-  TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto,
 }: {
   EstimativaVolumeTotalDiarioMaterial: number;
-  VolumeDiarioDeMaterialLitros: number;
   cirurgiasPorDia: number;
   NumeroleitosUTI: number;
-  TotalDeLavadorasTermo: number;
-
-  marca: string;
-  modelos: any[];
-  VolumeTotalCamaraLitros: number;
-  CapacidadeCargaBandejasDeInstrumentos: number;
-  CapacidadeCargaDeTraqueias: number;
-  TempoMedioCicloInstrumentosCargaMaximaMinuto: number;
-  TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto: number;
+  quantidadeDeTermos: number;
+  modelos: ModelosLavadora[];
 }) => {
-  const array = [];
-
   const resultadoLavadoras = modelos.map((modelo) => {
-    const NomeModeloLavadora = modelo.modelos;
+    const NomeModelo = modelo.modelo;
 
-    const ProducaoUEInstrumentosDia = EstimativaVolumeTotalDiarioMaterial;
-    const numeroCirurgiasDia = cirurgiasPorDia;
-    const numeroLeitosUTI = NumeroleitosUTI;
-
-    const BandejasPorUE = 2;
     const CapacidadeProcessamentoUEInstrumentos =
-      CapacidadeCargaBandejasDeInstrumentos / BandejasPorUE;
-    const QuantidadeDeCiclosNecessariosDiariamenteParaIntru = Math.ceil(
-      ProducaoUEInstrumentosDia / CapacidadeProcessamentoUEInstrumentos
-    );
-    const IntervaloMedioEntreCiclos = 10;
+      modelo.capacidadeDeCargaDeBandejasDeInstrumentos /
+      modelo.numerodeBandejasPorUE;
+
+    const NumeroCiclosNecessariosDiariamenteParaIntrumentos =
+      EstimativaVolumeTotalDiarioMaterial /
+      CapacidadeProcessamentoUEInstrumentos;
+
     const TempoNecessarioParaProcessarADemandaDeInstrumentosMin =
-      QuantidadeDeCiclosNecessariosDiariamenteParaIntru *
-      (TempoMedioCicloAssistenciaVentilatoriaCargaMaximaMinuto +
-        IntervaloMedioEntreCiclos);
-    const QuantidadeTraqueiasPorCirurgia = 3;
+      NumeroCiclosNecessariosDiariamenteParaIntrumentos *
+      (modelo.tempoMedioCicloInstrumentosComCargaMáxima +
+        modelo.interveloMedioEntreCiclosMIn);
+
     const QuantidadeTraqueiasPorDiaCirurgia =
-      numeroCirurgiasDia * QuantidadeTraqueiasPorCirurgia;
-    const QuantidadeTraqueiasPorLeitoUTIDia = 3;
+      cirurgiasPorDia * modelo.quantidadeDeTraqueiasPorCirurgia;
+
     const QuantidadeTraqueiasPorDiaUTI =
-      numeroLeitosUTI * QuantidadeTraqueiasPorLeitoUTIDia;
+      NumeroleitosUTI * modelo.quantidadeTraqueiasPorLeitoUTIDia;
+
     const QuantidadeTraqueiasPorDiaTOTAL =
       QuantidadeTraqueiasPorDiaCirurgia + QuantidadeTraqueiasPorDiaUTI;
 
-    const QuantidadeCiclosNecessariosDiariamenteParaAssistVent = Math.ceil(
-      QuantidadeTraqueiasPorDiaTOTAL / CapacidadeCargaDeTraqueias
-    );
-    const TempoNecessarioParaProcessarADemandaDeAssistenciaVentilatoriasMin =
-      QuantidadeCiclosNecessariosDiariamenteParaAssistVent *
-      (TempoMedioCicloInstrumentosCargaMaximaMinuto +
-        IntervaloMedioEntreCiclos);
+    const QuantidadeCiclosNecessariosDiariamenteParaAssistVent =
+      QuantidadeTraqueiasPorDiaTOTAL / modelo.capacidadeDeCargaTraqueias;
+    const TempoMedioCicloAssistenciaVentilatoriaComCargaMaxima =
+      modelo.tempoMedioCicloAssistenciaVentilatoriaComCargaMaxMin;
 
-    const DemandaCiclosDia = Math.ceil(
-      QuantidadeCiclosNecessariosDiariamenteParaAssistVent +
-        QuantidadeDeCiclosNecessariosDiariamenteParaIntru
-    );
-    const DemandaCiclosMin =
+    const TempoNecessarioParaProcessarDemandaDeAssistVent =
+      QuantidadeCiclosNecessariosDiariamenteParaAssistVent *
+      (TempoMedioCicloAssistenciaVentilatoriaComCargaMaxima +
+        modelo.interveloMedioEntreCiclosMIn);
+
+    const DemandaTempoDia =
       TempoNecessarioParaProcessarADemandaDeInstrumentosMin +
-      TempoNecessarioParaProcessarADemandaDeAssistenciaVentilatoriasMin;
+      TempoNecessarioParaProcessarDemandaDeAssistVent;
+
+    const QuantidadeDeTermos = quantidadeDeTermos;
 
     const MinutosDisponiveisDiariamenteSomandoEquipamentos =
-      60 * 24 * TotalDeLavadorasTermo;
+      60 * 24 * QuantidadeDeTermos;
+
     const PercentualUtilizacaoCapacidadeMaxima =
-      (DemandaCiclosMin / MinutosDisponiveisDiariamenteSomandoEquipamentos) *
+      (DemandaTempoDia / MinutosDisponiveisDiariamenteSomandoEquipamentos) *
       100;
 
     const PercentualFormatadoLavadora = formatarPercentual(
@@ -82,7 +67,7 @@ export const calcularLavadoras = ({
     );
 
     return {
-      NomeModeloLavadora,
+      NomeModelo,
       PercentualFormatadoLavadora,
     };
   });

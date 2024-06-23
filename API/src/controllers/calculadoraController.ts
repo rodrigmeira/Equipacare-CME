@@ -11,10 +11,9 @@ import { modelosLavadorasA } from "../mock/Lavadora_Termodesinfectora";
 import {
   calcularDados,
   calcularResultadosAutoclaves,
-  obterResultadosPorMarcasAutoclaves,
+  obterResultadosFinais,
 } from "../utils";
 import { calcularLavadoras } from "../utils/calcularLavadoras";
-import { filtrarModelos } from "../utils/filtrarModelos";
 
 const obterTodosModelosAutoclaves = () => {
   return [
@@ -65,7 +64,7 @@ export const calcular = async (req: Request, res: Response) => {
   );
 
   // Pega os dois resultados abaixo e mais proximos de 90% das Autoclaves
-  const resultadoTodasMarcasAutoclaves = obterResultadosPorMarcasAutoclaves(
+  const resultadoTodasMarcasAutoclaves = obterResultadosFinais(
     todosResultadosAutoclaves,
     ["A", "B", "C", "D", "E", "F"]
   );
@@ -78,18 +77,22 @@ export const calcular = async (req: Request, res: Response) => {
 
   const todosModelosLavadoras = obterTodosModelosLavadoras();
 
-  const parametrosLavadoras = {
-    EstimativaVolumeTotalDiarioMaterial:
-      volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
-    cirurgiasPorDia: volumeDiario.NumeroDeCirurgiasPorDia,
-    NumeroleitosUTI: NumeroLeitosUTI,
-    quantidadeDeTermos: 2,
-    modelos: todosModelosLavadoras,
-  };
+  const resultadoLavadoras = await calcularLavadoras(
+    volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
+    volumeDiario.NumeroDeCirurgiasPorDia,
+    NumeroLeitosUTI,
+    2,
+    todosModelosLavadoras
+  );
 
-  const resultadoLavadoras = await calcularLavadoras(parametrosLavadoras);
-
-  const resultadoFiltrados = filtrarModelos(resultadoLavadoras, "A");
+  const resultadoFiltrados = obterResultadosFinais(resultadoLavadoras, [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ]);
 
   res.status(200).json(resultadoFiltrados);
 };

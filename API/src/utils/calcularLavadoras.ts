@@ -1,19 +1,13 @@
 import { ModelosLavadora } from "../mock/Lavadora_Termodesinfectora";
 import { formatarPercentual } from "./formatarPercentual";
 
-export const calcularLavadoras = ({
-  EstimativaVolumeTotalDiarioMaterial,
-  cirurgiasPorDia,
-  NumeroleitosUTI,
-  quantidadeDeTermos,
-  modelos,
-}: {
-  EstimativaVolumeTotalDiarioMaterial: number;
-  cirurgiasPorDia: number;
-  NumeroleitosUTI: number;
-  quantidadeDeTermos: number;
-  modelos: ModelosLavadora[];
-}) => {
+export const calcularLavadoras = (
+  EstimativaVolumeTotalDiarioMaterial: number,
+  cirurgiasPorDia: number,
+  NumeroleitosUTI: number,
+  quantidadeDeTermos: number,
+  modelos: ModelosLavadora[]
+) => {
   const resultadoLavadoras = modelos.map((modelo) => {
     const NomeModelo = modelo.modelo;
 
@@ -62,13 +56,13 @@ export const calcularLavadoras = ({
       (DemandaTempoDia / MinutosDisponiveisDiariamenteSomandoEquipamentos) *
       100;
 
-    const PercentualFormatadoLavadora = formatarPercentual(
+    const PercentualFormatado = formatarPercentual(
       PercentualUtilizacaoCapacidadeMaxima
     );
 
     return {
       NomeModelo,
-      PercentualFormatadoLavadora,
+      PercentualFormatado,
     };
   });
 

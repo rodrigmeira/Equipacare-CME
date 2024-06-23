@@ -1,4 +1,4 @@
-import { ModelosLavadora } from "../mock/Lavadora_Termodesinfectora";
+import { ModelosLavadora } from "../interfaces/ModeloLavadora";
 import { formatarPercentual } from "./formatarPercentual";
 
 export const calcularLavadoras = (

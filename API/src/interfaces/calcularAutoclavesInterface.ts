@@ -4,4 +4,5 @@ export interface calcularAutoclavesInterface {
   VolumeDiarioDeMaterialLitros: number;
   IntervaloDePicoCME: number;
   modelos: Modelo[];
+  NumeroAutoclaves: number;
 }

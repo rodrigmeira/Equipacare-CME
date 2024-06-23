@@ -1,21 +1,34 @@
 import { calcularAutoclaves } from "./calcularAutoclaves";
+import { obterResultadosFinais } from "./obterResultadosFinais";
 
 export const calcularResultadosAutoclaves = async (
   modelos: any[],
   IntervaloDePicoCME: any,
-  volumeDiario: number
+  volumeDiario: number,
+  NumeroAutoclaves: number
 ) => {
   const resultados: any[] = await Promise.all(
     modelos.map(async (modelo) => {
-      const inputsCalcularModelos = {
+      let inputsCalcularModelos = {
         VolumeDiarioDeMaterialLitros: volumeDiario,
         IntervaloDePicoCME: IntervaloDePicoCME,
         modelos: [modelo],
+        NumeroAutoclaves: NumeroAutoclaves,
       };
 
       return await calcularAutoclaves(inputsCalcularModelos);
     })
   );
 
-  return resultados.flat().filter(Boolean);
+  const resultadosAchatados = resultados.flat().filter(Boolean);
+  const resultadosFiltrados = obterResultadosFinais(resultadosAchatados, [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ]);
+
+  return [NumeroAutoclaves, resultadosFiltrados.flat()];
 };

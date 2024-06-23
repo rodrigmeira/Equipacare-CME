@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { reqInterface } from "../interfaces";
 import {
   modelosA,
   modelosB,
@@ -34,13 +35,7 @@ export const calcular = async (req: Request, res: Response) => {
     IntervaloDePicoCME,
     NumeroLeitosUTI,
     NumeroLeitosInternacao,
-  }: {
-    NumeroSalasCirurgicas: number;
-    NumeroCirurgiasSalaDia: number;
-    IntervaloDePicoCME: number;
-    NumeroLeitosUTI: number;
-    NumeroLeitosInternacao: number;
-  } = req.body;
+  }: reqInterface = req.body;
 
   // Calcula o Volume Diário de Material em Litros usando os inputs passados pelo usuario
   const volumeDiario = calcularDados({
@@ -57,17 +52,23 @@ export const calcular = async (req: Request, res: Response) => {
   const todosModelosAutoclaves = obterTodosModelosAutoclaves();
 
   // Calcula o percentual de cada modelo das Autoclaves
-  const todosResultadosAutoclaves = await calcularResultadosAutoclaves(
-    todosModelosAutoclaves,
-    IntervaloDePicoCME,
-    volumeDiario.EstimativaDeVolumeTotalDiarioLitros
-  );
 
-  // Pega os dois resultados abaixo e mais proximos de 90% das Autoclaves
-  const resultadoTodasMarcasAutoclaves = obterResultadosFinais(
-    todosResultadosAutoclaves,
-    ["A", "B", "C", "D", "E", "F"]
-  );
+  let todosResultadosAutoclaves;
+  let numeroDeAutoclaves = 2;
+
+  while (true) {
+    todosResultadosAutoclaves = await calcularResultadosAutoclaves(
+      todosModelosAutoclaves,
+      IntervaloDePicoCME,
+      volumeDiario.EstimativaDeVolumeTotalDiarioLitros,
+      numeroDeAutoclaves
+    );
+
+    if (todosResultadosAutoclaves.flat().length === 13) {
+      break;
+    }
+    numeroDeAutoclaves++;
+  }
 
   // ----- CALCULO LAVADORAS TERMO -----
 
@@ -94,5 +95,5 @@ export const calcular = async (req: Request, res: Response) => {
     "F",
   ]);
 
-  res.status(200).json(resultadoFiltrados);
+  res.status(200).json(todosResultadosAutoclaves);
 };

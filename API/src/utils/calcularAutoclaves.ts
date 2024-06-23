@@ -8,6 +8,7 @@ export const calcularAutoclaves = async ({
   VolumeDiarioDeMaterialLitros,
   IntervaloDePicoCME,
   modelos,
+  NumeroAutoclaves,
 }: calcularAutoclavesInterface) => {
   const resultadoTodosModelos: resultadoTodosModelosInterface[] = [];
 
@@ -26,7 +27,7 @@ export const calcularAutoclaves = async ({
         100) /
       100;
     const CapacidadeDeProcessamentoNoIntervaloDePico =
-      3 * // Numero de Autoclaves, verificar se será preciso alterar
+      NumeroAutoclaves * // Numero de Autoclaves, verificar se será preciso alterar
       modelo.volumeUtilDaCamaraLitros *
       NumeroMaximoDeCiclosDuranteIntervaloDePico;
     const PercentualDeUltilizacao =

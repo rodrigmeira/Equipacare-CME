@@ -8,7 +8,7 @@ import {
   modelosE,
   modelosF,
 } from "../mock";
-import { modelosLavadorasA } from "../mock/Lavadora_Termodesinfectora";
+import { modelosLavadorasA } from "../interfaces/ModeloLavadora";
 import {
   calcularDados,
   calcularResultadosAutoclaves,

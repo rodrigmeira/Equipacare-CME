@@ -1,8 +1,9 @@
+import { Modelo } from "../interfaces";
 import { calcularAutoclaves } from "./calcularAutoclaves";
 import { obterResultadosFinais } from "./obterResultadosFinais";
 
 export const calcularResultadosAutoclaves = async (
-  modelos: any[],
+  modelos: Modelo[],
   IntervaloDePicoCME: any,
   volumeDiario: number,
   NumeroAutoclaves: number

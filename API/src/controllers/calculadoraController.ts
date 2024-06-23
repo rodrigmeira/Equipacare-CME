@@ -7,14 +7,19 @@ import {
   modelosD,
   modelosE,
   modelosF,
+  modelosLavadorasA,
+  modelosLavadorasB,
+  modelosLavadorasC,
+  modelosLavadorasD,
+  modelosLavadorasE,
+  modelosLavadorasF,
 } from "../mock";
-import { modelosLavadorasA } from "../interfaces/ModeloLavadora";
 import {
   calcularDados,
+  calcularLavadoras,
   calcularResultadosAutoclaves,
   obterResultadosFinais,
 } from "../utils";
-import { calcularLavadoras } from "../utils/calcularLavadoras";
 
 const obterTodosModelosAutoclaves = () => {
   return [
@@ -24,6 +29,17 @@ const obterTodosModelosAutoclaves = () => {
     ...modelosD,
     ...modelosE,
     ...modelosF,
+  ];
+};
+
+const obterTodosModelosLavadoras = () => {
+  return [
+    ...modelosLavadorasA,
+    ...modelosLavadorasB,
+    ...modelosLavadorasC,
+    ...modelosLavadorasD,
+    ...modelosLavadorasE,
+    ...modelosLavadorasF,
   ];
 };
 
@@ -51,8 +67,7 @@ export const calcular = async (req: Request, res: Response) => {
   // Uni todos os modelos das Autoclaves
   const todosModelosAutoclaves = obterTodosModelosAutoclaves();
 
-  // Calcula o percentual de cada modelo das Autoclaves
-
+  // Acha a quantidade minima de autoclaves e ja traz os dois melhores modelos de cada marca
   let todosResultadosAutoclaves;
   let numeroDeAutoclaves = 2;
 
@@ -71,10 +86,6 @@ export const calcular = async (req: Request, res: Response) => {
   }
 
   // ----- CALCULO LAVADORAS TERMO -----
-
-  const obterTodosModelosLavadoras = () => {
-    return [...modelosLavadorasA];
-  };
 
   const todosModelosLavadoras = obterTodosModelosLavadoras();
 
@@ -95,5 +106,5 @@ export const calcular = async (req: Request, res: Response) => {
     "F",
   ]);
 
-  res.status(200).json(todosResultadosAutoclaves);
+  res.status(200).json(todosResultadosAutoclaves[1]);
 };

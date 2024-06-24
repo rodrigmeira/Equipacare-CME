@@ -18,7 +18,6 @@ import {
   calcularDados,
   calcularLavadoras,
   calcularResultadosAutoclaves,
-  obterResultadosFinais,
 } from "../utils";
 
 const obterTodosModelosAutoclaves = () => {
@@ -89,22 +88,27 @@ export const calcular = async (req: Request, res: Response) => {
 
   const todosModelosLavadoras = obterTodosModelosLavadoras();
 
-  const resultadoLavadoras = await calcularLavadoras(
-    volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
-    volumeDiario.NumeroDeCirurgiasPorDia,
-    NumeroLeitosUTI,
-    2,
-    todosModelosLavadoras
-  );
+  let resultadoLavadoras;
+  let numeroDeLavadoras: number = 1;
 
-  const resultadoFiltrados = obterResultadosFinais(resultadoLavadoras, [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-  ]);
+  while (true) {
+    resultadoLavadoras = await calcularLavadoras(
+      volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
+      volumeDiario.NumeroDeCirurgiasPorDia,
+      NumeroLeitosUTI,
+      numeroDeLavadoras,
+      todosModelosLavadoras
+    );
 
-  res.status(200).json(todosResultadosAutoclaves[1]);
+    if (
+      resultadoLavadoras.resultadoFinal.length > 5 &&
+      resultadoLavadoras.resultadoFinal.length < 12
+    ) {
+      break;
+    }
+
+    numeroDeLavadoras++;
+  }
+
+  res.status(200).json(resultadoLavadoras);
 };

@@ -1,4 +1,4 @@
-import { ModelosLavadora } from "../interfaces/ModeloLavadora";
+import { ModelosLavadora } from "../interfaces";
 import { formatarPercentual } from "./formatarPercentual";
 import { obterResultadosFinais } from "./obterResultadosFinais";
 

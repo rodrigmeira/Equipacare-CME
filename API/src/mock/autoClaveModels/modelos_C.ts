@@ -3,6 +3,7 @@ import { modeloAutoclave } from "../../interfaces";
 export const modelosC: modeloAutoclave[] = [
   {
     modelo: "C1",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 100,
     volumeUtilDaCamaraLitros: 100,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -13,6 +14,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C2",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 205,
     volumeUtilDaCamaraLitros: 205,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -23,6 +25,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C3",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 300,
     volumeUtilDaCamaraLitros: 300,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -33,6 +36,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C4",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 333,
     volumeUtilDaCamaraLitros: 330,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -43,6 +47,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C5",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 474,
     volumeUtilDaCamaraLitros: 474,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -53,6 +58,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C6",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 614,
     volumeUtilDaCamaraLitros: 609,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -63,6 +69,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C7",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 755,
     volumeUtilDaCamaraLitros: 748,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -73,6 +80,7 @@ export const modelosC: modeloAutoclave[] = [
   },
   {
     modelo: "C8",
+    marcaId: 3,
     volumeTotalDaCamaraLitros: 910,
     volumeUtilDaCamaraLitros: 902,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,

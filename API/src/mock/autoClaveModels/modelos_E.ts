@@ -3,6 +3,7 @@ import { modeloAutoclave } from "../../interfaces";
 export const modelosE: modeloAutoclave[] = [
   {
     modelo: "E1",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 304,
     volumeUtilDaCamaraLitros: 108,
     tempoTotalMedioDoCicloInclindoSecagemMin: 40.0,
@@ -13,6 +14,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E2",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 364,
     volumeUtilDaCamaraLitros: 216,
     tempoTotalMedioDoCicloInclindoSecagemMin: 40.0,
@@ -23,6 +25,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E3",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 436,
     volumeUtilDaCamaraLitros: 324,
     tempoTotalMedioDoCicloInclindoSecagemMin: 45.0,
@@ -33,6 +36,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E4",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 523,
     volumeUtilDaCamaraLitros: 432,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -43,6 +47,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E5",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 741,
     volumeUtilDaCamaraLitros: 540,
     tempoTotalMedioDoCicloInclindoSecagemMin: 55.0,
@@ -53,6 +58,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E6",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 109,
     volumeUtilDaCamaraLitros: 108,
     tempoTotalMedioDoCicloInclindoSecagemMin: 40.0,
@@ -63,6 +69,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E7",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 250,
     volumeUtilDaCamaraLitros: 162,
     tempoTotalMedioDoCicloInclindoSecagemMin: 40.0,
@@ -73,6 +80,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E8",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 575,
     volumeUtilDaCamaraLitros: 324,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -83,6 +91,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E9",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 767,
     volumeUtilDaCamaraLitros: 432,
     tempoTotalMedioDoCicloInclindoSecagemMin: 55.0,
@@ -93,6 +102,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E10",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 959,
     volumeUtilDaCamaraLitros: 540,
     tempoTotalMedioDoCicloInclindoSecagemMin: 60.0,
@@ -103,6 +113,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E11",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 449,
     volumeUtilDaCamaraLitros: 324,
     tempoTotalMedioDoCicloInclindoSecagemMin: 45.0,
@@ -113,6 +124,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E12",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 587,
     volumeUtilDaCamaraLitros: 432,
     tempoTotalMedioDoCicloInclindoSecagemMin: 50.0,
@@ -124,6 +136,7 @@ export const modelosE: modeloAutoclave[] = [
   },
   {
     modelo: "E13",
+    marcaId: 5,
     volumeTotalDaCamaraLitros: 725,
     volumeUtilDaCamaraLitros: 540,
     tempoTotalMedioDoCicloInclindoSecagemMin: 59.0,

@@ -13,10 +13,20 @@ interface ContextType {
   setCepHospital: (cepHospital: string) => void;
   cargo: string;
   setCargo: (cargo: string) => void;
-  conhecimentoTecnico1: boolean;
-  setConhecimentoTecnico1: (conhecimentoTecnico1: boolean) => void;
-  conhecimentoTecnico2: boolean;
-  setConhecimentoTecnico2: (conhecimentoTecnico2: boolean) => void;
+  nomeHospital: string;
+  setNomeHospital: (nomeHospital: string) => void;
+  endereco: string;
+  setEndereco: (endereco: string) => void;
+  cnpj: string;
+  setCnpj: (cnpj: string) => void;
+  possuiCME: boolean;
+  setPossuiCME: (possuiCME: boolean) => void;
+  implantarCME: boolean;
+  setImplantarCME: (implantarCME: boolean) => void;
+  ampliacao: boolean;
+  setAmpliacao: (ampliacao: boolean) => void;
+  substituicao: boolean;
+  setSubstituicao: (substituicao: boolean) => void;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -31,10 +41,13 @@ export const Provider = ({ children }: ProviderProps) => {
   const [email, setEmail] = useState<string>("");
   const [cepHospital, setCepHospital] = useState<string>("");
   const [cargo, setCargo] = useState<string>("");
-  const [conhecimentoTecnico1, setConhecimentoTecnico1] =
-    useState<boolean>(false);
-  const [conhecimentoTecnico2, setConhecimentoTecnico2] =
-    useState<boolean>(false);
+  const [nomeHospital, setNomeHospital] = useState<string>("");
+  const [endereco, setEndereco] = useState<string>("");
+  const [cnpj, setCnpj] = useState<string>("");
+  const [possuiCME, setPossuiCME] = useState<boolean>(false);
+  const [implantarCME, setImplantarCME] = useState<boolean>(false);
+  const [ampliacao, setAmpliacao] = useState<boolean>(false);
+  const [substituicao, setSubstituicao] = useState<boolean>(false);
 
   return (
     <Context.Provider
@@ -49,10 +62,20 @@ export const Provider = ({ children }: ProviderProps) => {
         setCepHospital,
         cargo,
         setCargo,
-        conhecimentoTecnico1,
-        setConhecimentoTecnico1,
-        conhecimentoTecnico2,
-        setConhecimentoTecnico2,
+        nomeHospital,
+        setNomeHospital,
+        endereco,
+        setEndereco,
+        cnpj,
+        setCnpj,
+        possuiCME,
+        setPossuiCME,
+        implantarCME,
+        setImplantarCME,
+        ampliacao,
+        setAmpliacao,
+        substituicao,
+        setSubstituicao,
       }}
     >
       {children}
@@ -63,7 +86,7 @@ export const Provider = ({ children }: ProviderProps) => {
 export const useContextForm = () => {
   const context = useContext(Context);
   if (context === undefined) {
-    throw new Error("useContextForm most be used within a Provider");
+    throw new Error("useContextForm must be used within a Provider");
   }
   return context;
 };

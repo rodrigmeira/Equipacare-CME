@@ -5,40 +5,40 @@ import {
 import { formatarPercentual } from "./formatarPercentual";
 
 export const calcularAutoclaves = async ({
-  VolumeDiarioDeMaterialLitros,
-  IntervaloDePicoCME,
+  volumeDiarioDeMaterialLitros,
+  intervaloDePicoCME,
   modelos,
-  NumeroAutoclaves,
+  numeroAutoclaves,
 }: calcularAutoclavesInterface) => {
   const resultadoTodosModelos: resultadoTodosModelosInterface[] = [];
 
   modelos.forEach((modelo) => {
-    const NomeModelo = modelo.modelo;
-    const VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros =
-      VolumeDiarioDeMaterialLitros * 0.9;
-    const IntervaloDiarioDePicoMinutos =
-      IntervaloDePicoCME * 60 -
+    const nomeModelo = modelo.modelo;
+    const volumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros =
+      volumeDiarioDeMaterialLitros * 0.9;
+    const intervaloDiarioDePicoMinutos =
+      intervaloDePicoCME * 60 -
       (modelo.tempoParaTesteDiarioDeBDMin +
         modelo.tempoParaProcedimentoDiarioDeAquecimentoMin);
-    const NumeroMaximoDeCiclosDuranteIntervaloDePico =
-      ((IntervaloDiarioDePicoMinutos /
+    const numeroMaximoDeCiclosDuranteIntervaloDePico =
+      ((intervaloDiarioDePicoMinutos /
         (modelo.tempoDeCargaEDescargaMin +
           modelo.tempoTotalMedioDoCicloInclindoSecagemMin)) *
         100) /
       100;
-    const CapacidadeDeProcessamentoNoIntervaloDePico =
-      NumeroAutoclaves * // Numero de Autoclaves, verificar se será preciso alterar
+    const capacidadeDeProcessamentoNoIntervaloDePico =
+      numeroAutoclaves * // Numero de Autoclaves, verificar se será preciso alterar
       modelo.volumeUtilDaCamaraLitros *
-      NumeroMaximoDeCiclosDuranteIntervaloDePico;
-    const PercentualDeUltilizacao =
-      (VolumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros /
-        CapacidadeDeProcessamentoNoIntervaloDePico) *
+      numeroMaximoDeCiclosDuranteIntervaloDePico;
+    const percentualDeUltilizacao =
+      (volumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros /
+        capacidadeDeProcessamentoNoIntervaloDePico) *
       100;
-    const PercentualFormatado = formatarPercentual(PercentualDeUltilizacao);
+    const percentualFormatado = formatarPercentual(percentualDeUltilizacao);
 
     resultadoTodosModelos.push({
-      NomeModelo,
-      PercentualFormatado,
+      nomeModelo,
+      percentualFormatado,
     });
   });
   return resultadoTodosModelos;

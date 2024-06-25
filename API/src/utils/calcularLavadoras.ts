@@ -1,69 +1,69 @@
-import { ModelosLavadora } from "../interfaces";
+import { modeloLavadora } from "../interfaces";
 import { formatarPercentual } from "./formatarPercentual";
 import { obterResultadosFinais } from "./obterResultadosFinais";
 
 export const calcularLavadoras = (
-  EstimativaVolumeTotalDiarioMaterial: number,
+  estimativaVolumeTotalDiarioMaterial: number,
   cirurgiasPorDia: number,
-  NumeroleitosUTI: number,
+  numeroleitosUTI: number,
   quantidadeDeTermos: number,
-  modelos: ModelosLavadora[]
+  modelos: modeloLavadora[]
 ) => {
   const resultadoLavadoras = modelos.map((modelo) => {
-    const NomeModelo = modelo.modelo;
+    const nomeModelo = modelo.modelo;
 
-    const CapacidadeProcessamentoUEInstrumentos =
+    const capacidadeProcessamentoUEInstrumentos =
       modelo.capacidadeDeCargaDeBandejasDeInstrumentos /
       modelo.numerodeBandejasPorUE;
 
-    const NumeroCiclosNecessariosDiariamenteParaIntrumentos =
-      EstimativaVolumeTotalDiarioMaterial /
-      CapacidadeProcessamentoUEInstrumentos;
+    const numeroCiclosNecessariosDiariamenteParaIntrumentos =
+      estimativaVolumeTotalDiarioMaterial /
+      capacidadeProcessamentoUEInstrumentos;
 
-    const TempoNecessarioParaProcessarADemandaDeInstrumentosMin =
-      NumeroCiclosNecessariosDiariamenteParaIntrumentos *
+    const tempoNecessarioParaProcessarADemandaDeInstrumentosMin =
+      numeroCiclosNecessariosDiariamenteParaIntrumentos *
       (modelo.tempoMedioCicloInstrumentosComCargaMáxima +
         modelo.interveloMedioEntreCiclosMIn);
 
-    const QuantidadeTraqueiasPorDiaCirurgia =
+    const quantidadeTraqueiasPorDiaCirurgia =
       cirurgiasPorDia * modelo.quantidadeDeTraqueiasPorCirurgia;
 
-    const QuantidadeTraqueiasPorDiaUTI =
-      NumeroleitosUTI * modelo.quantidadeTraqueiasPorLeitoUTIDia;
+    const quantidadeTraqueiasPorDiaUTI =
+      numeroleitosUTI * modelo.quantidadeTraqueiasPorLeitoUTIDia;
 
-    const QuantidadeTraqueiasPorDiaTOTAL =
-      QuantidadeTraqueiasPorDiaCirurgia + QuantidadeTraqueiasPorDiaUTI;
+    const quantidadeTraqueiasPorDiaTOTAL =
+      quantidadeTraqueiasPorDiaCirurgia + quantidadeTraqueiasPorDiaUTI;
 
-    const QuantidadeCiclosNecessariosDiariamenteParaAssistVent =
-      QuantidadeTraqueiasPorDiaTOTAL / modelo.capacidadeDeCargaTraqueias;
-    const TempoMedioCicloAssistenciaVentilatoriaComCargaMaxima =
+    const quantidadeCiclosNecessariosDiariamenteParaAssistVent =
+      quantidadeTraqueiasPorDiaTOTAL / modelo.capacidadeDeCargaTraqueias;
+    const tempoMedioCicloAssistenciaVentilatoriaComCargaMaxima =
       modelo.tempoMedioCicloAssistenciaVentilatoriaComCargaMaxMin;
 
-    const TempoNecessarioParaProcessarDemandaDeAssistVent =
-      QuantidadeCiclosNecessariosDiariamenteParaAssistVent *
-      (TempoMedioCicloAssistenciaVentilatoriaComCargaMaxima +
+    const tempoNecessarioParaProcessarDemandaDeAssistVent =
+      quantidadeCiclosNecessariosDiariamenteParaAssistVent *
+      (tempoMedioCicloAssistenciaVentilatoriaComCargaMaxima +
         modelo.interveloMedioEntreCiclosMIn);
 
-    const DemandaTempoDia =
-      TempoNecessarioParaProcessarADemandaDeInstrumentosMin +
-      TempoNecessarioParaProcessarDemandaDeAssistVent;
+    const demandaTempoDia =
+      tempoNecessarioParaProcessarADemandaDeInstrumentosMin +
+      tempoNecessarioParaProcessarDemandaDeAssistVent;
 
     // const QuantidadeDeTermos = quantidadeDeTermos;
 
-    const MinutosDisponiveisDiariamenteSomandoEquipamentos =
+    const minutosDisponiveisDiariamenteSomandoEquipamentos =
       60 * 24 * quantidadeDeTermos;
 
-    const PercentualUtilizacaoCapacidadeMaxima =
-      (DemandaTempoDia / MinutosDisponiveisDiariamenteSomandoEquipamentos) *
+    const percentualUtilizacaoCapacidadeMaxima =
+      (demandaTempoDia / minutosDisponiveisDiariamenteSomandoEquipamentos) *
       100;
 
-    const PercentualFormatado = formatarPercentual(
-      PercentualUtilizacaoCapacidadeMaxima
+    const percentualFormatado = formatarPercentual(
+      percentualUtilizacaoCapacidadeMaxima
     );
 
     return {
-      NomeModelo,
-      PercentualFormatado,
+      nomeModelo,
+      percentualFormatado,
     };
   });
 

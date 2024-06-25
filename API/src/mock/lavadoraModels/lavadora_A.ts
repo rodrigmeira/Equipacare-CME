@@ -1,6 +1,6 @@
-import { ModelosLavadora } from "../../interfaces/ModeloLavadora";
+import { modeloLavadora } from "../../interfaces";
 
-export const modelosLavadorasA: ModelosLavadora[] = [
+export const modelosLavadorasA: modeloLavadora[] = [
   {
     modelo: "A1",
     volumeTotalCamaraLitros: 270,

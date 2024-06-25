@@ -1,6 +1,6 @@
-import { Modelo } from "../../interfaces";
+import { modeloAutoclave } from "../../interfaces";
 
-export const modelosF: Modelo[] = [
+export const modelosF: modeloAutoclave[] = [
   {
     modelo: "F1",
     volumeTotalDaCamaraLitros: 449,

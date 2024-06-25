@@ -2,9 +2,9 @@ export const filtrarModelos = (resultados: any[], marca: string) => {
   const resultadoModelos = resultados
     .filter(
       (item: any) =>
-        item.NomeModelo.includes(marca) && item.PercentualFormatado < 90
+        item.nomeModelo.includes(marca) && item.percentualFormatado < 90
     )
-    .sort((a: any, b: any) => b.PercentualFormatado - a.PercentualFormatado);
+    .sort((a: any, b: any) => b.percentualFormatado - a.percentualFormatado);
 
   const resultadoFinal = resultadoModelos.slice(0, 2);
   return resultadoFinal;

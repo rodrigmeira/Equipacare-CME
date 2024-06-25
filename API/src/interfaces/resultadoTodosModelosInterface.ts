@@ -1,4 +1,4 @@
 export interface resultadoTodosModelosInterface {
-  NomeModelo: string;
-  PercentualFormatado: string;
+  nomeModelo: string;
+  percentualFormatado: string;
 }

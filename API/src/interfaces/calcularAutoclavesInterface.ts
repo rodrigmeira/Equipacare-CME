@@ -1,8 +1,8 @@
-import { Modelo } from "./Modelo";
+import { modeloAutoclave } from "./modeloAutoclave";
 
 export interface calcularAutoclavesInterface {
-  VolumeDiarioDeMaterialLitros: number;
-  IntervaloDePicoCME: number;
-  modelos: Modelo[];
-  NumeroAutoclaves: number;
+  volumeDiarioDeMaterialLitros: number;
+  intervaloDePicoCME: number;
+  modelos: modeloAutoclave[];
+  numeroAutoclaves: number;
 }

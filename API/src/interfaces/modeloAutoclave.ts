@@ -1,4 +1,4 @@
-export interface Modelo {
+export interface modeloAutoclave {
   modelo: string;
   volumeTotalDaCamaraLitros: number;
   volumeUtilDaCamaraLitros: number;

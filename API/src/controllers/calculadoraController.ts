@@ -29,20 +29,20 @@ export const calcular = async (req: Request, res: Response) => {
   try {
     //Recebe os inputs do usuario
     const {
-      NumeroSalasCirurgicas,
-      NumeroCirurgiasSalaDia,
-      IntervaloDePicoCME,
-      NumeroLeitosUTI,
-      NumeroLeitosInternacao,
+      numeroSalasCirurgicas,
+      numeroCirurgiasSalaDia,
+      intervaloDePicoCME,
+      numeroLeitosUTI,
+      numeroLeitosInternacao,
     }: reqInterface = req.body;
 
     // Calcula o Volume Diário de Material em Litros usando os inputs passados pelo usuario
     const volumeDiario = calculos.calcularDados({
-      NumeroSalasCirurgicas,
-      NumeroCirurgiasSalaDia,
-      IntervaloDePicoCME,
-      NumeroLeitosUTI,
-      NumeroLeitosInternacao,
+      numeroSalasCirurgicas,
+      numeroCirurgiasSalaDia,
+      intervaloDePicoCME,
+      numeroLeitosUTI,
+      numeroLeitosInternacao,
     });
 
     // ----- CALCULO AUTOCLAVES -----
@@ -57,8 +57,8 @@ export const calcular = async (req: Request, res: Response) => {
     while (true) {
       resultadosAutoclaves = await calculos.calcularResultadosAutoclaves(
         todosModelosAutoclaves,
-        IntervaloDePicoCME,
-        volumeDiario.EstimativaDeVolumeTotalDiarioLitros,
+        intervaloDePicoCME,
+        volumeDiario.estimativaDeVolumeTotalDiarioLitros,
         numeroDeAutoclaves
       );
 
@@ -77,9 +77,9 @@ export const calcular = async (req: Request, res: Response) => {
 
     while (true) {
       resultadoLavadoras = await calculos.calcularLavadoras(
-        volumeDiario.EstimativaVolumeTotalDiarioPorMaterial,
-        volumeDiario.NumeroDeCirurgiasPorDia,
-        NumeroLeitosUTI,
+        volumeDiario.estimativaVolumeTotalDiarioPorMaterial,
+        volumeDiario.numeroDeCirurgiasPorDia,
+        numeroLeitosUTI,
         numeroDeLavadoras,
         todosModelosLavadoras
       );

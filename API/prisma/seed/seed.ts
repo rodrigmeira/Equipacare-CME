@@ -1,19 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import {
-  modelosA,
-  modelosB,
-  modelosC,
-  modelosD,
-  modelosE,
-  modelosF,
-} from "../../src/mock";
+import * as mock from "../../src/mock";
 import { marcas } from "../../src/mock/marcas";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("DB seed");
-  await seedAutoclaves();
+  await seedLavadoras();
 }
 
 async function seedMarcas() {
@@ -31,12 +24,12 @@ async function seedMarcas() {
 async function seedAutoclaves() {
   const getAllModels = async () => {
     return [
-      ...modelosA,
-      ...modelosB,
-      ...modelosC,
-      ...modelosD,
-      ...modelosE,
-      ...modelosF,
+      ...mock.modelosA,
+      ...mock.modelosB,
+      ...mock.modelosC,
+      ...mock.modelosD,
+      ...mock.modelosE,
+      ...mock.modelosF,
     ];
   };
 
@@ -59,6 +52,51 @@ async function seedAutoclaves() {
     });
 
     console.log("*** created autoclaves", record.id, record.name);
+  }
+}
+
+async function seedLavadoras() {
+  const getAllLavadoras = async () => {
+    return [
+      ...mock.modelosLavadorasA,
+      ...mock.modelosLavadorasB,
+      ...mock.modelosLavadorasC,
+      ...mock.modelosLavadorasD,
+      ...mock.modelosLavadorasE,
+      ...mock.modelosLavadorasF,
+    ];
+  };
+
+  const allLavadoras = await getAllLavadoras();
+
+  for (let model of allLavadoras) {
+    const record = await prisma.lavadorasTermo.create({
+      data: {
+        name: model.modelo,
+        marcaId: model.marcaId,
+        volumeTotalCamaraLitros: model.volumeTotalCamaraLitros,
+        capacidadeDeCargaDeBandejasDeInstrumentos:
+          model.capacidadeDeCargaDeBandejasDeInstrumentos,
+        capacidadeDeCargaTraqueias: model.capacidadeDeCargaTraqueias,
+        tempoMedioCicloInstrumentosComCargaMaximaMin:
+          model.tempoMedioCicloInstrumentosComCargaMaximaMin,
+        tempoMedioCicloAssistenciaVentilatoriaComCargaMaximaMin:
+          model.tempoMedioCicloAssistenciaVentilatoriaComCargaMaximaMin,
+        numerodeBandejasPorUE: model.numerodeBandejasPorUE,
+        tempoMedioCicloInstrumentosComCargaMaxima:
+          model.tempoMedioCicloInstrumentosComCargaMaxima,
+        interveloMedioEntreCiclosMIn: model.interveloMedioEntreCiclosMIn,
+        quantidadeDeTraqueiasPorCirurgia:
+          model.quantidadeDeTraqueiasPorCirurgia,
+        quantidadeTraqueiasPorLeitoUTIDia:
+          model.quantidadeTraqueiasPorLeitoUTIDia,
+        tempoMedioCicloAssistenciaVentilatoriaComCargaMaxMin:
+          model.tempoMedioCicloAssistenciaVentilatoriaComCargaMaxMin,
+        intervaloMedioEntreCiclosMin: model.intervaloMedioEntreCiclosMin,
+      },
+    });
+
+    console.log("*** created lavadoras", record.id, record.name);
   }
 }
 

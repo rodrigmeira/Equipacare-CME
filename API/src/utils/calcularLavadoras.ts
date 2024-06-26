@@ -22,7 +22,7 @@ export const calcularLavadoras = (
 
     const tempoNecessarioParaProcessarADemandaDeInstrumentosMin =
       numeroCiclosNecessariosDiariamenteParaIntrumentos *
-      (modelo.tempoMedioCicloInstrumentosComCargaMáxima +
+      (modelo.tempoMedioCicloInstrumentosComCargaMaxima +
         modelo.interveloMedioEntreCiclosMIn);
 
     const quantidadeTraqueiasPorDiaCirurgia =

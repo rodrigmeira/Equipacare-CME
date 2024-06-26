@@ -1,9 +1,10 @@
 export interface modeloLavadora {
   modelo: string;
+  marcaId: number;
   volumeTotalCamaraLitros: number;
   capacidadeDeCargaDeBandejasDeInstrumentos: number;
   capacidadeDeCargaTraqueias: number;
-  tempoMedioCicloInstrumentosComCargaMáximaMin: number;
+  tempoMedioCicloInstrumentosComCargaMaximaMin: number;
   tempoMedioCicloAssistenciaVentilatoriaComCargaMaximaMin: number;
 
   producaoUEInstrumentosDia?: number;
@@ -13,7 +14,7 @@ export interface modeloLavadora {
   numerodeBandejasPorUE: number;
   capacidadeDeProcessamentoDeUEEmUmaCarga?: number;
   numeroDeCiclosNecessariosDiariamenteParaIntru?: number;
-  tempoMedioCicloInstrumentosComCargaMáxima: number;
+  tempoMedioCicloInstrumentosComCargaMaxima: number;
   interveloMedioEntreCiclosMIn: number;
   tempoNecessarioParaProcessarADemandaDeInstrumentosMin?: number;
 

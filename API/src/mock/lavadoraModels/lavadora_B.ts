@@ -2,7 +2,7 @@ import { modeloLavadora } from "../../interfaces";
 
 export const modelosLavadorasB: modeloLavadora[] = [
   {
-    modelo: "B1",
+    name: "B1",
     marcaId: 2,
     volumeTotalCamaraLitros: 287,
     capacidadeDeCargaDeBandejasDeInstrumentos: 10,
@@ -18,7 +18,7 @@ export const modelosLavadorasB: modeloLavadora[] = [
     intervaloMedioEntreCiclosMin: 10,
   },
   {
-    modelo: "B2",
+    name: "B2",
     marcaId: 2,
     volumeTotalCamaraLitros: 400,
     capacidadeDeCargaDeBandejasDeInstrumentos: 15,

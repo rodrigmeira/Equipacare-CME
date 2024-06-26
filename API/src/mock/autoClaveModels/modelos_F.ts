@@ -2,7 +2,7 @@ import { modeloAutoclave } from "../../interfaces";
 
 export const modelosF: modeloAutoclave[] = [
   {
-    modelo: "F1",
+    name: "F1",
     marcaId: 6,
     volumeTotalDaCamaraLitros: 449,
     volumeUtilDaCamaraLitros: 324,
@@ -13,7 +13,7 @@ export const modelosF: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 10.0,
   },
   {
-    modelo: "F2",
+    name: "F2",
     marcaId: 6,
     volumeTotalDaCamaraLitros: 584,
     volumeUtilDaCamaraLitros: 432,
@@ -24,7 +24,7 @@ export const modelosF: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 10.0,
   },
   {
-    modelo: "F3",
+    name: "F3",
     marcaId: 6,
     volumeTotalDaCamaraLitros: 764,
     volumeUtilDaCamaraLitros: 540,
@@ -35,7 +35,7 @@ export const modelosF: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 10.0,
   },
   {
-    modelo: "F4",
+    name: "F4",
     marcaId: 6,
     volumeTotalDaCamaraLitros: 899,
     volumeUtilDaCamaraLitros: 648,

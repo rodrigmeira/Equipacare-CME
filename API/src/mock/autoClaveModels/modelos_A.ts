@@ -2,7 +2,7 @@ import { modeloAutoclave } from "../../interfaces";
 
 export const modelosA: modeloAutoclave[] = [
   {
-    modelo: "A1",
+    name: "A1",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 102,
     volumeUtilDaCamaraLitros: 81,
@@ -12,7 +12,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20,
   },
   {
-    modelo: "A2",
+    name: "A2",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 145,
     volumeUtilDaCamaraLitros: 96,
@@ -24,7 +24,7 @@ export const modelosA: modeloAutoclave[] = [
   },
 
   {
-    modelo: "A3",
+    name: "A3",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 200,
     volumeUtilDaCamaraLitros: 144,
@@ -35,7 +35,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "A4",
+    name: "A4",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 255,
     volumeUtilDaCamaraLitros: 192,
@@ -47,7 +47,7 @@ export const modelosA: modeloAutoclave[] = [
   },
 
   {
-    modelo: "A5",
+    name: "A5",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 322,
     volumeUtilDaCamaraLitros: 216,
@@ -58,7 +58,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "A6",
+    name: "A6",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 444,
     volumeUtilDaCamaraLitros: 324,
@@ -69,7 +69,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "A7",
+    name: "A7",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 566,
     volumeUtilDaCamaraLitros: 432,
@@ -80,7 +80,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "A8",
+    name: "A8",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 704,
     volumeUtilDaCamaraLitros: 540,
@@ -91,7 +91,7 @@ export const modelosA: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "A9",
+    name: "A9",
     marcaId: 1,
     volumeTotalDaCamaraLitros: 878,
     volumeUtilDaCamaraLitros: 628,

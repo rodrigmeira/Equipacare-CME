@@ -2,7 +2,7 @@ import { modeloAutoclave } from "../../interfaces";
 
 export const modelosE: modeloAutoclave[] = [
   {
-    modelo: "E1",
+    name: "E1",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 304,
     volumeUtilDaCamaraLitros: 108,
@@ -13,7 +13,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E2",
+    name: "E2",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 364,
     volumeUtilDaCamaraLitros: 216,
@@ -24,7 +24,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E3",
+    name: "E3",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 436,
     volumeUtilDaCamaraLitros: 324,
@@ -35,7 +35,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E4",
+    name: "E4",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 523,
     volumeUtilDaCamaraLitros: 432,
@@ -46,7 +46,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E5",
+    name: "E5",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 741,
     volumeUtilDaCamaraLitros: 540,
@@ -57,7 +57,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E6",
+    name: "E6",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 109,
     volumeUtilDaCamaraLitros: 108,
@@ -68,7 +68,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E7",
+    name: "E7",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 250,
     volumeUtilDaCamaraLitros: 162,
@@ -79,7 +79,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E8",
+    name: "E8",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 575,
     volumeUtilDaCamaraLitros: 324,
@@ -90,7 +90,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E9",
+    name: "E9",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 767,
     volumeUtilDaCamaraLitros: 432,
@@ -101,7 +101,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E10",
+    name: "E10",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 959,
     volumeUtilDaCamaraLitros: 540,
@@ -112,7 +112,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "E11",
+    name: "E11",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 449,
     volumeUtilDaCamaraLitros: 324,
@@ -123,7 +123,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 10.0,
   },
   {
-    modelo: "E12",
+    name: "E12",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 587,
     volumeUtilDaCamaraLitros: 432,
@@ -135,7 +135,7 @@ export const modelosE: modeloAutoclave[] = [
     tempoDisponivelDiarioMin: 1398.0,
   },
   {
-    modelo: "E13",
+    name: "E13",
     marcaId: 5,
     volumeTotalDaCamaraLitros: 725,
     volumeUtilDaCamaraLitros: 540,

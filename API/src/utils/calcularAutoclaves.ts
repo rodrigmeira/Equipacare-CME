@@ -13,7 +13,7 @@ export const calcularAutoclaves = async ({
   const resultadoTodosModelos: resultadoTodosModelosInterface[] = [];
 
   modelos.forEach((modelo) => {
-    const nomeModelo = modelo.modelo;
+    const nomeModelo = modelo.name;
     const volumeQuePrecisaraSerProcessadoNoIntervaloDePicoLitros =
       volumeDiarioDeMaterialLitros * 0.9;
     const intervaloDiarioDePicoMinutos =

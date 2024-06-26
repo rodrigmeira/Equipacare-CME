@@ -10,7 +10,7 @@ export const calcularLavadoras = (
   modelos: modeloLavadora[]
 ) => {
   const resultadoLavadoras = modelos.map((modelo) => {
-    const nomeModelo = modelo.modelo;
+    const nomeModelo = modelo.name;
 
     const capacidadeProcessamentoUEInstrumentos =
       modelo.capacidadeDeCargaDeBandejasDeInstrumentos /

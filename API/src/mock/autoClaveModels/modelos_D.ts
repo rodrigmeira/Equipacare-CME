@@ -2,7 +2,7 @@ import { modeloAutoclave } from "../../interfaces";
 
 export const modelosD: modeloAutoclave[] = [
   {
-    modelo: "D1",
+    name: "D1",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 167,
     volumeUtilDaCamaraLitros: 133.6,
@@ -13,7 +13,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D2",
+    name: "D2",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 252,
     volumeUtilDaCamaraLitros: 201.6,
@@ -24,7 +24,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D3",
+    name: "D3",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 285,
     volumeUtilDaCamaraLitros: 216,
@@ -35,7 +35,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D4",
+    name: "D4",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 321,
     volumeUtilDaCamaraLitros: 256.8,
@@ -46,7 +46,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D5",
+    name: "D5",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 445,
     volumeUtilDaCamaraLitros: 324,
@@ -57,7 +57,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D6",
+    name: "D6",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 578,
     volumeUtilDaCamaraLitros: 432,
@@ -68,7 +68,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D7",
+    name: "D7",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 773,
     volumeUtilDaCamaraLitros: 540,
@@ -79,7 +79,7 @@ export const modelosD: modeloAutoclave[] = [
     tempoParaProcedimentoDiarioDeAquecimentoMin: 20.0,
   },
   {
-    modelo: "D8",
+    name: "D8",
     marcaId: 4,
     volumeTotalDaCamaraLitros: 892,
     volumeUtilDaCamaraLitros: 648,

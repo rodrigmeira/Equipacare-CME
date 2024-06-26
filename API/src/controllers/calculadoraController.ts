@@ -1,29 +1,47 @@
+import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import { reqInterface } from "../interfaces";
-import * as mock from "../mock";
 import * as calculos from "../utils";
 
-const obterTodosModelosAutoclaves = () => {
-  return [
-    ...mock.modelosA,
-    ...mock.modelosB,
-    ...mock.modelosC,
-    ...mock.modelosD,
-    ...mock.modelosE,
-    ...mock.modelosF,
-  ];
+const prisma = new PrismaClient();
+
+// Pega todos os modelos de autoclaves ao rodar o projeto
+let autoclaves: any[] = [];
+
+const getAllAutoclaves = async () => {
+  autoclaves = [];
+
+  let response = await prisma.autoclaves.findMany();
+
+  autoclaves.push(response);
+
+  console.log(
+    "*** autoclaves obtidas com sucesso",
+    ...autoclaves,
+    autoclaves.flat().length
+  );
 };
 
-const obterTodosModelosLavadoras = () => {
-  return [
-    ...mock.modelosLavadorasA,
-    ...mock.modelosLavadorasB,
-    ...mock.modelosLavadorasC,
-    ...mock.modelosLavadorasD,
-    ...mock.modelosLavadorasE,
-    ...mock.modelosLavadorasF,
-  ];
+getAllAutoclaves();
+
+// Pega todos os modelos de lavadoras termo ao rodar o projeto
+let lavadoras: any[] = [];
+
+const getAllLavadoras = async () => {
+  lavadoras = [];
+
+  let response = await prisma.lavadorasTermo.findMany();
+
+  lavadoras.push(response);
+
+  console.log(
+    "*** lavadoras obtidas com sucesso",
+    ...lavadoras,
+    lavadoras.flat().length
+  );
 };
+
+getAllLavadoras();
 
 export const calcular = async (req: Request, res: Response) => {
   try {
@@ -48,7 +66,7 @@ export const calcular = async (req: Request, res: Response) => {
     // ----- CALCULO AUTOCLAVES -----
 
     // Uni todos os modelos das Autoclaves
-    const todosModelosAutoclaves = obterTodosModelosAutoclaves();
+    const todosModelosAutoclaves = autoclaves.flat();
 
     // Acha a quantidade minima de autoclaves e ja traz os dois melhores modelos de cada marca
     let resultadosAutoclaves;
@@ -70,7 +88,7 @@ export const calcular = async (req: Request, res: Response) => {
 
     // ----- CALCULO LAVADORAS TERMO -----
 
-    const todosModelosLavadoras = obterTodosModelosLavadoras();
+    const todosModelosLavadoras = lavadoras.flat();
 
     let resultadoLavadoras;
     let numeroDeLavadoras: number = 1;
@@ -93,6 +111,8 @@ export const calcular = async (req: Request, res: Response) => {
 
       numeroDeLavadoras++;
     }
+
+    getAllAutoclaves();
 
     return res.status(200).json([resultadosAutoclaves, resultadoLavadoras]);
   } catch (error) {

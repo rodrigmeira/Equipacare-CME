@@ -1,7 +1,9 @@
+"use client";
+
 import { useContextForm } from "@/context/Context";
 import { useRouter } from "next/navigation";
 
-export const validationContext = () => {
+export const ValidationContext = () => {
   const { nomeCompleto, telefone, email, cepHospital, cargo } =
     useContextForm();
 

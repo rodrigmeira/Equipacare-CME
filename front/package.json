@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "next build && next start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -18,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-loader-spinner": "^6.1.6",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "@types/node": "^20",

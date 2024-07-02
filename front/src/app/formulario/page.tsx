@@ -4,9 +4,9 @@ import { ButtonForm, InputForm } from "@/components";
 import { useContextForm } from "@/context/Context";
 import { insertMaskInCep } from "@/utils/insertMaskInCep";
 import { insertMaskInTel } from "@/utils/insertMaskInTel";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
-import Image from "next/image";
 
 export default function CadastroPage() {
   const {
@@ -98,8 +98,9 @@ export default function CadastroPage() {
             value={nomeHospital}
             onChange={(e) => setNomeHospital(e.target.value)}
             required
-            children="Nome"
-          />
+          >
+            Nome
+          </InputForm>
 
           <InputForm
             type="text"
@@ -108,8 +109,9 @@ export default function CadastroPage() {
             value={endereco}
             onChange={(e) => setEndereco(e.target.value)}
             required
-            children="Endereço"
-          />
+          >
+            Endereço
+          </InputForm>
 
           <div className="md:grid md:grid-cols-2 md:gap-4">
             <InputForm
@@ -119,8 +121,9 @@ export default function CadastroPage() {
               value={cnpj}
               onChange={(e) => setCnpj(e.target.value)}
               required
-              children="CNPJ"
-            />
+            >
+              CNPJ
+            </InputForm>
 
             <InputForm
               type="text"
@@ -131,8 +134,9 @@ export default function CadastroPage() {
               maxLength={9}
               minLength={9}
               required
-              children="CEP"
-            />
+            >
+              CEP
+            </InputForm>
           </div>
 
           <label className="font-semibold text-base mb-2">
@@ -222,8 +226,9 @@ export default function CadastroPage() {
               value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
               required
-              children="Nome"
-            />
+            >
+              Nome
+            </InputForm>
 
             <InputForm
               type="email"
@@ -232,8 +237,9 @@ export default function CadastroPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              children="E-mail"
-            />
+            >
+              E-mail
+            </InputForm>
             <div className="md:grid md:grid-cols-2 md:gap-4">
               <InputForm
                 type="text"
@@ -244,8 +250,9 @@ export default function CadastroPage() {
                 required
                 maxLength={14}
                 minLength={13}
-                children="Celular"
-              />
+              >
+                Celular
+              </InputForm>
 
               <InputForm
                 type="text"
@@ -254,8 +261,9 @@ export default function CadastroPage() {
                 value={cargo}
                 onChange={(e) => setCargo(e.target.value)}
                 required
-                children="Cargo"
-              />
+              >
+                Cargo
+              </InputForm>
             </div>
           </div>
           <div className="text-justify pl-3 pr-3 pt-1">
@@ -267,7 +275,7 @@ export default function CadastroPage() {
             </p>
           </div>
           <div className="flex justify-center mt-8">
-            <ButtonForm children="AVANÇAR PARA A CALCULADORA" />
+            <ButtonForm>AVANÇAR PARA A CALCULADORA</ButtonForm>
           </div>
         </div>
 

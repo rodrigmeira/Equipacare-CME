@@ -1,14 +1,14 @@
 "use client";
 
 import { ButtonForm, InputForm } from "@/components";
-import { validationContext } from "@/middleware/validationContext";
+import { ValidationContext } from "@/middleware/validationContext";
 import axios from "axios";
-import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 import { CirclesWithBar } from "react-loader-spinner";
 
 export default function CalculadoraPage() {
-  validationContext();
+  ValidationContext();
   const router = useRouter();
 
   const [numeroSalas, setNumeroSalas] = useState("");
@@ -61,8 +61,9 @@ export default function CalculadoraPage() {
         setNumeroAutoclaves("");
         setNumeroLavadorasTermo("");
 
-        setTimeout(() => {  //ATRASO colocado de proposito para aparecer o spinner
-        router.push("/formulario/resultado");
+        setTimeout(() => {
+          //ATRASO colocado de proposito para aparecer o spinner
+          router.push("/formulario/resultado");
         }, 4000);
       }
     } catch (error) {
@@ -116,7 +117,7 @@ export default function CalculadoraPage() {
             onChange={(e) => setProcessaTecidos(e.target.value)}
             required
           >
-           Processamento de Tecidos?
+            Processamento de Tecidos?
           </InputForm>
         </div>
         <div>

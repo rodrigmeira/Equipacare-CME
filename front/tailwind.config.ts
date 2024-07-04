@@ -15,8 +15,10 @@ const config: Config = {
         "color-primary": "#91AB29",
         "color-primary-focus": "#b6d245",
         "color": "#031125",
-      
       },
+      backgroundImage: {
+        "bgHero": "url('/HeroImage.png')",
+      }
     },
   },
   plugins: [],

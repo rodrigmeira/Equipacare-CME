@@ -81,8 +81,9 @@ export default function CalculadoraPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#F2F2F2] ">
-      <div className="bg-white border-2 border-color-primary rounded-3xl shadow-lg w-full max-w-4xl p-10">
+    <div className="flex flex-col items-center justify-center bg-[#F2F2F2] m-8">
+    <div className="flex flex-row items-center justify-center">
+      <div className="bg-white md:border-y-2 md:border-l-2 border-2 md:border-r-0 border-color-primary rounded-3xl md:rounded-r-none shadow-lg max-w-4xl p-10 h-[790px]">
         {loading && (
           <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
             <div className="text-center">
@@ -95,7 +96,9 @@ export default function CalculadoraPage() {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de salas cirúrgicas</label>
+            <label className="mr-4 font-semibold">
+              Número de salas cirúrgicas
+            </label>
             <input
               type="number"
               value={numeroSalas}
@@ -104,7 +107,9 @@ export default function CalculadoraPage() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de cirurgias por sala por dia</label>
+            <label className="mr-4 font-semibold">
+              Número de cirurgias por sala por dia
+            </label>
             <input
               type="number"
               value={numeroCirurgias}
@@ -124,25 +129,36 @@ export default function CalculadoraPage() {
             />
           </div>
           <fieldset className="flex items-center justify-center">
-            <legend className="mb-1 font-semibold">As cirurgias serão realizadas em quais dias da semana?</legend>
+            <legend className="mb-1 font-semibold">
+              As cirurgias serão realizadas em quais dias da semana?
+            </legend>
             <div className="grid grid-cols-4 gap-3">
-              {["Todos", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"].map(
-                (day) => (
-                  <label key={day} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={diasDeCirurgias.includes(day)}
-                      onChange={() => handleDiasDeCirurgiasChange(day)}
-                      className="mr-2 w-5 h-4"
-                    />
-                    {day}
-                  </label>
-                )
-              )}
+              {[
+                "Todos",
+                "Segunda",
+                "Terça",
+                "Quarta",
+                "Quinta",
+                "Sexta",
+                "Sábado",
+                "Domingo",
+              ].map((day) => (
+                <label key={day} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={diasDeCirurgias.includes(day)}
+                    onChange={() => handleDiasDeCirurgiasChange(day)}
+                    className="mr-2 w-5 h-4"
+                  />
+                  {day}
+                </label>
+              ))}
             </div>
           </fieldset>
           <fieldset className="flex items-center justify-center">
-            <legend className="mb-1 font-semibold">Processamento de tecidos ou apenas instrumental?</legend>
+            <legend className="mb-1 font-semibold">
+              Processamento de tecidos ou apenas instrumental?
+            </legend>
             <div className="flex space-x-4">
               <label className="flex items-center">
                 <input
@@ -182,10 +198,12 @@ export default function CalculadoraPage() {
               value={numeroLeitosRPA}
               onChange={(e) => setNumeroLeitosRPA(e.target.value)}
               className="p-2 border rounded-md w-1/5 border-color-primary"
-            /> 
+            />
           </div>
           <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de leitos Internação</label>
+            <label className="mr-4 font-semibold">
+              Número de leitos Internação
+            </label>
             <input
               type="number"
               value={numeroLeitosInternacao}
@@ -194,7 +212,9 @@ export default function CalculadoraPage() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de leitos Observação</label>
+            <label className="mr-4 font-semibold">
+              Número de leitos Observação
+            </label>
             <input
               type="number"
               value={numeroLeitosObservacao}
@@ -203,7 +223,9 @@ export default function CalculadoraPage() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de leitos Hospital Dia</label>
+            <label className="mr-4 font-semibold">
+              Número de leitos Hospital Dia
+            </label>
             <input
               type="number"
               value={numeroLeitosHospitalDia}
@@ -213,9 +235,12 @@ export default function CalculadoraPage() {
           </div>
         </form>
       </div>
-      <div className="md:col-span-2 mt-8 flex items-center justify-center">
-          <ButtonForm>CALCULAR</ButtonForm>
-      </div>
+      <div className="h-[790px] bg-center bg-cover bg-bgHero w-[575px] rounded-r-3xl md:flex hidden"/>
+      
+    </div>
+    <div className="md:col-span-2 flex items-center justify-center m-8">
+          <ButtonForm className="w-[300px] h-[50px]">CALCULAR</ButtonForm>
+    </div>
     </div>
   );
 }

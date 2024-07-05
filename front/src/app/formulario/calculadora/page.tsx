@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { CirclesWithBar } from "react-loader-spinner";
 import { ButtonForm } from "@/components";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
+import { CirclesWithBar } from "react-loader-spinner";
 
 export default function CalculadoraPage() {
   const router = useRouter();
@@ -82,165 +81,166 @@ export default function CalculadoraPage() {
 
   return (
     <div className="flex flex-col items-center justify-center bg-[#F2F2F2] m-8">
-    <div className="flex flex-row items-center justify-center">
-      <div className="bg-white md:border-y-2 md:border-l-2 border-2 md:border-r-0 border-color-primary rounded-3xl md:rounded-r-none shadow-lg max-w-4xl p-10 h-[790px]">
-        {loading && (
-          <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
-            <div className="text-center">
-              <div className="flex justify-center items-center mb-3">
-                <CirclesWithBar color="#5A9B1B" height={150} width={150} />
+      <div className="flex flex-row items-center justify-center border-2 border-black">
+        <div className="bg-white md:border-y-2 md:border-l-2 border-2 md:border-r-0 border-color-primary rounded-3xl md:rounded-r-none shadow-lg max-w-4xl p-10 h-[790px]">
+          {loading && (
+            <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
+              <div className="text-center">
+                <div className="flex justify-center items-center mb-3">
+                  <CirclesWithBar color="#5A9B1B" height={150} width={150} />
+                </div>
+                <p className="text-black text-3xl font-bold">
+                  {loadingMessage}
+                </p>
               </div>
-              <p className="text-black text-3xl font-bold">{loadingMessage}</p>
             </div>
-          </div>
-        )}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">
-              Número de salas cirúrgicas
-            </label>
-            <input
-              type="number"
-              value={numeroSalas}
-              onChange={(e) => setNumeroSalas(e.target.value)}
-              className="p-2 border rounded-md border-color-primary w-1/5"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">
-              Número de cirurgias por sala por dia
-            </label>
-            <input
-              type="number"
-              value={numeroCirurgias}
-              onChange={(e) => setNumeroCirurgias(e.target.value)}
-              className="p-2 border border-color-primary rounded-md w-1/5"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="mb-1 font-semibold">
-              Qual o intervalo de pico de funcionamento da CME? (em horas)
-            </label>
-            <input
-              type="number"
-              value={intervaloPico}
-              onChange={(e) => setIntervaloPico(e.target.value)}
-              className="p-2 border rounded-md border-color-primary"
-            />
-          </div>
-          <fieldset className="flex items-center justify-center">
-            <legend className="mb-1 font-semibold">
-              As cirurgias serão realizadas em quais dias da semana?
-            </legend>
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                "Todos",
-                "Segunda",
-                "Terça",
-                "Quarta",
-                "Quinta",
-                "Sexta",
-                "Sábado",
-                "Domingo",
-              ].map((day) => (
-                <label key={day} className="flex items-center">
+          )}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de salas cirúrgicas
+              </label>
+              <input
+                type="number"
+                value={numeroSalas}
+                onChange={(e) => setNumeroSalas(e.target.value)}
+                className="p-2 border rounded-md border-color-primary w-1/5"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de cirurgias por sala por dia
+              </label>
+              <input
+                type="number"
+                value={numeroCirurgias}
+                onChange={(e) => setNumeroCirurgias(e.target.value)}
+                className="p-2 border border-color-primary rounded-md w-1/5"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1 font-semibold">
+                Qual o intervalo de pico de funcionamento da CME? (em horas)
+              </label>
+              <input
+                type="number"
+                value={intervaloPico}
+                onChange={(e) => setIntervaloPico(e.target.value)}
+                className="p-2 border rounded-md border-color-primary"
+              />
+            </div>
+            <fieldset className="flex items-center justify-center">
+              <legend className="mb-1 font-semibold">
+                As cirurgias serão realizadas em quais dias da semana?
+              </legend>
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  "Todos",
+                  "Segunda",
+                  "Terça",
+                  "Quarta",
+                  "Quinta",
+                  "Sexta",
+                  "Sábado",
+                  "Domingo",
+                ].map((day) => (
+                  <label key={day} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={diasDeCirurgias.includes(day)}
+                      onChange={() => handleDiasDeCirurgiasChange(day)}
+                      className="mr-2 w-5 h-4"
+                    />
+                    {day}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset className="flex items-center justify-center">
+              <legend className="mb-1 font-semibold">
+                Processamento de tecidos ou apenas instrumental?
+              </legend>
+              <div className="flex space-x-4">
+                <label className="flex items-center">
                   <input
-                    type="checkbox"
-                    checked={diasDeCirurgias.includes(day)}
-                    onChange={() => handleDiasDeCirurgiasChange(day)}
-                    className="mr-2 w-5 h-4"
+                    type="radio"
+                    value="Tecidos e Instrumental"
+                    checked={processaTecidos === "Tecidos e Instrumental"}
+                    onChange={(e) => setProcessaTecidos(e.target.value)}
+                    className="mr-2 w-4 h-4"
                   />
-                  {day}
+                  Tecidos e Instrumental
                 </label>
-              ))}
+                <label className="flex items-center justify-between">
+                  <input
+                    type="radio"
+                    value="Apenas instrumental"
+                    checked={processaTecidos === "Apenas instrumental"}
+                    onChange={(e) => setProcessaTecidos(e.target.value)}
+                    className="mr-2 w-4 h-4"
+                  />
+                  Apenas instrumental
+                </label>
+              </div>
+            </fieldset>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">Número de leitos UTI</label>
+              <input
+                type="number"
+                value={numeroLeitosUti}
+                onChange={(e) => setNumeroLeitosUti(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
             </div>
-          </fieldset>
-          <fieldset className="flex items-center justify-center">
-            <legend className="mb-1 font-semibold">
-              Processamento de tecidos ou apenas instrumental?
-            </legend>
-            <div className="flex space-x-4">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="Tecidos e Instrumental"
-                  checked={processaTecidos === "Tecidos e Instrumental"}
-                  onChange={(e) => setProcessaTecidos(e.target.value)}
-                  className="mr-2 w-4 h-4"
-                />
-                Tecidos e Instrumental
-              </label>
-              <label className="flex items-center justify-between">
-                <input
-                  type="radio"
-                  value="Apenas instrumental"
-                  checked={processaTecidos === "Apenas instrumental"}
-                  onChange={(e) => setProcessaTecidos(e.target.value)}
-                  className="mr-2 w-4 h-4"
-                />
-                Apenas instrumental
-              </label>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">Número de leitos RPA</label>
+              <input
+                type="number"
+                value={numeroLeitosRPA}
+                onChange={(e) => setNumeroLeitosRPA(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
             </div>
-          </fieldset>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de leitos UTI</label>
-            <input
-              type="number"
-              value={numeroLeitosUti}
-              onChange={(e) => setNumeroLeitosUti(e.target.value)}
-              className="p-2 border rounded-md w-1/5 border-color-primary"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">Número de leitos RPA</label>
-            <input
-              type="number"
-              value={numeroLeitosRPA}
-              onChange={(e) => setNumeroLeitosRPA(e.target.value)}
-              className="p-2 border rounded-md w-1/5 border-color-primary"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">
-              Número de leitos Internação
-            </label>
-            <input
-              type="number"
-              value={numeroLeitosInternacao}
-              onChange={(e) => setNumeroLeitosInternacao(e.target.value)}
-              className="p-2 border rounded-md w-1/5 border-color-primary"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">
-              Número de leitos Observação
-            </label>
-            <input
-              type="number"
-              value={numeroLeitosObservacao}
-              onChange={(e) => setNumeroLeitosObservacao(e.target.value)}
-              className="p-2 border rounded-md w-1/5 border-color-primary"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <label className="mr-4 font-semibold">
-              Número de leitos Hospital Dia
-            </label>
-            <input
-              type="number"
-              value={numeroLeitosHospitalDia}
-              onChange={(e) => setNumeroLeitosHospitalDia(e.target.value)}
-              className="p-2 border rounded-md w-1/5 border-color-primary"
-            />
-          </div>
-        </form>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Internação
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosInternacao}
+                onChange={(e) => setNumeroLeitosInternacao(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Observação
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosObservacao}
+                onChange={(e) => setNumeroLeitosObservacao(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Hospital Dia
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosHospitalDia}
+                onChange={(e) => setNumeroLeitosHospitalDia(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+          </form>
+        </div>
+        <div className="h-[790px] bg-center bg-cover bg-bgHero w-[575px] rounded-r-3xl md:flex hidden" />
       </div>
-      <div className="h-[790px] bg-center bg-cover bg-bgHero w-[575px] rounded-r-3xl md:flex hidden"/>
-      
-    </div>
-    <div className="md:col-span-2 flex items-center justify-center m-8">
-          <ButtonForm className="w-[300px] h-[50px]">CALCULAR</ButtonForm>
-    </div>
+      <div className="md:col-span-2 flex items-center justify-center m-8">
+        <ButtonForm className="w-[300px] h-[50px]">CALCULAR</ButtonForm>
+      </div>
     </div>
   );
 }

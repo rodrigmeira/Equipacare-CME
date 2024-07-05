@@ -1,4 +1,5 @@
 import { Banner, CopyForm, Footer, Informative, Navbar } from "@/components";
+import { WrapperForm } from "@/components/WrapperForm/WrapperForm";
 import { Provider } from "@/context/Context";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -30,8 +31,9 @@ export default function RootLayout({
           />
         </Banner>
         <Informative />
-        <Provider>{children}</Provider>
-
+        <WrapperForm>
+          <Provider>{children}</Provider>
+        </WrapperForm>
         <Footer />
       </body>
     </html>

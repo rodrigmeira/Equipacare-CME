@@ -1,6 +1,8 @@
-import { redirect } from "next/navigation";
-
 export default function Page() {
-  redirect("/formulario");
-  return;
+  // redirect("/formulario");
+  return (
+    <div>
+      <h1>Page</h1>
+    </div>
+  );
 }

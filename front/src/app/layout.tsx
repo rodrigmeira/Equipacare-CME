@@ -1,4 +1,5 @@
-import { Footer, Navbar } from "@/components";
+import { Banner, CopyForm, Footer, Informative, Navbar } from "@/components";
+import { Provider } from "@/context/Context";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,7 +19,19 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={`bg-[#F2F2F2] ${inter.className}`}>
         <Navbar />
-        {children}
+        <Banner
+          style={{
+            backgroundImage: "url(/image-calculadora.png)",
+          }}
+        >
+          <CopyForm
+            h1="CALCULADORA"
+            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material."
+          />
+        </Banner>
+        <Informative />
+        <Provider>{children}</Provider>
+
         <Footer />
       </body>
     </html>

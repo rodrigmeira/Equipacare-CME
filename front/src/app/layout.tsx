@@ -26,8 +26,8 @@ export default function RootLayout({
           }}
         >
           <CopyForm
-            h1="CALCULADORA"
-            p="O material utilizado em hospitais exige certo conhecimento e experiencia na área. Esta ferramenta irá ajudar a estimar o volume diário de material."
+            h1="FORMULÁRIO"
+            p="PREENCHA PARA CONTINUARMOS O ATENDIMENTO"
           />
         </Banner>
         <Informative />

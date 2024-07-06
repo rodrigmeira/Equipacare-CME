@@ -5,3 +5,4 @@ export { Footer } from "./Footer/Footer";
 export { Informative } from "./Informative/Informative";
 export { InputForm } from "./InputForm/InputForm";
 export { Navbar } from "./Navbar/Navbar";
+export { Progress } from "./ui/progress";

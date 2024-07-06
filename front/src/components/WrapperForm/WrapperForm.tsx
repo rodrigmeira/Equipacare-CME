@@ -71,12 +71,12 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
     );
   };
   return (
-    <div>
-      <div className="flex flex-row items-center justify-center">
-        <div className="bg-white md:border-y-2 md:border-l-2 border-2 md:border-r-0 border-color-primary rounded-3xl md:rounded-r-none shadow-lg max-w-4xl p-10 h-[790px]">
+    <div className="flex flex-col justify-center items-center">
+      <div className="grid grid-cols-2 gap-0 w-[1150px] items-center justify-center shadow-lg rounded-3xl overflow-hidden">
+        <div className="bg-white rounded-3xl md:rounded-r-none md:w-full p-10 h-[790px] relative">
           {children}
         </div>
-        <div className="h-[790px] bg-center bg-cover bg-bgHero w-[575px] rounded-r-3xl md:flex hidden" />
+        <div className="h-[790px] bg-center bg-cover bg-bgHero md:w-full rounded-r-3xl md:flex hidden" />
       </div>
       <div className="md:col-span-2 flex items-center justify-center m-8">
         <ButtonForm className="w-[300px] h-[50px]">CALCULAR</ButtonForm>

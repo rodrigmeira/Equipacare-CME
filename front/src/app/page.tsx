@@ -1,6 +1,6 @@
 "use client";
 
-import { Progress } from "@/components";
+import { ButtonForm, Progress } from "@/components";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -42,27 +42,24 @@ export default function Page() {
       {count === 1 && (
         <div>
           <div>Etapa 1</div>
-          <button onClick={() => setCount(count + 1)}>Avançar</button>
         </div>
       )}
       {count === 2 && (
         <div>
           <div>Etapa 2</div>
-          <button onClick={() => setCount(count + 1)}>Avançar</button>
         </div>
       )}
       {count === 3 && (
         <div>
           <div>Etapa 3</div>
-          <button onClick={() => setCount(count + 1)}>Avançar</button>
         </div>
       )}
       {count === 4 && (
         <div>
           <div>Etapa 4</div>
-          <button onClick={() => setCount(count + 1)}>Avançar</button>
         </div>
       )}
+      <ButtonForm onClick={() => setCount(count + 1)}>Próximo</ButtonForm>
     </div>
   );
 }

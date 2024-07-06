@@ -79,7 +79,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundColor: {
-        progress: "#8EDD2A",
+        prima: "#5A9B1B",
+        second: "#8EDD2A",
       },
       backgroundImage: {
         bgHero: "url('/HeroImage.png')",

@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonForm, Progress } from "@/components";
+import { ButtonForm, Progress, Step1 } from "@/components";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -38,28 +38,28 @@ export default function Page() {
       {count <= 3 && (
         <h1 className="text-2xl font-bold">Preencha as informações</h1>
       )}
-      {count > 3 && <h1 className="text-2xl font-bold">Resultados</h1>}
-      {count === 1 && (
+      <form>
+        {count > 3 && <h1 className="text-2xl font-bold">Resultados</h1>}
+        {count === 1 && <Step1 />}
+        {count === 2 && (
+          <div>
+            <div>Etapa 2</div>
+          </div>
+        )}
+        {count === 3 && (
+          <div>
+            <div>Etapa 3</div>
+          </div>
+        )}
+        {count === 4 && (
+          <div>
+            <div>Etapa 4</div>
+          </div>
+        )}
         <div>
-          <div>Etapa 1</div>
+          <ButtonForm onClick={() => setCount(count + 1)}>Próximo</ButtonForm>
         </div>
-      )}
-      {count === 2 && (
-        <div>
-          <div>Etapa 2</div>
-        </div>
-      )}
-      {count === 3 && (
-        <div>
-          <div>Etapa 3</div>
-        </div>
-      )}
-      {count === 4 && (
-        <div>
-          <div>Etapa 4</div>
-        </div>
-      )}
-      <ButtonForm onClick={() => setCount(count + 1)}>Próximo</ButtonForm>
+      </form>
     </div>
   );
 }

@@ -6,4 +6,5 @@ export { Informative } from "./Informative/Informative";
 export { InputForm } from "./InputForm/InputForm";
 export { Navbar } from "./Navbar/Navbar";
 export { Step1 } from "./Step1/Step1";
+export { Step3 } from "./Step3/Step3";
 export { Progress } from "./ui/progress";

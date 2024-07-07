@@ -1,84 +1,30 @@
 import { EachInputCheckbox } from "./EachInputCheckbox";
 import { H3 } from "./H3";
 
-type InputCheckboxProps = {
-  title: string;
-  propsOption1: string;
-  propsOption2: string;
-  propsOption3: string;
-  propsOption4: string;
-  propsOption5: string;
-  propsOption6: string;
-  propsOption7: string;
-  propsOption8: string;
-  childrenOption1: string;
-  childrenOption2: string;
-  childrenOption3: string;
-  childrenOption4: string;
-  childrenOption5: string;
-  childrenOption6: string;
-  childrenOption7: string;
-  childrenOption8: string;
-};
-
-export const InputCheckbox = ({
-  title,
-  childrenOption1,
-  childrenOption2,
-  childrenOption3,
-  childrenOption4,
-  childrenOption5,
-  childrenOption6,
-  childrenOption7,
-  childrenOption8,
-  propsOption1,
-  propsOption2,
-  propsOption3,
-  propsOption4,
-  propsOption5,
-  propsOption6,
-  propsOption7,
-  propsOption8,
-}: InputCheckboxProps) => {
+export const InputCheckbox = () => {
   return (
     <div className="select-none font-extralight">
-      <H3>{title}</H3>
+      <H3>As cirurgias serão realizadas em quais dias da semana?</H3>
       <div className="flex flex-row gap-4">
         <div className="flex flex-col">
-          <EachInputCheckbox id={propsOption1}>
-            {childrenOption1}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="todosOsDias">Todos os dias</EachInputCheckbox>
 
-          <EachInputCheckbox id={propsOption2}>
-            {childrenOption2}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="segundaFeira">Segunda-feira</EachInputCheckbox>
         </div>
         <div className="flex flex-col">
-          <EachInputCheckbox id={propsOption3}>
-            {childrenOption3}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="tercaFeira">Terça-feira</EachInputCheckbox>
 
-          <EachInputCheckbox id={propsOption4}>
-            {childrenOption4}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="quartaFeira">Quarta-feira</EachInputCheckbox>
         </div>
         <div className="flex flex-col">
-          <EachInputCheckbox id={propsOption5}>
-            {childrenOption5}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="quitaFeira">Quinta-feira</EachInputCheckbox>
 
-          <EachInputCheckbox id={propsOption6}>
-            {childrenOption6}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="sextaFeira">Sexta-feira</EachInputCheckbox>
         </div>
         <div className="flex flex-col">
-          <EachInputCheckbox id={propsOption7}>
-            {childrenOption7}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="sabado">Sábado</EachInputCheckbox>
 
-          <EachInputCheckbox id={propsOption8}>
-            {childrenOption8}
-          </EachInputCheckbox>
+          <EachInputCheckbox id="domingo">Domingo</EachInputCheckbox>
         </div>
       </div>
     </div>

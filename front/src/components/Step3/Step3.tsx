@@ -20,25 +20,7 @@ export const Step3 = () => {
         secondChildren="Substituir"
         name="ampliarSubstituir"
       />
-      <InputCheckbox
-        title="As cirurgias serão realizadas em quais dias da semana?"
-        propsOption1="todosOsDias"
-        childrenOption1="Todos os dias"
-        propsOption2="segundaFeira"
-        childrenOption2="Segunda-feira"
-        propsOption3="tercaFeira"
-        childrenOption3="Terça-feira"
-        propsOption4="quartaFeira"
-        childrenOption4="Quarta-feira"
-        propsOption5="quintaFeira"
-        childrenOption5="Quinta-feira"
-        propsOption6="sextaFeira"
-        childrenOption6="Sexta-feira"
-        propsOption7="sabado"
-        childrenOption7="Sábado"
-        propsOption8="domingo"
-        childrenOption8="Domingo"
-      />
+      <InputCheckbox />
     </div>
   );
 };

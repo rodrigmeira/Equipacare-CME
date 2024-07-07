@@ -2,6 +2,7 @@
 
 import { ButtonForm, Progress, Step1, Step3} from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
+import { Step4 } from "@/components/Step4/Step4";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Page() {
@@ -23,7 +24,7 @@ export default function Page() {
       return () => clearTimeout(timer);
     }
     if (count === 4) {
-      timer = setTimeout(() => setProgress(100), 300);
+      timer = setTimeout(() => setProgress(100), 3500);
       return () => clearTimeout(timer);
     }
     console.log(progress);
@@ -31,7 +32,7 @@ export default function Page() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (count < 3) {
+    if (count < 4) {
       setCount(count + 1);
     }
   };
@@ -51,13 +52,10 @@ export default function Page() {
         {count === 1 && <Step1 />}
         {count === 2 && <Step2 />}
         {count === 3 && <Step3 />}
-        {count === 4 && (
-          <div>
-            <div>Etapa 4</div>
-          </div>
-        )}
+        {count === 4 && <Step4 />}
         <div className="flex items-center justify-center">
-          <ButtonForm>Próximo</ButtonForm>
+          {count < 4 && <ButtonForm>Próximo</ButtonForm>}
+          {count === 4 && null}
         </div>
       </form>
     </div>

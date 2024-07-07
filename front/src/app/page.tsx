@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonForm, Progress, Step1, Step3} from "@/components";
+import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
 import { FormEvent, useEffect, useState } from "react";
@@ -30,9 +30,10 @@ export default function Page() {
     console.log(progress);
   }, [count]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (count < 4) {
+
+    if (count < 3) {
       setCount(count + 1);
     }
   };

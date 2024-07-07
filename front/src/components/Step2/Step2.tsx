@@ -8,32 +8,39 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useContextForm } from "@/context/Context";
 import { Textarea } from "../ui/textarea";
 
 export const Step2 = () => {
+  const { momentoEmpreendimento, setMomentoEmpreendimento } = useContextForm();
   return (
     <div className="flex flex-col gap-6 my-6">
       <div className="flex flex-col gap-4">
         <Label>Qual é o momento atual do empreendimento?</Label>
-        <Select>
+        <Select
+          onValueChange={(value: string) => setMomentoEmpreendimento(value)}
+          value={momentoEmpreendimento}
+        >
           <SelectTrigger className="mt-1">
             <SelectValue placeholder="Selecione uma opção..." />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="option-1">Elaboração de projetos</SelectItem>
-            <SelectItem value="option-2">
+            <SelectItem value="Elaboração de projetos">
+              Elaboração de projetos
+            </SelectItem>
+            <SelectItem value="Visita técnica para avaliação diagnóstica">
               Visita técnica para avaliação diagnóstica
             </SelectItem>
-            <SelectItem value="option-3">
+            <SelectItem value="Dimensionamento e especificação técnica dos equipamentos">
               Dimensionamento e especificação técnica dos equipamentos
             </SelectItem>
-            <SelectItem value="option-4">
+            <SelectItem value="Análise técnica financeira comparativa dos equipamentos">
               Análise técnica financeira comparativa dos equipamentos
             </SelectItem>
-            <SelectItem value="option-5">
+            <SelectItem value="Comissionamento das instalações">
               Comissionamento das instalações
             </SelectItem>
-            <SelectItem value="option-6">Outro momento</SelectItem>
+            <SelectItem value="Outro momento">Outro momento</SelectItem>
           </SelectContent>
         </Select>
       </div>

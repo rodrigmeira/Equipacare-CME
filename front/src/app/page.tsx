@@ -3,11 +3,14 @@
 import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
+import { useContextForm } from "@/context/Context";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(1);
   const [progress, setProgress] = useState(3);
+  const { momentoEmpreendimento, nomeCompleto, cargo, email } =
+    useContextForm();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -32,6 +35,7 @@ export default function Page() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await console.log(momentoEmpreendimento, nomeCompleto, cargo, email);
 
     if (count < 3) {
       setCount(count + 1);

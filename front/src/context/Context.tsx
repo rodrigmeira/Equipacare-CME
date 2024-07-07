@@ -35,6 +35,8 @@ interface ContextType {
   setAmpliacao: (ampliacao: boolean) => void;
   substituicao: boolean;
   setSubstituicao: (substituicao: boolean) => void;
+  momentoEmpreendimento: string;
+  setMomentoEmpreendimento: (momentoEmpreendimento: string) => void;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -60,6 +62,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [implantarCME, setImplantarCME] = useState<boolean>(false);
   const [ampliacao, setAmpliacao] = useState<boolean>(false);
   const [substituicao, setSubstituicao] = useState<boolean>(false);
+  const [momentoEmpreendimento, setMomentoEmpreendimento] =
+    useState<string>("");
 
   return (
     <Context.Provider
@@ -96,6 +100,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setAmpliacao,
         substituicao,
         setSubstituicao,
+        momentoEmpreendimento,
+        setMomentoEmpreendimento,
       }}
     >
       {children}

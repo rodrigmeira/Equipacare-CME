@@ -9,14 +9,22 @@ interface ContextType {
   setTelefone: (telefone: string) => void;
   email: string;
   setEmail: (email: string) => void;
-  cepHospital: string;
-  setCepHospital: (cepHospital: string) => void;
   cargo: string;
   setCargo: (cargo: string) => void;
   nomeHospital: string;
   setNomeHospital: (nomeHospital: string) => void;
-  endereco: string;
-  setEndereco: (endereco: string) => void;
+  cep: string;
+  setCep: (cep: string) => void;
+  numero: string;
+  setNumero: (numero: string) => void;
+  rua: string;
+  setRua: (rua: string) => void;
+  bairro: string;
+  setBairro: (bairro: string) => void;
+  cidade: string;
+  setCidade: (cidade: string) => void;
+  uf: string;
+  setUf: (estado: string) => void;
   cnpj: string;
   setCnpj: (cnpj: string) => void;
   possuiCME: boolean;
@@ -39,10 +47,14 @@ export const Provider = ({ children }: ProviderProps) => {
   const [nomeCompleto, setNomeCompleto] = useState<string>("");
   const [telefone, setTelefone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [cepHospital, setCepHospital] = useState<string>("");
   const [cargo, setCargo] = useState<string>("");
   const [nomeHospital, setNomeHospital] = useState<string>("");
-  const [endereco, setEndereco] = useState<string>("");
+  const [cep, setCep] = useState<string>("");
+  const [numero, setNumero] = useState<string>("");
+  const [rua, setRua] = useState<string>("");
+  const [bairro, setBairro] = useState<string>("");
+  const [cidade, setCidade] = useState<string>("");
+  const [uf, setUf] = useState<string>("");
   const [cnpj, setCnpj] = useState<string>("");
   const [possuiCME, setPossuiCME] = useState<boolean>(false);
   const [implantarCME, setImplantarCME] = useState<boolean>(false);
@@ -58,14 +70,22 @@ export const Provider = ({ children }: ProviderProps) => {
         setTelefone,
         email,
         setEmail,
-        cepHospital,
-        setCepHospital,
         cargo,
         setCargo,
         nomeHospital,
         setNomeHospital,
-        endereco,
-        setEndereco,
+        cep,
+        setCep,
+        numero,
+        setNumero,
+        rua,
+        setRua,
+        bairro,
+        setBairro,
+        cidade,
+        setCidade,
+        uf,
+        setUf,
         cnpj,
         setCnpj,
         possuiCME,

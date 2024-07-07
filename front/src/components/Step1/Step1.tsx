@@ -2,7 +2,7 @@ import { InputForm } from "../InputForm/InputForm";
 
 export const Step1 = () => {
   return (
-    <div className="mt-5">
+    <div className="flex flex-col gap-5 my-9">
       <InputForm placeholder="Digite seu nome">Nome Completo:</InputForm>
       <div className="flex flex-row justify-between gap-4">
         <InputForm placeholder="exemplo@email.com">

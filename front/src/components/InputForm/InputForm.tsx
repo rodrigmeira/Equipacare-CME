@@ -7,7 +7,7 @@ export const InputForm = ({
   ...props
 }: InputFormProps) => {
   return (
-    <div className="flex flex-col mb-6 w-full">
+    <div className="flex flex-col w-full">
       <label htmlFor={id} className="font-light text-base mb-2 select-none">
         {children}
       </label>

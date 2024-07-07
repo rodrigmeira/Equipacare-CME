@@ -1,11 +1,19 @@
 "use client";
 
-import { ButtonForm, Progress, Step1 } from "@/components";
+import { ButtonForm, Progress, Step1} from "@/components";
+import { Step2 } from "@/components/Step2/Step2";
 import { useEffect, useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(1);
   const [progress, setProgress] = useState(3);
+
+  const handleSubmit = (e: any) =>{
+    e.preventDefault()
+    setCount((cur) => cur + 1);
+    // alert('🔥 Aqui!')
+
+  }
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -41,11 +49,7 @@ export default function Page() {
       <form>
         {count > 3 && <h1 className="text-2xl font-bold">Resultados</h1>}
         {count === 1 && <Step1 />}
-        {count === 2 && (
-          <div>
-            <div>Etapa 2</div>
-          </div>
-        )}
+        {count === 2 && <Step2 />}
         {count === 3 && (
           <div>
             <div>Etapa 3</div>
@@ -56,8 +60,8 @@ export default function Page() {
             <div>Etapa 4</div>
           </div>
         )}
-        <div>
-          <ButtonForm onClick={() => setCount(count + 1)}>Próximo</ButtonForm>
+        <div className="flex items-center justify-center">
+          <ButtonForm onClick={handleSubmit}>Próximo</ButtonForm>
         </div>
       </form>
     </div>

@@ -71,11 +71,11 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
   };
   return (
     <div className="flex flex-col justify-center items-center mb-24">
-      <div className="grid grid-cols-2 gap-0 w-[1150px] h-[790px] items-center justify-center shadow-lg rounded-3xl overflow-hidden">
+      <div className="grid md:grid-cols-2 gap-0 lg:w-[1150px] h-full items-center justify-center shadow-lg rounded-3xl overflow-hidden">
         <div className="bg-white rounded-3xl md:rounded-r-none md:w-full p-10 h-full relative">
           {children}
         </div>
-        <div className="h-full bg-center bg-cover bg-bgHero md:w-full rounded-r-3xl md:flex hidden" />
+        <div className="h-full lg:bg-center lg:bg-cover lg:bg-bgHero md:w-full rounded-r-3xl md:flex hidden" />
       </div>
     </div>
   );

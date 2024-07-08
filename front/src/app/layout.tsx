@@ -1,6 +1,7 @@
 import { Banner, CopyForm, Footer, Informative, Navbar } from "@/components";
 import { WrapperForm } from "@/components/WrapperForm/WrapperForm";
 import { Provider } from "@/context/Context";
+import { ProviderCalc } from "@/context/ContextCalc";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -32,7 +33,9 @@ export default function RootLayout({
         </Banner>
         <Informative />
         <WrapperForm>
-          <Provider>{children}</Provider>
+          <ProviderCalc>
+            <Provider>{children}</Provider>
+          </ProviderCalc>
         </WrapperForm>
         <Footer />
       </body>

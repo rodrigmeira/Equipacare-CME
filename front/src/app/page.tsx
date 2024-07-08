@@ -33,7 +33,7 @@ export default function Page() {
       return () => clearTimeout(timer);
     }
     if (count === 4) {
-      timer = setTimeout(() => setProgress(100), 3500);
+      timer = setTimeout(() => setProgress(100), 5000);
       return () => clearTimeout(timer);
     }
     console.log(progress);
@@ -84,6 +84,7 @@ export default function Page() {
       )}
       <form onSubmit={handleSubmit}>
         {count > 3 && <h1 className="text-2xl font-bold">Resultados</h1>}
+        {count > 3 && <p className="text-[14px] font-normal">Confira as melhores ofertas para seu projeto!</p>}
         {count === 1 && <Step1 />}
         {count === 2 && <Step2 />}
         {count === 3 && <Step3 />}

@@ -1,7 +1,12 @@
+"use client"
+
 import { useContextForm } from "@/context/Context";
 import { insertMaskInCep } from "@/utils/insertMaskInCep";
 import { insertMaskInTel } from "@/utils/insertMaskInTel";
+import { insertMaskInCNPJ } from "@/utils/insertMaskCNPJ";
 import { InputForm } from "../InputForm/InputForm";
+
+import { useContext, useEffect } from "react";
 
 export const Step1 = () => {
   const {
@@ -30,6 +35,23 @@ export const Step1 = () => {
     uf,
     setUf,
   } = useContextForm();
+
+  useEffect(() => {
+    const fetchAddress = async () => {
+      if (cep.length === 9) {
+        const cleanedCep = cep.replace(/\D/g, '');
+        const response = await fetch (`https://viacep.com.br/ws/${cleanedCep}/json/`)
+        const data = await response.json();
+        if (!data.erro) {
+          setRua(data.logradouro);
+          setBairro(data.bairro);
+          setCidade(data.localidade);
+          setUf(data.uf);
+        }
+      }
+    };
+    fetchAddress();
+  }, [cep]);
 
   return (
     <div className="flex flex-col gap-5 my-9">
@@ -62,6 +84,7 @@ export const Step1 = () => {
           onChange={(e) => setTelefone(e.target.value)}
           required
           placeholder="(00) 00000-0000"
+          maxLength={14}
         >
           Contato:
         </InputForm>
@@ -80,10 +103,11 @@ export const Step1 = () => {
         <InputForm
           type="text"
           id="cnpj"
-          value={cnpj}
+          value={insertMaskInCNPJ(cnpj)}
           onChange={(e) => setCnpj(e.target.value)}
           required
           placeholder="00.000.000/0000-00"
+          maxLength={18}
         >
           CNPJ:
         </InputForm>
@@ -107,6 +131,7 @@ export const Step1 = () => {
           onChange={(e) => setCep(e.target.value)}
           required
           placeholder="00000-000"
+          maxLength={9}
         >
           CEP:
         </InputForm>

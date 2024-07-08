@@ -5,10 +5,7 @@ import logo from "@/../../public/image6.svg";
 import { useState, useEffect } from "react";
 import { MoonLoader } from "react-spinners";
 import { Label } from "../ui/label";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -16,6 +13,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ButtonResult } from "../ButtonResult/ButtonResult";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartLine, faChartPie, faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
 
 export const Step4 = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -106,10 +106,17 @@ export const Step4 = () => {
                   {data.map((item, index) => (
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
-                      <Image src={item.logo} alt={`${item.brand} logo`} width={48} height={48} />
+                        <Image
+                          src={item.logo}
+                          alt={`${item.brand} logo`}
+                          width={48}
+                          height={48}
+                        />
                         <div>
                           <div className="text-[12px]">{item.brand}</div>
-                          <div className="text-[10px] text-[#D3F842]">{item.description}</div>
+                          <div className="text-[10px] text-[#D3F842]">
+                            {item.description}
+                          </div>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
@@ -125,7 +132,7 @@ export const Step4 = () => {
             </CardContent>
           </Card>
           <Label className="text-[25px] font-light mt-3">Lavadoras Termo</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white mb-14">
+          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white mb-5">
             <CardContent className="mt-7">
               <Table>
                 <TableHeader>
@@ -145,10 +152,17 @@ export const Step4 = () => {
                   {data.map((item, index) => (
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
-                      <Image src={item.logo} alt={`${item.brand} logo`} width={48} height={48} />
+                        <Image
+                          src={item.logo}
+                          alt={`${item.brand} logo`}
+                          width={48}
+                          height={48}
+                        />
                         <div>
                           <div className="text-[12px]">{item.brand}</div>
-                          <div className="text-[10px] text-[#D3F842]">{item.description}</div>
+                          <div className="text-[10px] text-[#D3F842]">
+                            {item.description}
+                          </div>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
@@ -163,6 +177,12 @@ export const Step4 = () => {
               </Table>
             </CardContent>
           </Card>
+          <div className="flex items-center justify-center mb-16">
+            <ButtonResult>
+            <FontAwesomeIcon className="mr-2" size="lg" icon={faSquarePollVertical} style={{color: "#ffffff",}} />
+            Solicitar orçamento detalhado
+            </ButtonResult>
+          </div>
         </div>
       )}
     </div>

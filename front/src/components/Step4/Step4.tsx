@@ -91,10 +91,10 @@ export const Step4 = () => {
           </Label>
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 h-screen overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-300">
           <Label className="text-[25px] font-light">Autoclaves</Label>
           <Card className="w-[500px] max-w-4xl bg-[#031125] text-white">
-            <CardContent className="mt-10">
+            <CardContent className="mt-7">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-[#D3F842]/40 h-10 text-white">
@@ -132,8 +132,8 @@ export const Step4 = () => {
             </CardContent>
           </Card>
           <Label className="text-[25px] font-light mt-3">Lavadoras Termo</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white">
-            <CardContent className="mt-10">
+          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white mb-14">
+            <CardContent className="mt-7">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-[#D3F842]/40 h-10 text-white">

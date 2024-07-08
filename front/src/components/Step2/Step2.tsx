@@ -66,14 +66,14 @@ export const Step2 = () => {
           className="flex mt-4 gap-4"
         >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="sim" id="sim" />
+            <RadioGroupItem value="Sim" id="sim" />
             <Label className="text-sm" htmlFor="sim">
               Sim
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="não" id="não" />
-            <Label className="text-sm" htmlFor="não">
+            <RadioGroupItem value="Não" id="nao" />
+            <Label className="text-sm" htmlFor="nao">
               Não
             </Label>
           </div>
@@ -89,14 +89,14 @@ export const Step2 = () => {
             className="flex mt-4 gap-4"
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="Própria" id="Própria" />
-              <Label className="text-sm" htmlFor="Própria">
+              <RadioGroupItem value="Própria" id="propria" />
+              <Label className="text-sm" htmlFor="propria">
                 Própria
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="Terceirizada" id="Terceirizada" />
-              <Label className="text-sm" htmlFor="Terceirizada">
+              <RadioGroupItem value="Terceirizada" id="terceirizada" />
+              <Label className="text-sm" htmlFor="terceirizada">
                 Terceirizada
               </Label>
             </div>

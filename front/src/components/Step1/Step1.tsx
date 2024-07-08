@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import { useContextForm } from "@/context/Context";
+import { insertMaskInCNPJ } from "@/utils/insertMaskCNPJ";
 import { insertMaskInCep } from "@/utils/insertMaskInCep";
 import { insertMaskInTel } from "@/utils/insertMaskInTel";
-import { insertMaskInCNPJ } from "@/utils/insertMaskCNPJ";
 import { InputForm } from "../InputForm/InputForm";
 
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 export const Step1 = () => {
   const {
@@ -39,8 +39,10 @@ export const Step1 = () => {
   useEffect(() => {
     const fetchAddress = async () => {
       if (cep.length === 9) {
-        const cleanedCep = cep.replace(/\D/g, '');
-        const response = await fetch (`https://viacep.com.br/ws/${cleanedCep}/json/`)
+        const cleanedCep = cep.replace(/\D/g, "");
+        const response = await fetch(
+          `https://viacep.com.br/ws/${cleanedCep}/json/`
+        );
         const data = await response.json();
         if (!data.erro) {
           setRua(data.logradouro);
@@ -61,7 +63,6 @@ export const Step1 = () => {
         value={nomeCompleto}
         onChange={(e) => setNomeCompleto(e.target.value)}
         placeholder="Digite seu nome"
-        required
       >
         Nome Completo:
       </InputForm>
@@ -72,7 +73,6 @@ export const Step1 = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="exemplo@email.com"
-          required
         >
           E-mail do Hospital:
         </InputForm>
@@ -82,7 +82,6 @@ export const Step1 = () => {
           id="telefone"
           value={insertMaskInTel(telefone)}
           onChange={(e) => setTelefone(e.target.value)}
-          required
           placeholder="(00) 00000-0000"
           maxLength={14}
         >
@@ -94,7 +93,6 @@ export const Step1 = () => {
         id="nomeHospital"
         value={nomeHospital}
         onChange={(e) => setNomeHospital(e.target.value)}
-        required
         placeholder="Digite o nome do hospital..."
       >
         Nome do hospital:
@@ -105,7 +103,6 @@ export const Step1 = () => {
           id="cnpj"
           value={insertMaskInCNPJ(cnpj)}
           onChange={(e) => setCnpj(e.target.value)}
-          required
           placeholder="00.000.000/0000-00"
           maxLength={18}
         >
@@ -117,7 +114,6 @@ export const Step1 = () => {
           id="cargo"
           value={cargo}
           onChange={(e) => setCargo(e.target.value)}
-          required
           placeholder="Ex: Diretor"
         >
           Cargo atual:
@@ -129,7 +125,6 @@ export const Step1 = () => {
           id="cep"
           value={insertMaskInCep(cep)}
           onChange={(e) => setCep(e.target.value)}
-          required
           placeholder="00000-000"
           maxLength={9}
         >
@@ -141,7 +136,6 @@ export const Step1 = () => {
           id="numero"
           value={numero}
           onChange={(e) => setNumero(e.target.value)}
-          required
           placeholder="Ex: 12"
         >
           Número:
@@ -152,7 +146,6 @@ export const Step1 = () => {
         id="rua"
         value={rua}
         onChange={(e) => setRua(e.target.value)}
-        required
         placeholder="Digite o nome da rua..."
       >
         Rua:
@@ -162,7 +155,6 @@ export const Step1 = () => {
         id="bairro"
         value={bairro}
         onChange={(e) => setBairro(e.target.value)}
-        required
         placeholder="Digite o nome do bairro..."
       >
         Bairro:
@@ -174,7 +166,6 @@ export const Step1 = () => {
           id="cidade"
           value={cidade}
           onChange={(e) => setCidade(e.target.value)}
-          required
           placeholder="Digite a cidade..."
         >
           Cidade:
@@ -185,7 +176,6 @@ export const Step1 = () => {
           id="uf"
           value={uf}
           onChange={(e) => setUf(e.target.value)}
-          required
           placeholder="Digite o estado..."
         >
           UF:

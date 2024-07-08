@@ -24,37 +24,37 @@ export const Step3 = () => {
       />
       <InputCheckbox />
 
-      <Label>Qual o horário de pico de funcionamento da CME <span className="font-bold">em horas</span>?
-      <span className="text-sm text-[#8EDD2A]">(período de processamento de 90% do material)</span>
-      <InputForm placeholder="Ex: 12" />
+      <Label>
+        Qual o horário de pico de funcionamento da CME{" "}
+        <span className="font-bold">em horas</span>?
+        <span className="text-sm text-[#8EDD2A]">
+          (período de processamento de 90% do material)
+        </span>
+        <InputForm placeholder="Ex: 12" />
       </Label>
       <div className="flex flex-row justify-between gap-4">
-        <InputForm placeholder="Ex. 12">
-        Número de salas cirúrgias:
-        </InputForm>
+        <InputForm placeholder="Ex. 12">Número de salas cirúrgias:</InputForm>
 
         <InputForm placeholder="Ex: 12">Número cirurgias/sala/dia:</InputForm>
       </div>
       <div className="flex flex-row justify-between gap-4">
-        <InputForm placeholder="Ex. 12">
-        Tipo de processamento:
-        </InputForm>
+        <InputForm placeholder="Ex. 12">Tipo de processamento:</InputForm>
 
         <InputForm placeholder="Ex: 12">Número de leitos UTI:</InputForm>
       </div>
       <div className="flex flex-row justify-between gap-4">
-        <InputForm placeholder="Ex. 12">
-        Número de leitos internação:
-        </InputForm>
+        <InputForm placeholder="Ex. 12">Número de leitos internação:</InputForm>
 
         <InputForm placeholder="Ex: 12">Número de leitos RPA:</InputForm>
       </div>
       <div className="flex flex-row justify-between gap-4">
         <InputForm placeholder="Ex. 12">
-        Número de leitos Observações:
+          Número de leitos Observações:
         </InputForm>
 
-        <InputForm placeholder="Ex: 12">Número de leitos Hospital Dia:</InputForm>
+        <InputForm placeholder="Ex: 12">
+          Número de leitos Hospital Dia:
+        </InputForm>
       </div>
     </div>
   );

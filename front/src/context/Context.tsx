@@ -27,14 +27,10 @@ interface ContextType {
   setUf: (estado: string) => void;
   cnpj: string;
   setCnpj: (cnpj: string) => void;
-  possuiCME: boolean;
-  setPossuiCME: (possuiCME: boolean) => void;
-  implantarCME: boolean;
-  setImplantarCME: (implantarCME: boolean) => void;
-  ampliacao: boolean;
-  setAmpliacao: (ampliacao: boolean) => void;
-  substituicao: boolean;
-  setSubstituicao: (substituicao: boolean) => void;
+  jaPossuiCME: string;
+  setJaPossuiCME: (jaPossuiCME: string) => void;
+  seJaPossuiCME: string;
+  setSeJaPossuiCME: (seJaPossuiCME: string) => void;
   momentoEmpreendimento: string;
   setMomentoEmpreendimento: (momentoEmpreendimento: string) => void;
   possuiEngenharia: string;
@@ -43,6 +39,8 @@ interface ContextType {
   setPropriaOuTerceirizada: (propriaOuTerceirizada: string) => void;
   senteFalta: string;
   setSenteFalta: (senteFalta: string) => void;
+  diasDaSemana: any;
+  setDiasDaSemana: (diasDaSemana: any) => void;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -64,30 +62,41 @@ export const Provider = ({ children }: ProviderProps) => {
   const [cidade, setCidade] = useState<string>("");
   const [uf, setUf] = useState<string>("");
   const [cnpj, setCnpj] = useState<string>("");
-  const [possuiCME, setPossuiCME] = useState<boolean>(false);
-  const [implantarCME, setImplantarCME] = useState<boolean>(false);
-  const [ampliacao, setAmpliacao] = useState<boolean>(false);
-  const [substituicao, setSubstituicao] = useState<boolean>(false);
+  const [jaPossuiCME, setJaPossuiCME] = useState<string>("");
+  const [seJaPossuiCME, setSeJaPossuiCME] = useState<string>("");
   const [momentoEmpreendimento, setMomentoEmpreendimento] =
     useState<string>("");
   const [possuiEngenharia, setPossuiEngenharia] = useState<string>("");
   const [propriaOuTerceirizada, setPropriaOuTerceirizada] =
     useState<string>("");
   const [senteFalta, setSenteFalta] = useState<string>("");
+  const [diasDaSemana, setDiasDaSemana] = useState<any>({
+    todosOsDias: false,
+    segunda: false,
+    terca: false,
+    quarta: false,
+    quinta: false,
+    sexta: false,
+    sabado: false,
+    domingo: false,
+  });
 
   return (
     <Context.Provider
       value={{
+        // STEP1
         nomeCompleto,
         setNomeCompleto,
-        telefone,
-        setTelefone,
         email,
         setEmail,
-        cargo,
-        setCargo,
+        telefone,
+        setTelefone,
         nomeHospital,
         setNomeHospital,
+        cnpj,
+        setCnpj,
+        cargo,
+        setCargo,
         cep,
         setCep,
         numero,
@@ -100,16 +109,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setCidade,
         uf,
         setUf,
-        cnpj,
-        setCnpj,
-        possuiCME,
-        setPossuiCME,
-        implantarCME,
-        setImplantarCME,
-        ampliacao,
-        setAmpliacao,
-        substituicao,
-        setSubstituicao,
+
+        // STEP2
         momentoEmpreendimento,
         setMomentoEmpreendimento,
         possuiEngenharia,
@@ -118,6 +119,15 @@ export const Provider = ({ children }: ProviderProps) => {
         setPropriaOuTerceirizada,
         senteFalta,
         setSenteFalta,
+
+        // STEP3
+
+        jaPossuiCME,
+        setJaPossuiCME,
+        seJaPossuiCME,
+        setSeJaPossuiCME,
+        diasDaSemana,
+        setDiasDaSemana,
       }}
     >
       {children}

@@ -8,18 +8,11 @@ import { Label } from "../ui/label";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
@@ -91,7 +84,7 @@ export const Step4 = () => {
           </Label>
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-4 h-screen overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-300">
+        <div className="flex flex-col items-center gap-4 h-screen overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-green-300">
           <Label className="text-[25px] font-light">Autoclaves</Label>
           <Card className="w-[500px] max-w-4xl bg-[#031125] text-white">
             <CardContent className="mt-7">

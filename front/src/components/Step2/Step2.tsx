@@ -22,6 +22,7 @@ export const Step2 = () => {
     senteFalta,
     setSenteFalta,
   } = useContextForm();
+
   return (
     <div className="flex flex-col gap-6 my-6">
       <div className="flex flex-col gap-4">
@@ -78,27 +79,31 @@ export const Step2 = () => {
           </div>
         </RadioGroup>
       </div>
-      <div className="flex flex-col mt-4">
-        <Label>Sua engenharia clínica é própria ou terceirizada?</Label>
-        <RadioGroup
-          onValueChange={(value: string) => setPropriaOuTerceirizada(value)}
-          value={propriaOuTerceirizada}
-          className="flex mt-4 gap-4"
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="Própria" id="Própria" />
-            <Label className="text-sm" htmlFor="Própria">
-              Própria
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="Terceirizada" id="Terceirizada" />
-            <Label className="text-sm" htmlFor="Terceirizada">
-              Terceirizada
-            </Label>
-          </div>
-        </RadioGroup>
-      </div>
+
+      {possuiEngenharia === "sim" && (
+        <div className="flex flex-col mt-4">
+          <Label>Sua engenharia clínica é própria ou terceirizada?</Label>
+          <RadioGroup
+            onValueChange={(value: string) => setPropriaOuTerceirizada(value)}
+            value={propriaOuTerceirizada}
+            className="flex mt-4 gap-4"
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="Própria" id="Própria" />
+              <Label className="text-sm" htmlFor="Própria">
+                Própria
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="Terceirizada" id="Terceirizada" />
+              <Label className="text-sm" htmlFor="Terceirizada">
+                Terceirizada
+              </Label>
+            </div>
+          </RadioGroup>
+        </div>
+      )}
+
       <div className="flex flex-col my-4">
         <Label className="mb-4">
           Nos conte do que sente mais falta no suporte da engenharia clínica:

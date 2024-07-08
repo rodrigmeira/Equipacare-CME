@@ -89,7 +89,8 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require('tailwind-scrollbar')
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide')
   ]
 } satisfies Config;
 

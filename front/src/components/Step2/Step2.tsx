@@ -12,7 +12,16 @@ import { useContextForm } from "@/context/Context";
 import { Textarea } from "../ui/textarea";
 
 export const Step2 = () => {
-  const { momentoEmpreendimento, setMomentoEmpreendimento } = useContextForm();
+  const {
+    momentoEmpreendimento,
+    setMomentoEmpreendimento,
+    possuiEngenharia,
+    setPossuiEngenharia,
+    propriaOuTerceirizada,
+    setPropriaOuTerceirizada,
+    senteFalta,
+    setSenteFalta,
+  } = useContextForm();
   return (
     <div className="flex flex-col gap-6 my-6">
       <div className="flex flex-col gap-4">
@@ -50,7 +59,11 @@ export const Step2 = () => {
           Possui engenharia clínica para apoiar o processo de seleção dos
           equipamentos?
         </Label>
-        <RadioGroup className="flex mt-4 gap-4">
+        <RadioGroup
+          onValueChange={(value: string) => setPossuiEngenharia(value)}
+          value={possuiEngenharia}
+          className="flex mt-4 gap-4"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="sim" id="sim" />
             <Label className="text-sm" htmlFor="sim">
@@ -67,7 +80,11 @@ export const Step2 = () => {
       </div>
       <div className="flex flex-col mt-4">
         <Label>Sua engenharia clínica é própria ou terceirizada?</Label>
-        <RadioGroup className="flex mt-4 gap-4">
+        <RadioGroup
+          onValueChange={(value: string) => setPropriaOuTerceirizada(value)}
+          value={propriaOuTerceirizada}
+          className="flex mt-4 gap-4"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="Própria" id="Própria" />
             <Label className="text-sm" htmlFor="Própria">
@@ -87,7 +104,11 @@ export const Step2 = () => {
           Nos conte do que sente mais falta no suporte da engenharia clínica:
           <span className="text-sm text-[#8EDD2A]">(opcional)</span>
         </Label>
-        <Textarea placeholder="Escreva aqui..." />
+        <Textarea
+          onChange={(e) => setSenteFalta(e.target.value)}
+          value={senteFalta}
+          placeholder="Escreva aqui..."
+        />
       </div>
     </div>
   );

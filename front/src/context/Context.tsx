@@ -37,6 +37,12 @@ interface ContextType {
   setSubstituicao: (substituicao: boolean) => void;
   momentoEmpreendimento: string;
   setMomentoEmpreendimento: (momentoEmpreendimento: string) => void;
+  possuiEngenharia: string;
+  setPossuiEngenharia: (possuiEngenharia: string) => void;
+  propriaOuTerceirizada: string;
+  setPropriaOuTerceirizada: (propriaOuTerceirizada: string) => void;
+  senteFalta: string;
+  setSenteFalta: (senteFalta: string) => void;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -64,6 +70,10 @@ export const Provider = ({ children }: ProviderProps) => {
   const [substituicao, setSubstituicao] = useState<boolean>(false);
   const [momentoEmpreendimento, setMomentoEmpreendimento] =
     useState<string>("");
+  const [possuiEngenharia, setPossuiEngenharia] = useState<string>("");
+  const [propriaOuTerceirizada, setPropriaOuTerceirizada] =
+    useState<string>("");
+  const [senteFalta, setSenteFalta] = useState<string>("");
 
   return (
     <Context.Provider
@@ -102,6 +112,12 @@ export const Provider = ({ children }: ProviderProps) => {
         setSubstituicao,
         momentoEmpreendimento,
         setMomentoEmpreendimento,
+        possuiEngenharia,
+        setPossuiEngenharia,
+        propriaOuTerceirizada,
+        setPropriaOuTerceirizada,
+        senteFalta,
+        setSenteFalta,
       }}
     >
       {children}

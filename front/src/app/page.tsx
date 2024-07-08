@@ -4,15 +4,19 @@ import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
 import { useContextForm } from "@/context/Context";
-import { FormEvent, useEffect, useState } from "react";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FormEvent, useEffect, useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(1);
   const [progress, setProgress] = useState(3);
-  const { momentoEmpreendimento, nomeCompleto, cargo, email } =
-    useContextForm();
+  const {
+    momentoEmpreendimento,
+    possuiEngenharia,
+    propriaOuTerceirizada,
+    senteFalta,
+  } = useContextForm();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -37,7 +41,12 @@ export default function Page() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await console.log(momentoEmpreendimento, nomeCompleto, cargo, email);
+    await console.log(
+      momentoEmpreendimento,
+      possuiEngenharia,
+      propriaOuTerceirizada,
+      senteFalta
+    );
 
     if (count < 4) {
       setCount(count + 1);
@@ -57,7 +66,11 @@ export default function Page() {
         className="absolute top-0 left-0 w-full h-4 border-1 rounded-none"
       />
       <div className="flex flex-row gap-2 items-center">
-        <button onClick={handleGoBackToPreviousStep} type="button" className={count > 1 ? "pointer" : "pointer hidden"}>
+        <button
+          onClick={handleGoBackToPreviousStep}
+          type="button"
+          className={count > 1 ? "pointer" : "pointer hidden"}
+        >
           <FontAwesomeIcon
             icon={faCircleArrowLeft}
             style={{ color: "#8edd2a" }}

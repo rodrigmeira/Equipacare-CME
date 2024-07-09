@@ -3,6 +3,14 @@ import { Label } from "../ui/label";
 import { InputCheckbox } from "./InputCheckbox";
 import { InputRadio } from "./InputRadio";
 
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../ui/select";
+
 export const Step3 = () => {
   return (
     <div className="flex flex-col gap-7 my-9">
@@ -37,11 +45,27 @@ export const Step3 = () => {
 
         <InputForm placeholder="Ex: 12">Número cirurgias/sala/dia:</InputForm>
       </div>
-      <div className="flex flex-row justify-between gap-4">
-        <InputForm placeholder="Ex. 12">Tipo de processamento:</InputForm>
-
-        <InputForm placeholder="Ex: 12">Número de leitos UTI:</InputForm>
+      <div className="flex flex-col lg:flex-row w-full justify-between gap-4">
+        <div className="flex flex-col w-full lg:w-1/2">
+          <Label className="mb-[8.7px]">Tipo de processamento?</Label>
+          <Select>
+            <SelectTrigger className="mt-1">
+              <SelectValue placeholder="Selecione uma opção..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Elaboração de projetos">Tecido</SelectItem>
+              <SelectItem value="Visita técnica para avaliação diagnóstica">
+                Instrumental
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex flex-col w-full lg:w-1/2">
+          <Label>Número de leitos UTI:</Label>
+          <InputForm className="mt-1" placeholder="Ex: 12" />
+        </div>
       </div>
+
       <div className="flex flex-row justify-between gap-4">
         <InputForm placeholder="Ex. 12">Número de leitos internação:</InputForm>
 

@@ -6,6 +6,7 @@ import { Label } from "../ui/label";
 import { InputCheckbox } from "./InputCheckbox";
 import { InputRadio } from "./InputRadio";
 
+import { useContextForm } from "@/context/Context";
 import {
   Select,
   SelectContent,
@@ -15,6 +16,8 @@ import {
 } from "../ui/select";
 
 export const Step3 = () => {
+  const { tipoDeProcessamento, setTipoDeProcessamento } = useContextForm();
+
   const {
     intervaloDePicoCME,
     setIntervaloDePicoCME,
@@ -89,14 +92,19 @@ export const Step3 = () => {
       <div className="flex flex-col lg:flex-row w-full justify-between gap-4">
         <div className="flex flex-col w-full lg:w-1/2">
           <Label className="mb-[8.7px]">Tipo de processamento?</Label>
-          <Select>
+          <Select
+            onValueChange={(value: string) => setTipoDeProcessamento(value)}
+            value={tipoDeProcessamento}
+          >
             <SelectTrigger className="mt-1">
               <SelectValue placeholder="Selecione uma opção..." />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Elaboração de projetos">Tecido</SelectItem>
-              <SelectItem value="Visita técnica para avaliação diagnóstica">
-                Instrumental
+              <SelectItem value="Tecido e instrumental">
+                Tecido e instrumental
+              </SelectItem>
+              <SelectItem value="Apenas instrumental">
+                Apenas instrumental
               </SelectItem>
             </SelectContent>
           </Select>

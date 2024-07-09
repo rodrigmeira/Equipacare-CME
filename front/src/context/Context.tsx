@@ -41,6 +41,8 @@ interface ContextType {
   setSenteFalta: (senteFalta: string) => void;
   diasDaSemana: any;
   setDiasDaSemana: (diasDaSemana: any) => void;
+  tipoDeProcessamento: string;
+  setTipoDeProcessamento: (tipoDeProcessamento: string) => void;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -80,6 +82,7 @@ export const Provider = ({ children }: ProviderProps) => {
     sabado: false,
     domingo: false,
   });
+  const [tipoDeProcessamento, setTipoDeProcessamento] = useState<string>("");
 
   return (
     <Context.Provider
@@ -128,6 +131,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setSeJaPossuiCME,
         diasDaSemana,
         setDiasDaSemana,
+        tipoDeProcessamento,
+        setTipoDeProcessamento,
       }}
     >
       {children}

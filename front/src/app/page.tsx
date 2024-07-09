@@ -3,20 +3,33 @@
 import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
-import { useContextForm } from "@/context/Context";
+import { useContextCalc } from "@/context/ContextCalc";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(1);
   const [progress, setProgress] = useState(3);
   const {
-    momentoEmpreendimento,
-    possuiEngenharia,
-    propriaOuTerceirizada,
-    senteFalta,
-  } = useContextForm();
+    intervaloDePicoCME,
+    numeroCirurgiasSalaDia,
+    numeroLeitosHospitalDia,
+    numeroLeitosInternacao,
+    numeroLeitosObservacao,
+    numeroLeitosRPA,
+    numeroLeitosUTI,
+    numeroSalasCirurgicas,
+    setIntervaloDePicoCME,
+    setNumeroCirurgiasSalaDia,
+    setNumeroLeitosHospitalDia,
+    setNumeroLeitosInternacao,
+    setNumeroLeitosObservacao,
+    setNumeroLeitosRPA,
+    setNumeroLeitosUTI,
+    setNumeroSalasCirurgicas,
+  } = useContextCalc();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -41,12 +54,40 @@ export default function Page() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await console.log(
-      momentoEmpreendimento,
-      possuiEngenharia,
-      propriaOuTerceirizada,
-      senteFalta
-    );
+
+    if (count === 3) {
+      const formData = {
+        intervaloDePicoCME,
+        numeroCirurgiasSalaDia,
+        numeroLeitosHospitalDia,
+        numeroLeitosInternacao,
+        numeroLeitosObservacao,
+        numeroLeitosRPA,
+        numeroLeitosUTI,
+        numeroSalasCirurgicas,
+      };
+
+      try {
+        const calcResponse = await axios.post(
+          "https://api-equipacare.vercel.app/calculadora/calcular-dados",
+          formData
+        );
+
+        if (calcResponse.status === 200) {
+          console.log(calcResponse.data);
+          setIntervaloDePicoCME(0);
+          setNumeroCirurgiasSalaDia(0);
+          setNumeroLeitosHospitalDia(0);
+          setNumeroLeitosInternacao(0);
+          setNumeroLeitosObservacao(0);
+          setNumeroLeitosRPA(0);
+          setNumeroLeitosUTI(0);
+          setNumeroSalasCirurgicas(0);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     if (count < 4) {
       setCount(count + 1);
@@ -84,7 +125,11 @@ export default function Page() {
       )}
       <form onSubmit={handleSubmit}>
         {count > 3 && <h1 className="text-2xl font-bold">Resultados</h1>}
-        {count > 3 && <p className="text-[14px] font-normal">Confira as melhores ofertas para seu projeto!</p>}
+        {count > 3 && (
+          <p className="text-[14px] font-normal">
+            Confira as melhores ofertas para seu projeto!
+          </p>
+        )}
         {count === 1 && <Step1 />}
         {count === 2 && <Step2 />}
         {count === 3 && <Step3 />}

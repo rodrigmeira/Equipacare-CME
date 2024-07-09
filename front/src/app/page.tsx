@@ -12,6 +12,7 @@ import { FormEvent, useEffect, useState } from "react";
 export default function Page() {
   const [count, setCount] = useState(1);
   const [progress, setProgress] = useState(3);
+  const [modelosAutoclaves, setModelosAutoclaves] = useState<any[]>([]);
   const {
     intervaloDePicoCME,
     numeroCirurgiasSalaDia,
@@ -30,6 +31,10 @@ export default function Page() {
     setNumeroLeitosUTI,
     setNumeroSalasCirurgicas,
   } = useContextCalc();
+
+  // useEffect(() => {
+  //   console.log(modelosAutoclaves);
+  // }, [modelosAutoclaves]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -73,8 +78,11 @@ export default function Page() {
           formData
         );
 
+        const resposta = calcResponse.data;
+        setModelosAutoclaves(resposta[0][1]);
+
         if (calcResponse.status === 200) {
-          console.log(calcResponse.data);
+          console.log(modelosAutoclaves);
           setIntervaloDePicoCME(0);
           setNumeroCirurgiasSalaDia(0);
           setNumeroLeitosHospitalDia(0);
@@ -133,7 +141,7 @@ export default function Page() {
         {count === 1 && <Step1 />}
         {count === 2 && <Step2 />}
         {count === 3 && <Step3 />}
-        {count === 4 && <Step4 />}
+        {count === 4 && <Step4 modelosAutoclaves={modelosAutoclaves} />}
         <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
           {count < 4 && <ButtonForm>Próximo</ButtonForm>}
           {count === 4 && null}

@@ -1,10 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import logo from "@/../../public/image6.svg";
-import { useState, useEffect } from "react";
-import { MoonLoader } from "react-spinners";
-import { Label } from "../ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -13,11 +9,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ButtonResult } from "../ButtonResult/ButtonResult";
+import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine, faChartPie, faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
+import { ButtonResult } from "../ButtonResult/ButtonResult";
+import { Label } from "../ui/label";
 
-export const Step4 = () => {
+interface Step4Props {
+  numeroAutoclaves?: number;
+  modelosAutoclaves: any[];
+  numeroLavadoras?: number;
+  modelosLavadoras?: any[];
+}
+
+export const Step4 = ({
+  numeroAutoclaves,
+  modelosAutoclaves,
+  numeroLavadoras,
+  modelosLavadoras,
+}: Step4Props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,6 +39,19 @@ export const Step4 = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const resultadoAutoclaves: any[] = modelosAutoclaves;
+  // const dataAutoclaves: any[] = [];
+
+  // resultadoAutoclaves.forEach((item) => {
+  //   const marca = item.marca;
+  //   const modelo = item.modelo;
+  //   const preco = item.preco;
+
+  //   dataAutoclaves.push({ marca, modelo, preco });
+  // });
+
+  // console.log(dataAutoclaves);
 
   const data = [
     {
@@ -103,27 +128,27 @@ export const Step4 = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.map((item, index) => (
+                  {resultadoAutoclaves.map((item, index) => (
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
-                        <Image
-                          src={item.logo}
+                        {/* <Image
+                          // src={item.logo}
                           alt={`${item.brand} logo`}
                           width={48}
                           height={48}
-                        />
+                        /> */}
                         <div>
-                          <div className="text-[12px]">{item.brand}</div>
-                          <div className="text-[10px] text-[#D3F842]">
+                          <div className="text-[12px]">{item.marca}</div>
+                          {/* <div className="text-[10px] text-[#D3F842]">
                             {item.description}
-                          </div>
+                          </div> */}
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.model}
+                        {item.modelo}
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.price}
+                        {item.preco}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -179,8 +204,13 @@ export const Step4 = () => {
           </Card>
           <div className="flex items-center justify-center mb-16">
             <ButtonResult>
-            <FontAwesomeIcon className="mr-2" size="lg" icon={faSquarePollVertical} style={{color: "#ffffff",}} />
-            Solicitar orçamento detalhado
+              <FontAwesomeIcon
+                className="mr-2"
+                size="lg"
+                icon={faSquarePollVertical}
+                style={{ color: "#ffffff" }}
+              />
+              Solicitar orçamento detalhado
             </ButtonResult>
           </div>
         </div>

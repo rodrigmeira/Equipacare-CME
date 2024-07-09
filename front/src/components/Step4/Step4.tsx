@@ -1,6 +1,5 @@
 "use client";
 
-import logo from "@/../../public/image6.svg";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -9,9 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { filtrarModelos } from "@/utils/filtrarModelos";
 import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { MoonLoader } from "react-spinners";
 import { ButtonResult } from "../ButtonResult/ButtonResult";
@@ -21,7 +20,7 @@ interface Step4Props {
   numeroAutoclaves?: number;
   modelosAutoclaves: any[];
   numeroLavadoras?: number;
-  modelosLavadoras?: any[];
+  modelosLavadoras: any[];
 }
 
 export const Step4 = ({
@@ -40,63 +39,16 @@ export const Step4 = ({
     return () => clearTimeout(timer);
   }, []);
 
+  const marcas = ["A", "B", "C", "D", "E", "F"];
   const resultadoAutoclaves: any[] = modelosAutoclaves;
-  // const dataAutoclaves: any[] = [];
+  const resultadoAutoclavesPorMarca: any[] = marcas.map((marca) =>
+    filtrarModelos(resultadoAutoclaves, marca)
+  );
 
-  // resultadoAutoclaves.forEach((item) => {
-  //   const marca = item.marca;
-  //   const modelo = item.modelo;
-  //   const preco = item.preco;
-
-  //   dataAutoclaves.push({ marca, modelo, preco });
-  // });
-
-  // console.log(dataAutoclaves);
-
-  const data = [
-    {
-      logo: logo,
-      brand: "Marca A",
-      description: "Descrição da marca",
-      model: "A1, A8",
-      price: "R$0.000 - R$0.000",
-    },
-    {
-      logo: logo,
-      brand: "Marca B",
-      description: "Descrição da marca",
-      model: "B3, B4",
-      price: "R$0.000 - R$0.000",
-    },
-    {
-      logo: logo,
-      brand: "Marca C",
-      description: "Descrição da marca",
-      model: "C1, C7",
-      price: "R$0.000 - R$0.000",
-    },
-    {
-      logo: logo,
-      brand: "Marca D",
-      description: "Descrição da marca",
-      model: "D3, D5, D6",
-      price: "R$0.000 - R$0.000",
-    },
-    {
-      logo: logo,
-      brand: "Marca E",
-      description: "Descrição da marca",
-      model: "E7, E15",
-      price: "R$0.000 - R$0.000",
-    },
-    {
-      logo: logo,
-      brand: "Marca F",
-      description: "Descrição da marca",
-      model: "F2, F4",
-      price: "R$0.000 - R$0.000",
-    },
-  ];
+  const resultadoLavadoras: any[] = modelosLavadoras;
+  const resultadoLavadorasPorMarca: any[] = marcas.map((marca) =>
+    filtrarModelos(resultadoLavadoras, marca)
+  );
 
   return (
     <div className="w-full h-full flex justify-center items-center mt-10">
@@ -128,27 +80,23 @@ export const Step4 = ({
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {resultadoAutoclaves.map((item, index) => (
+                  {resultadoAutoclavesPorMarca.map((item, index) => (
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
-                        {/* <Image
-                          // src={item.logo}
-                          alt={`${item.brand} logo`}
-                          width={48}
-                          height={48}
-                        /> */}
                         <div>
-                          <div className="text-[12px]">{item.marca}</div>
-                          {/* <div className="text-[10px] text-[#D3F842]">
-                            {item.description}
-                          </div> */}
+                          <div className="text-[12px]">
+                            Marca {item[0].marca}
+                          </div>
+                          <div className="text-[10px] text-[#D3F842]">
+                            Descrição da marca
+                          </div>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.modelo}
+                        {item[0].modelo}, {item[1].modelo}
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.preco}
+                        R${item[0].preco} - R${item[1].preco}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -174,27 +122,25 @@ export const Step4 = ({
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.map((item, index) => (
+                  {resultadoLavadorasPorMarca.map((item, index) => (
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
-                        <Image
-                          src={item.logo}
-                          alt={`${item.brand} logo`}
-                          width={48}
-                          height={48}
-                        />
                         <div>
-                          <div className="text-[12px]">{item.brand}</div>
+                          <div className="text-[12px]">{item[0].marca}</div>
                           <div className="text-[10px] text-[#D3F842]">
-                            {item.description}
+                            Descrição da marca
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.model}
+                        {item.length > 1
+                          ? `${item[0].modelo}, ${item[1].modelo}`
+                          : item[0].modelo}
                       </TableCell>
                       <TableCell className="px-4 py-2 text-[12px] text-center">
-                        {item.price}
+                        {item.length > 1
+                          ? `R$ ${item[0].preco}  - R$ ${item[1].preco}`
+                          : `R$ ${item[0].preco}`}
                       </TableCell>
                     </TableRow>
                   ))}

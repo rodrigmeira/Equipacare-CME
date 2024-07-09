@@ -1,18 +1,11 @@
 "use client";
 
 import { useContextForm } from "@/context/Context";
-import { useEffect } from "react";
 import { EachInputCheckbox } from "./EachInputCheckbox";
 import { H3 } from "./H3";
 
 export const InputCheckbox = () => {
   const { diasDaSemana, setDiasDaSemana } = useContextForm();
-
-  // console.log(diasDaSemana);
-
-  useEffect(() => {
-    console.log(diasDaSemana);
-  }, [diasDaSemana]);
 
   return (
     <div className="select-none font-extralight">

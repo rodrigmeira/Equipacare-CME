@@ -8,10 +8,10 @@ import { InputRadio } from "./InputRadio";
 
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "../ui/select";
 
 export const Step3 = () => {
@@ -103,7 +103,13 @@ export const Step3 = () => {
         </div>
         <div className="flex flex-col w-full lg:w-1/2">
           <Label>Número de leitos UTI:</Label>
-          <InputForm className="mt-1" placeholder="Ex: 12" />
+          <InputForm
+            type="number"
+            value={numeroLeitosUTI}
+            onChange={(e) => setNumeroLeitosUTI(Number(e.target.value))}
+            className="mt-1"
+            placeholder="Ex: 12"
+          />
         </div>
       </div>
 

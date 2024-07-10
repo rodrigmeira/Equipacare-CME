@@ -41,13 +41,13 @@ export const Step4 = ({
 
   const marcas = ["A", "B", "C", "D", "E", "F"];
   const resultadoAutoclaves: any[] = modelosAutoclaves;
-  const resultadoAutoclavesPorMarca: any[] = marcas.map(
-    async (marca) => await filtrarModelos(resultadoAutoclaves, marca)
+  const resultadoAutoclavesPorMarca: any[] = marcas.map((marca) =>
+    filtrarModelos(resultadoAutoclaves, marca)
   );
 
   const resultadoLavadoras: any[] = modelosLavadoras;
-  const resultadoLavadorasPorMarca: any[] = marcas.map(
-    async (marca) => await filtrarModelos(resultadoLavadoras, marca)
+  const resultadoLavadorasPorMarca: any[] = marcas.map((marca) =>
+    filtrarModelos(resultadoLavadoras, marca)
   );
 
   console.log(resultadoLavadorasPorMarca);

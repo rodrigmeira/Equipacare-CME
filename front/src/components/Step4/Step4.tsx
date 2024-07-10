@@ -126,7 +126,7 @@ export const Step4 = ({
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
                         <div>
-                          <div className="text-[12px]">{item[0].marca}</div>
+                          <div className="text-[12px]">Marca {item[0].marca}</div>
                           <div className="text-[10px] text-[#D3F842]">
                             Descrição da marca
                           </div>

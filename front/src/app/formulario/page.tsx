@@ -2,7 +2,6 @@
 
 import { ButtonForm, InputForm } from "@/components";
 import { useContextForm } from "@/context/Context";
-import { insertMaskInCep } from "@/utils/insertMaskInCep";
 import { insertMaskInTel } from "@/utils/insertMaskInTel";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,12 +11,8 @@ export default function CadastroPage() {
   const {
     nomeHospital,
     setNomeHospital,
-    endereco,
-    setEndereco,
     cnpj,
     setCnpj,
-    cepHospital,
-    setCepHospital,
     possuiCME,
     setPossuiCME,
     implantarCME,
@@ -44,9 +39,7 @@ export default function CadastroPage() {
     e.preventDefault();
     if (
       nomeHospital &&
-      endereco &&
       cnpj &&
-      cepHospital &&
       (possuiCME || implantarCME) &&
       (ampliacao || substituicao) &&
       nomeCompleto &&
@@ -102,16 +95,16 @@ export default function CadastroPage() {
             Nome
           </InputForm>
 
-          <InputForm
+          {/* <InputForm
             type="text"
             id="endereco"
             placeholder="Rua, bairro, cidade, estado"
             value={endereco}
             onChange={(e) => setEndereco(e.target.value)}
             required
-          >
-            Endereço
-          </InputForm>
+          > */}
+          {/* Endereço
+          </InputForm> */}
 
           <div className="md:grid md:grid-cols-2 md:gap-4">
             <InputForm
@@ -125,7 +118,7 @@ export default function CadastroPage() {
               CNPJ
             </InputForm>
 
-            <InputForm
+            {/* <InputForm
               type="text"
               id="cepHospital"
               placeholder="00000-000"
@@ -136,7 +129,7 @@ export default function CadastroPage() {
               required
             >
               CEP
-            </InputForm>
+            </InputForm> */}
           </div>
 
           <label className="font-semibold text-base mb-2">

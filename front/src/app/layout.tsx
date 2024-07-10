@@ -1,4 +1,7 @@
-import { Footer, Navbar } from "@/components";
+import { Banner, CopyForm, Footer, Informative, Navbar } from "@/components";
+import { WrapperForm } from "@/components/WrapperForm/WrapperForm";
+import { Provider } from "@/context/Context";
+import { ProviderCalc } from "@/context/ContextCalc";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,7 +21,22 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={`bg-[#F2F2F2] ${inter.className}`}>
         <Navbar />
-        {children}
+        <Banner
+          style={{
+            backgroundImage: "url(/image-calculadora.png)",
+          }}
+        >
+          <CopyForm
+            h1="FORMULÁRIO"
+            p="PREENCHA PARA CONTINUARMOS O ATENDIMENTO"
+          />
+        </Banner>
+        <Informative />
+        <WrapperForm>
+          <ProviderCalc>
+            <Provider>{children}</Provider>
+          </ProviderCalc>
+        </WrapperForm>
         <Footer />
       </body>
     </html>

@@ -1,25 +1,24 @@
 "use client";
 
-import { ButtonForm, InputForm } from "@/components";
-import { ValidationContext } from "@/middleware/validationContext";
+import { ButtonForm } from "@/components";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { CirclesWithBar } from "react-loader-spinner";
 
 export default function CalculadoraPage() {
-  ValidationContext();
   const router = useRouter();
 
   const [numeroSalas, setNumeroSalas] = useState("");
   const [numeroCirurgias, setNumeroCirurgias] = useState("");
-  const [processaTecidos, setProcessaTecidos] = useState("");
-  const [diasDeCirurgias, setDiasDeCirurgias] = useState("");
   const [intervaloPico, setIntervaloPico] = useState("");
+  const [diasDeCirurgias, setDiasDeCirurgias] = useState<string[]>([]);
+  const [processaTecidos, setProcessaTecidos] = useState("");
   const [numeroLeitosUti, setNumeroLeitosUti] = useState("");
-  const [numeroLeitosInternacoes, setNumeroLeitosInternacoes] = useState("");
-  const [numeroAutoclaves, setNumeroAutoclaves] = useState("");
-  const [numeroLavadorasTermo, setNumeroLavadorasTermo] = useState("");
+  const [numeroLeitosRPA, setNumeroLeitosRPA] = useState("");
+  const [numeroLeitosInternacao, setNumeroLeitosInternacao] = useState("");
+  const [numeroLeitosObservacao, setNumeroLeitosObservacao] = useState("");
+  const [numeroLeitosHospitalDia, setNumeroLeitosHospitalDia] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
@@ -32,13 +31,14 @@ export default function CalculadoraPage() {
     const formData = {
       numeroSalas,
       numeroCirurgias,
-      processaTecidos,
-      diasDeCirurgias,
       intervaloPico,
+      diasDeCirurgias,
+      processaTecidos,
       numeroLeitosUti,
-      numeroLeitosInternacoes,
-      numeroAutoclaves,
-      numeroLavadorasTermo,
+      numeroLeitosRPA,
+      numeroLeitosInternacao,
+      numeroLeitosObservacao,
+      numeroLeitosHospitalDia,
     };
 
     try {
@@ -53,165 +53,194 @@ export default function CalculadoraPage() {
         console.log(resposta);
         setNumeroSalas("");
         setNumeroCirurgias("");
-        setProcessaTecidos("");
-        setDiasDeCirurgias("");
         setIntervaloPico("");
+        setDiasDeCirurgias([]);
+        setProcessaTecidos("");
         setNumeroLeitosUti("");
-        setNumeroLeitosInternacoes("");
-        setNumeroAutoclaves("");
-        setNumeroLavadorasTermo("");
+        setNumeroLeitosRPA("");
+        setNumeroLeitosInternacao("");
+        setNumeroLeitosObservacao("");
+        setNumeroLeitosHospitalDia("");
 
         setTimeout(() => {
-          //ATRASO colocado de proposito para aparecer o spinner
           router.push("/formulario/resultado");
         }, 4000);
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const handleDiasDeCirurgiasChange = (day: string) => {
+    setDiasDeCirurgias((prev) =>
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+    );
+  };
+
   return (
-    <div className="relative w-11/12 py-14 px-8 bg-white border-2 border-color-primary rounded-3xl transform -translate-y-6 p-5 flex flex-col justify-center items-center">
-      {loading && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
-          <div className="text-center">
-            <div className="flex justify-center items-center mb-3">
-              <CirclesWithBar color="#5A9B1B" height={150} width={150} />
+    <div className="flex flex-col items-center justify-center bg-[#F2F2F2] m-8">
+      <div className="flex flex-row items-center justify-center border-2 border-black">
+        <div className="bg-white md:border-y-2 md:border-l-2 border-2 md:border-r-0 border-color-primary rounded-3xl md:rounded-r-none shadow-lg max-w-4xl p-10 h-[790px]">
+          {loading && (
+            <div className="fixed top-0 left-0 w-full h-full bg-gray-200 rounded-3xl opacity-75 flex justify-center items-center z-50">
+              <div className="text-center">
+                <div className="flex justify-center items-center mb-3">
+                  <CirclesWithBar color="#5A9B1B" height={150} width={150} />
+                </div>
+                <p className="text-black text-3xl font-bold">
+                  {loadingMessage}
+                </p>
+              </div>
             </div>
-            <p className="text-black text-3xl font-bold">{loadingMessage}</p>
-          </div>
+          )}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de salas cirúrgicas
+              </label>
+              <input
+                type="number"
+                value={numeroSalas}
+                onChange={(e) => setNumeroSalas(e.target.value)}
+                className="p-2 border rounded-md border-color-primary w-1/5"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de cirurgias por sala por dia
+              </label>
+              <input
+                type="number"
+                value={numeroCirurgias}
+                onChange={(e) => setNumeroCirurgias(e.target.value)}
+                className="p-2 border border-color-primary rounded-md w-1/5"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1 font-semibold">
+                Qual o intervalo de pico de funcionamento da CME? (em horas)
+              </label>
+              <input
+                type="number"
+                value={intervaloPico}
+                onChange={(e) => setIntervaloPico(e.target.value)}
+                className="p-2 border rounded-md border-color-primary"
+              />
+            </div>
+            <fieldset className="flex items-center justify-center">
+              <legend className="mb-1 font-semibold">
+                As cirurgias serão realizadas em quais dias da semana?
+              </legend>
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  "Todos",
+                  "Segunda",
+                  "Terça",
+                  "Quarta",
+                  "Quinta",
+                  "Sexta",
+                  "Sábado",
+                  "Domingo",
+                ].map((day) => (
+                  <label key={day} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={diasDeCirurgias.includes(day)}
+                      onChange={() => handleDiasDeCirurgiasChange(day)}
+                      className="mr-2 w-5 h-4"
+                    />
+                    {day}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset className="flex items-center justify-center">
+              <legend className="mb-1 font-semibold">
+                Processamento de tecidos ou apenas instrumental?
+              </legend>
+              <div className="flex space-x-4">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    value="Tecidos e Instrumental"
+                    checked={processaTecidos === "Tecidos e Instrumental"}
+                    onChange={(e) => setProcessaTecidos(e.target.value)}
+                    className="mr-2 w-4 h-4"
+                  />
+                  Tecidos e Instrumental
+                </label>
+                <label className="flex items-center justify-between">
+                  <input
+                    type="radio"
+                    value="Apenas instrumental"
+                    checked={processaTecidos === "Apenas instrumental"}
+                    onChange={(e) => setProcessaTecidos(e.target.value)}
+                    className="mr-2 w-4 h-4"
+                  />
+                  Apenas instrumental
+                </label>
+              </div>
+            </fieldset>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">Número de leitos UTI</label>
+              <input
+                type="number"
+                value={numeroLeitosUti}
+                onChange={(e) => setNumeroLeitosUti(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">Número de leitos RPA</label>
+              <input
+                type="number"
+                value={numeroLeitosRPA}
+                onChange={(e) => setNumeroLeitosRPA(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Internação
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosInternacao}
+                onChange={(e) => setNumeroLeitosInternacao(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Observação
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosObservacao}
+                onChange={(e) => setNumeroLeitosObservacao(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="mr-4 font-semibold">
+                Número de leitos Hospital Dia
+              </label>
+              <input
+                type="number"
+                value={numeroLeitosHospitalDia}
+                onChange={(e) => setNumeroLeitosHospitalDia(e.target.value)}
+                className="p-2 border rounded-md w-1/5 border-color-primary"
+              />
+            </div>
+          </form>
         </div>
-      )}
-      <form
-        onSubmit={handleSubmit}
-        className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
-      >
-        <div>
-          <InputForm
-            type="number"
-            id="populacaoRegiao"
-            value={numeroSalas}
-            onChange={(e) => setNumeroSalas(e.target.value)}
-            required
-          >
-            População da Região
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroCirurgias"
-            value={numeroCirurgias}
-            onChange={(e) => setNumeroCirurgias(e.target.value)}
-            required
-          >
-            Número de Salas Cirúrgicas
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="text"
-            id="processaTecidos"
-            value={processaTecidos}
-            onChange={(e) => setProcessaTecidos(e.target.value)}
-            required
-          >
-            Processamento de Tecidos?
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="text"
-            id="intervaloPico"
-            value={diasDeCirurgias}
-            onChange={(e) => setDiasDeCirurgias(e.target.value)}
-            required
-          >
-            Intervalo de Pico de Funcionamento da CME
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroLeitosInternacoes"
-            value={intervaloPico}
-            onChange={(e) => setIntervaloPico(e.target.value)}
-            required
-          >
-            Número leitos Internação, RPA, Observações, HD...
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroHospitaisRegiao"
-            value={numeroLeitosUti}
-            onChange={(e) => setNumeroLeitosUti(e.target.value)}
-            required
-          >
-            Número de Hospitais na Região
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroCirurgiasPorSalaDia"
-            value={numeroLeitosInternacoes}
-            onChange={(e) => setNumeroLeitosInternacoes(e.target.value)}
-            required
-          >
-            Número de Cirurgias por Sala/Dias
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="diasSemanaCirurgias"
-            value={numeroAutoclaves}
-            onChange={(e) => setNumeroAutoclaves(e.target.value)}
-            required
-          >
-            Dias da Semana para Realização das Cirurgias
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroLeitos"
-            value={numeroLavadorasTermo}
-            onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
-            required
-          >
-            Número de Leitos UTI
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroAutoclaves"
-            value={numeroLavadorasTermo}
-            onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
-            required
-          >
-            Número de Autoclaves
-          </InputForm>
-        </div>
-        <div>
-          <InputForm
-            type="number"
-            id="numeroLavadorasTermo"
-            value={numeroLavadorasTermo}
-            onChange={(e) => setNumeroLavadorasTermo(e.target.value)}
-            required
-          >
-            Número de Lavadoras Termo
-          </InputForm>
-        </div>
-        <div className="md:col-span-2 flex items-center justify-center">
-          <ButtonForm>CALCULAR</ButtonForm>
-        </div>
-      </form>
+        <div className="h-[790px] bg-center bg-cover bg-bgHero w-[575px] rounded-r-3xl md:flex hidden" />
+      </div>
+      <div className="md:col-span-2 flex items-center justify-center m-8">
+        <ButtonForm className="w-[300px] h-[50px]">CALCULAR</ButtonForm>
+      </div>
     </div>
   );
 }

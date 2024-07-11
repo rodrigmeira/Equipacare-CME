@@ -50,6 +50,8 @@ export const Step4 = ({
     filtrarModelos(resultadoLavadoras, marca)
   );
 
+  console.log(resultadoLavadorasPorMarca);
+
   return (
     <div className="w-full h-full flex justify-center items-center mt-10">
       {isLoading ? (
@@ -126,7 +128,11 @@ export const Step4 = ({
                     <TableRow key={index} className="bg-dark-900">
                       <TableCell className="flex items-center gap-3 px-4 py-2">
                         <div>
-                          <div className="text-[12px]">Marca {item[0].marca}</div>
+                          <div className="text-[12px]">
+                            {item.length > 1
+                              ? `Marca ${item[0].marca}`
+                              : `Marca ${item[0].marca}`}
+                          </div>
                           <div className="text-[10px] text-[#D3F842]">
                             Descrição da marca
                           </div>

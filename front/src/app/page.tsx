@@ -33,10 +33,6 @@ export default function Page() {
     setNumeroSalasCirurgicas,
   } = useContextCalc();
 
-  // useEffect(() => {
-  //   console.log(modelosLavadoras);
-  // }, [modelosLavadoras]);
-
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (count === 1) {
@@ -148,9 +144,8 @@ export default function Page() {
             modelosLavadoras={modelosLavadoras}
           />
         )}
-        <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
-          {count < 4 && <ButtonForm>Próximo</ButtonForm>}
-          {count === 4 && null}
+        <div className="w-full flex justify-center mt-8">
+          {count < 4 && <ButtonForm className="w-full max-w-xs">Próximo</ButtonForm>}
         </div>
       </form>
     </div>

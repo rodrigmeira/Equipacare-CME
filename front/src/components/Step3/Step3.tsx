@@ -121,7 +121,7 @@ export const Step3 = () => {
         </div>
       </div>
 
-      <div className="flex flex-row justify-between gap-4">
+      <div >
         <InputForm
           type="number"
           onChange={(e) => setNumeroLeitosInternacao(Number(e.target.value))}

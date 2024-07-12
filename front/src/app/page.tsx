@@ -14,6 +14,8 @@ export default function Page() {
   const [progress, setProgress] = useState(3);
   const [modelosAutoclaves, setModelosAutoclaves] = useState<any[]>([]);
   const [modelosLavadoras, setModelosLavadoras] = useState<any[]>([]);
+  const [numeroAutoclaves, setNumeroAutoclaves] = useState<number>(0);
+  const [numeroLavadoras, setNumeroLavadoras] = useState<number>(0);
   const {
     intervaloDePicoCME,
     numeroCirurgiasSalaDia,
@@ -86,6 +88,8 @@ export default function Page() {
         const resposta = calcResponse.data;
         setModelosAutoclaves(resposta[0][1]);
         setModelosLavadoras(resposta[1][1]);
+        setNumeroAutoclaves(resposta[0][0]);
+        setNumeroLavadoras(resposta[1][0]);
 
         if (calcResponse.status === 200) {
           setIntervaloDePicoCME(0);
@@ -146,6 +150,8 @@ export default function Page() {
           <Step4
             modelosAutoclaves={modelosAutoclaves}
             modelosLavadoras={modelosLavadoras}
+            numeroAutoclaves={numeroAutoclaves}
+            numeroLavadoras={numeroLavadoras}
           />
         )}
         <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">

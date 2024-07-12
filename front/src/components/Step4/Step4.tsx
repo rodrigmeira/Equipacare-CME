@@ -17,9 +17,9 @@ import { ButtonResult } from "../ButtonResult/ButtonResult";
 import { Label } from "../ui/label";
 
 interface Step4Props {
-  numeroAutoclaves?: number;
+  numeroAutoclaves: number;
   modelosAutoclaves: any[];
-  numeroLavadoras?: number;
+  numeroLavadoras: number;
   modelosLavadoras: any[];
 }
 
@@ -49,8 +49,6 @@ export const Step4 = ({
   const resultadoLavadorasPorMarca: any[] = marcas.map((marca) =>
     filtrarModelos(resultadoLavadoras, marca)
   );
-
-  console.log(resultadoLavadorasPorMarca);
 
   return (
     <div className="w-full h-full flex justify-center items-center mt-10">
@@ -104,6 +102,16 @@ export const Step4 = ({
                   ))}
                 </TableBody>
               </Table>
+              <div className="flex justify-center items-center px-4 pt-4 pb-2">
+                <h3 className="text-sm font-extralight text-center">
+                  Recomendamos{" "}
+                  <span className="text-[#D3F842] font-light">
+                    {numeroAutoclaves}
+                  </span>{" "}
+                  {numeroAutoclaves > 1 ? "Autoclaves" : "Autoclave"} para
+                  atender sua demanda{" "}
+                </h3>
+              </div>
             </CardContent>
           </Card>
           <Label className="text-[25px] font-light mt-3">Lavadoras Termo</Label>
@@ -152,6 +160,16 @@ export const Step4 = ({
                   ))}
                 </TableBody>
               </Table>
+              <div className="flex justify-center items-center px-4 pt-4 pb-2">
+                <h3 className="text-sm font-extralight text-center">
+                  Recomendamos{" "}
+                  <span className="text-[#D3F842] font-light">
+                    {numeroLavadoras}
+                  </span>{" "}
+                  {numeroLavadoras > 1 ? "Lavadoras" : "Lavadora"} para atender
+                  sua demanda{" "}
+                </h3>
+              </div>
             </CardContent>
           </Card>
           <div className="flex items-center justify-center mb-16">

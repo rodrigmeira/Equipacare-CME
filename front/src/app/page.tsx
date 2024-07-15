@@ -3,6 +3,7 @@
 import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
+import { useContextForm } from "@/context/Context";
 import { useContextCalc } from "@/context/ContextCalc";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,6 +35,8 @@ export default function Page() {
     setNumeroLeitosUTI,
     setNumeroSalasCirurgicas,
   } = useContextCalc();
+
+  const { nomeCompleto, email, telefone, nomeHospital, cnpj, cargo, cep, numero, rua, bairro, cidade, uf } = useContextForm();
 
   // useEffect(() => {
   //   console.log(modelosLavadoras);
@@ -78,12 +81,30 @@ export default function Page() {
         numeroLeitosUTI,
         numeroSalasCirurgicas,
       };
+      
+      try { 
+        const formSheet = {
+          Nome: nomeCompleto,
+          Email: email,
+          Contato: telefone,
+          Hospital : nomeHospital,
+          CNPJ: cnpj,
+          Cargo : cargo,
+          CEP: cep,
+          Numero: numero,
+          Rua: rua,
+          Bairro: bairro,
+          Cidade: cidade,
+          UF: uf,
+        }
 
-      try {
+        await axios.post("https://api.sheetmonkey.io/form/deY6rCECmL5H6wYtZoPaSP", formSheet);
+
         const calcResponse = await axios.post(
           "https://api-equipacare.vercel.app/calculadora/calcular-dados",
           formData
         );
+        
 
         const resposta = calcResponse.data;
         setModelosAutoclaves(resposta[0][1]);

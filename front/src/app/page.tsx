@@ -173,6 +173,11 @@ export default function Page() {
     }
   };
 
+  const isStep1Valid = nomeCompleto && email && telefone && nomeHospital && cnpj && cargo && cep && numero && rua && bairro && cidade && uf;
+  const isStep2Valid = momentoEmpreendimento && possuiEngenharia && (possuiEngenharia === "não" || propriaOuTerceirizada);
+
+  const isNextButtonDisabled = count === 1 ? !isStep1Valid : count === 2 ? !isStep2Valid : count === 3 ? false : true;
+
   return (
     <div>
       <Progress
@@ -215,7 +220,11 @@ export default function Page() {
           />
         )}
         <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
-          {count < 4 && <ButtonForm>Próximo</ButtonForm>}
+          {count < 4 && (
+            <ButtonForm disabled={isNextButtonDisabled} className={isNextButtonDisabled ? "bg-gray-400 cursor-not-allowed hover:bg-gray-400" : ""}>
+              Próximo
+            </ButtonForm>
+          )}
           {count === 4 && null}
         </div>
       </form>

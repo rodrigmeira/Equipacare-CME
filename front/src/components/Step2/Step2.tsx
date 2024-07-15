@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Select,
   SelectContent,
@@ -10,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useContextForm } from "@/context/Context";
 import { Textarea } from "../ui/textarea";
+import { useState } from "react";
 
 export const Step2 = () => {
   const {
@@ -22,6 +25,16 @@ export const Step2 = () => {
     senteFalta,
     setSenteFalta,
   } = useContextForm();
+
+  const [charCount, setCharCount] = useState(0);
+
+  const handleTextareaChange = (e: { target: { value: any; }; }) => {
+    const text = e.target.value;
+    if (text.length <= 500) {
+      setSenteFalta(text);
+      setCharCount(text.length);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-6 my-6">
@@ -110,12 +123,14 @@ export const Step2 = () => {
           <span className="text-sm text-[#8EDD2A]">(opcional)</span>
         </Label>
         <Textarea
-          onChange={(e) => setSenteFalta(e.target.value)}
+          onChange={handleTextareaChange}
           value={senteFalta}
           placeholder="Escreva aqui..."
         />
+        <div className="text-right text-sm text-gray-500 mt-1">
+          {charCount} / 500 caracteres
+        </div>
       </div>
     </div>
-
   );
 };

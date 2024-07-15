@@ -36,7 +36,28 @@ export default function Page() {
     setNumeroSalasCirurgicas,
   } = useContextCalc();
 
-  const { nomeCompleto, email, telefone, nomeHospital, cnpj, cargo, cep, numero, rua, bairro, cidade, uf } = useContextForm();
+  const {
+    nomeCompleto,
+    email,
+    telefone,
+    nomeHospital,
+    cnpj,
+    cargo,
+    cep,
+    numero,
+    rua,
+    bairro,
+    cidade,
+    uf,
+    momentoEmpreendimento,
+    possuiEngenharia,
+    propriaOuTerceirizada,
+    senteFalta,
+    jaPossuiCME,
+    seJaPossuiCME,
+    diasDaSemana,
+    tipoDeProcessamento,
+  } = useContextForm();
 
   // useEffect(() => {
   //   console.log(modelosLavadoras);
@@ -81,30 +102,48 @@ export default function Page() {
         numeroLeitosUTI,
         numeroSalasCirurgicas,
       };
-      
-      try { 
+
+      try {
         const formSheet = {
           Nome: nomeCompleto,
           Email: email,
           Contato: telefone,
-          Hospital : nomeHospital,
+          Hospital: nomeHospital,
           CNPJ: cnpj,
-          Cargo : cargo,
+          Cargo: cargo,
           CEP: cep,
           Numero: numero,
           Rua: rua,
           Bairro: bairro,
           Cidade: cidade,
           UF: uf,
-        }
+          Momento: momentoEmpreendimento,
+          Engenharia: possuiEngenharia,
+          Tipo: propriaOuTerceirizada,
+          Comentários: senteFalta,
+          CME: jaPossuiCME,
+          Realizar: seJaPossuiCME,
+          Dias: !diasDaSemana,
+          "Tipo de processamento": tipoDeProcessamento,
+          "Número salas cirurgicas": numeroSalasCirurgicas,
+          "Número cirurgias/sala/dia": numeroCirurgiasSalaDia,
+          "Intervalo de pico CME": intervaloDePicoCME,
+          "Numero leitos UTI": numeroLeitosUTI,
+          "Numero leitos Internação": numeroLeitosInternacao,
+          "Numero leitos Observação": numeroLeitosObservacao,
+          "Numero leitos RPA": numeroLeitosRPA,
+          "Numero leitos Hospital/Dia": numeroLeitosHospitalDia,
+        };
 
-        await axios.post("https://api.sheetmonkey.io/form/deY6rCECmL5H6wYtZoPaSP", formSheet);
+        await axios.post(
+          "https://api.sheetmonkey.io/form/deY6rCECmL5H6wYtZoPaSP",
+          formSheet
+        );
 
         const calcResponse = await axios.post(
           "https://api-equipacare.vercel.app/calculadora/calcular-dados",
           formData
         );
-        
 
         const resposta = calcResponse.data;
         setModelosAutoclaves(resposta[0][1]);

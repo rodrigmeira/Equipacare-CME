@@ -1,14 +1,20 @@
+import React from "react";
+
 type ButtonFormProps = React.ComponentProps<"button">;
 
 export const ButtonForm = ({
   children,
   className,
+  disabled,
   ...props
 }: ButtonFormProps) => {
   return (
     <button
       type="submit"
-      className={`border bg-prima hover:bg-second font-semibold tracking-widest text-base text-white py-2 px-20 rounded-lg select-none ${className}`}
+      className={`border font-semibold tracking-widest text-base py-2 px-20 rounded-lg select-none ${
+        disabled ? "bg-gray-400 cursor-not-allowed" : "bg-prima hover:bg-second text-white"
+      } ${className}`}
+      disabled={disabled}
       {...props}
     >
       {children}

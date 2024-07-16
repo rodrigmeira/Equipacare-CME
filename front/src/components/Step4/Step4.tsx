@@ -174,13 +174,19 @@ export const Step4 = ({
           </Card>
           <div className="flex items-center justify-center mb-16">
             <ButtonResult>
-              <FontAwesomeIcon
-                className="mr-2"
-                size="lg"
-                icon={faSquarePollVertical}
-                style={{ color: "#ffffff" }}
-              />
-              Solicitar orçamento detalhado
+              <a
+                href="https://api.whatsapp.com/send?phone=5524981191448&text=Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20detalhado%20para%20meu%20projeto!"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <FontAwesomeIcon
+                  className="mr-2"
+                  size="lg"
+                  icon={faSquarePollVertical}
+                  style={{ color: "#ffffff" }}
+                />
+                Solicitar orçamento detalhado
+              </a>
             </ButtonResult>
           </div>
         </div>

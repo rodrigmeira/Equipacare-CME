@@ -104,13 +104,27 @@ export default function Page() {
       };
 
       try {
+        const formspreeData = {
+          Nome: nomeCompleto,
+          Email: email,
+          Contato: telefone,
+          Hospital: nomeHospital,
+          CNPJ: cnpj,
+          Cargo: cargo,
+          CEP: cep,
+          Cidade: cidade,
+          UF: uf,
+        };
+
+        await axios.post("https://formspree.io/f/xldrdabb", formspreeData);
+
         const dias = Object.keys(diasDaSemana).map((key, index) => {
           if (Object.values(diasDaSemana)[index]) {
             return `${key}`;
-          };
+          }
 
           return false;
-        })
+        });
         const formSheet = {
           Nome: nomeCompleto,
           Email: email,
@@ -140,7 +154,7 @@ export default function Page() {
           "Numero leitos Observação": numeroLeitosObservacao,
           "Numero leitos RPA": numeroLeitosRPA,
           "Numero leitos Hospital/Dia": numeroLeitosHospitalDia,
-          "Data do lead": new Date().toLocaleString()
+          "Data do lead": new Date().toLocaleString(),
         };
 
         await axios.post(
@@ -181,11 +195,41 @@ export default function Page() {
     }
   };
 
-  const isStep1Valid = nomeCompleto && email && telefone && nomeHospital && cnpj && cargo && cep && numero && rua && bairro && cidade && uf;
-  const isStep2Valid = momentoEmpreendimento && possuiEngenharia && (possuiEngenharia === "não" || propriaOuTerceirizada);
-  const isStep3Valid = intervaloDePicoCME && numeroCirurgiasSalaDia && numeroLeitosInternacao && numeroLeitosObservacao && numeroLeitosRPA && numeroLeitosUTI && numeroSalasCirurgicas && numeroLeitosHospitalDia;
+  const isStep1Valid =
+    nomeCompleto &&
+    email &&
+    telefone &&
+    nomeHospital &&
+    cnpj &&
+    cargo &&
+    cep &&
+    numero &&
+    rua &&
+    bairro &&
+    cidade &&
+    uf;
+  const isStep2Valid =
+    momentoEmpreendimento &&
+    possuiEngenharia &&
+    (possuiEngenharia === "não" || propriaOuTerceirizada);
+  const isStep3Valid =
+    intervaloDePicoCME &&
+    numeroCirurgiasSalaDia &&
+    numeroLeitosInternacao &&
+    numeroLeitosObservacao &&
+    numeroLeitosRPA &&
+    numeroLeitosUTI &&
+    numeroSalasCirurgicas &&
+    numeroLeitosHospitalDia;
 
-  const isNextButtonDisabled = count === 1 ? !isStep1Valid : count === 2 ? !isStep2Valid : count === 3 ? !isStep3Valid : false;
+  const isNextButtonDisabled =
+    count === 1
+      ? !isStep1Valid
+      : count === 2
+      ? !isStep2Valid
+      : count === 3
+      ? !isStep3Valid
+      : false;
 
   return (
     <div>
@@ -230,9 +274,7 @@ export default function Page() {
         )}
         <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
           {count < 4 && (
-            <ButtonForm disabled={isNextButtonDisabled}>
-              Próximo
-            </ButtonForm>
+            <ButtonForm disabled={isNextButtonDisabled}>Próximo</ButtonForm>
           )}
           {count === 4 && null}
         </div>

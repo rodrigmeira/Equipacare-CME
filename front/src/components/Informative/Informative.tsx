@@ -4,14 +4,14 @@ export const Informative = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="py-10  w-11/12 md:w-4/5">
-        <div className="relative mb-10 w-full h-56">
+        <div className="relative mb-10 w-full md:h-56 h-64">
           <Image
             src="/form-calc.jpg"
             alt="Imagem de fundo"
             className="object-cover w-full h-full rounded-3xl shadow-lg"
             layout="fill"
           />
-          <div className="absolute top-0 left-0 w-full h-full rounded-3xl bg-[#00132999] flex flex-col items-center justify-center text-center text-white px-4">
+          <div className="absolute top-0 left-0 w-full h-full rounded-3xl bg-[#00132999] flex flex-col items-center justify-center text-center text-white p-4">
             <h1 className="text-xl md:text-4xl font-bold">
               Preencha o formulário para ter acesso a calculadora
             </h1>

@@ -3,6 +3,7 @@
 import { ButtonForm, Progress, Step1, Step3 } from "@/components";
 import { Step2 } from "@/components/Step2/Step2";
 import { Step4 } from "@/components/Step4/Step4";
+import { useContextForm } from "@/context/Context";
 import { useContextCalc } from "@/context/ContextCalc";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +15,8 @@ export default function Page() {
   const [progress, setProgress] = useState(3);
   const [modelosAutoclaves, setModelosAutoclaves] = useState<any[]>([]);
   const [modelosLavadoras, setModelosLavadoras] = useState<any[]>([]);
+  const [numeroAutoclaves, setNumeroAutoclaves] = useState<number>(0);
+  const [numeroLavadoras, setNumeroLavadoras] = useState<number>(0);
   const {
     intervaloDePicoCME,
     numeroCirurgiasSalaDia,
@@ -32,6 +35,33 @@ export default function Page() {
     setNumeroLeitosUTI,
     setNumeroSalasCirurgicas,
   } = useContextCalc();
+
+  const {
+    nomeCompleto,
+    email,
+    telefone,
+    nomeHospital,
+    cnpj,
+    cargo,
+    cep,
+    numero,
+    rua,
+    bairro,
+    cidade,
+    uf,
+    momentoEmpreendimento,
+    possuiEngenharia,
+    propriaOuTerceirizada,
+    senteFalta,
+    jaPossuiCME,
+    seJaPossuiCME,
+    diasDaSemana,
+    tipoDeProcessamento,
+  } = useContextForm();
+
+  // useEffect(() => {
+  //   console.log(modelosLavadoras);
+  // }, [modelosLavadoras]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -74,6 +104,64 @@ export default function Page() {
       };
 
       try {
+        // const formspreeData = {
+        //   Nome: nomeCompleto,
+        //   Email: email,
+        //   Contato: telefone,
+        //   Hospital: nomeHospital,
+        //   CNPJ: cnpj,
+        //   Cargo: cargo,
+        //   CEP: cep,
+        //   Cidade: cidade,
+        //   UF: uf,
+        // };
+
+        // await axios.post("https://formspree.io/f/xldrdabb", formspreeData);
+
+        const dias = Object.keys(diasDaSemana).map((key, index) => {
+          if (Object.values(diasDaSemana)[index]) {
+            return `${key}`;
+          }
+
+          return false;
+        });
+        const formSheet = {
+          Nome: nomeCompleto,
+          Email: email,
+          Contato: telefone,
+          Hospital: nomeHospital,
+          CNPJ: cnpj,
+          Cargo: cargo,
+          CEP: cep,
+          Numero: numero,
+          Rua: rua,
+          Bairro: bairro,
+          Cidade: cidade,
+          UF: uf,
+          Momento: momentoEmpreendimento,
+          Engenharia: possuiEngenharia,
+          Tipo: propriaOuTerceirizada,
+          Comentários: senteFalta,
+          CME: jaPossuiCME,
+          Realizar: seJaPossuiCME,
+          Dias: dias.filter(Boolean),
+          "Tipo de processamento": tipoDeProcessamento,
+          "Número salas cirurgicas": numeroSalasCirurgicas,
+          "Número cirurgias/sala/dia": numeroCirurgiasSalaDia,
+          "Intervalo de pico CME": intervaloDePicoCME,
+          "Numero leitos UTI": numeroLeitosUTI,
+          "Numero leitos Internação": numeroLeitosInternacao,
+          "Numero leitos Observação": numeroLeitosObservacao,
+          "Numero leitos RPA": numeroLeitosRPA,
+          "Numero leitos Hospital/Dia": numeroLeitosHospitalDia,
+          "Data do lead": new Date().toLocaleString(),
+        };
+
+        await axios.post(
+          "https://api.sheetmonkey.io/form/deY6rCECmL5H6wYtZoPaSP",
+          formSheet
+        );
+
         const calcResponse = await axios.post(
           "https://api-equipacare.vercel.app/calculadora/calcular-dados",
           formData
@@ -82,6 +170,8 @@ export default function Page() {
         const resposta = calcResponse.data;
         setModelosAutoclaves(resposta[0][1]);
         setModelosLavadoras(resposta[1][1]);
+        setNumeroAutoclaves(resposta[0][0]);
+        setNumeroLavadoras(resposta[1][0]);
 
         if (calcResponse.status === 200) {
           setIntervaloDePicoCME(0);
@@ -104,6 +194,42 @@ export default function Page() {
       setCount(count - 1);
     }
   };
+
+  const isStep1Valid =
+    nomeCompleto &&
+    email &&
+    telefone &&
+    nomeHospital &&
+    cnpj &&
+    cargo &&
+    cep &&
+    numero &&
+    rua &&
+    bairro &&
+    cidade &&
+    uf;
+  const isStep2Valid =
+    momentoEmpreendimento &&
+    possuiEngenharia &&
+    (possuiEngenharia === "não" || propriaOuTerceirizada);
+  const isStep3Valid =
+    intervaloDePicoCME &&
+    numeroCirurgiasSalaDia &&
+    numeroLeitosInternacao &&
+    numeroLeitosObservacao &&
+    numeroLeitosRPA &&
+    numeroLeitosUTI &&
+    numeroSalasCirurgicas &&
+    numeroLeitosHospitalDia;
+
+  const isNextButtonDisabled =
+    count === 1
+      ? !isStep1Valid
+      : count === 2
+      ? !isStep2Valid
+      : count === 3
+      ? !isStep3Valid
+      : false;
 
   return (
     <div>
@@ -142,10 +268,15 @@ export default function Page() {
           <Step4
             modelosAutoclaves={modelosAutoclaves}
             modelosLavadoras={modelosLavadoras}
+            numeroAutoclaves={numeroAutoclaves}
+            numeroLavadoras={numeroLavadoras}
           />
         )}
-        <div className="w-full flex justify-center mt-8">
-          {count < 4 && <ButtonForm className="w-full max-w-xs">Próximo</ButtonForm>}
+        <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
+          {count < 4 && (
+            <ButtonForm disabled={isNextButtonDisabled}>Próximo</ButtonForm>
+          )}
+          {count === 4 && null}
         </div>
       </form>
     </div>

@@ -17,9 +17,9 @@ import { ButtonResult } from "../ButtonResult/ButtonResult";
 import { Label } from "../ui/label";
 
 interface Step4Props {
-  numeroAutoclaves?: number;
+  numeroAutoclaves: number;
   modelosAutoclaves: any[];
-  numeroLavadoras?: number;
+  numeroLavadoras: number;
   modelosLavadoras: any[];
 }
 
@@ -34,7 +34,7 @@ export const Step4 = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -50,8 +50,6 @@ export const Step4 = ({
     filtrarModelos(resultadoLavadoras, marca)
   );
 
-  console.log(resultadoLavadorasPorMarca);
-
   return (
     <div className="w-full h-full flex justify-center items-center mt-10">
       {isLoading ? (
@@ -65,7 +63,7 @@ export const Step4 = ({
       ) : (
         <div className="flex flex-col items-center gap-4 h-screen overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-green-300">
           <Label className="text-[25px] font-light">Autoclaves</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white">
+          <Card className="md:w-[500px] max-w-4xl bg-[#031125] text-white">
             <CardContent className="mt-7">
               <Table>
                 <TableHeader>
@@ -104,10 +102,20 @@ export const Step4 = ({
                   ))}
                 </TableBody>
               </Table>
+              <div className="flex justify-center items-center px-4 pt-4 pb-2">
+                <h3 className="text-sm font-extralight text-center">
+                  Recomendamos{" "}
+                  <span className="text-[#D3F842] font-light">
+                    {numeroAutoclaves}
+                  </span>{" "}
+                  {numeroAutoclaves > 1 ? "Autoclaves" : "Autoclave"} para
+                  atender sua demanda{" "}
+                </h3>
+              </div>
             </CardContent>
           </Card>
           <Label className="text-[25px] font-light mt-3">Lavadoras Termo</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white mb-5">
+          <Card className="md:w-[500px] max-w-4xl bg-[#031125] text-white mb-5">
             <CardContent className="mt-7">
               <Table>
                 <TableHeader>
@@ -152,17 +160,33 @@ export const Step4 = ({
                   ))}
                 </TableBody>
               </Table>
+              <div className="flex justify-center items-center px-4 pt-4 pb-2">
+                <h3 className="text-sm font-extralight text-center">
+                  Recomendamos{" "}
+                  <span className="text-[#D3F842] font-light">
+                    {numeroLavadoras}
+                  </span>{" "}
+                  {numeroLavadoras > 1 ? "Lavadoras" : "Lavadora"} para atender
+                  sua demanda{" "}
+                </h3>
+              </div>
             </CardContent>
           </Card>
           <div className="flex items-center justify-center mb-16">
             <ButtonResult>
-              <FontAwesomeIcon
-                className="mr-2"
-                size="lg"
-                icon={faSquarePollVertical}
-                style={{ color: "#ffffff" }}
-              />
-              Solicitar orçamento detalhado
+              <a
+                href="https://api.whatsapp.com/send?phone=5524981191448&text=Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20detalhado%20para%20meu%20projeto!"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <FontAwesomeIcon
+                  className="mr-2"
+                  size="lg"
+                  icon={faSquarePollVertical}
+                  style={{ color: "#ffffff" }}
+                />
+                Solicitar orçamento detalhado
+              </a>
             </ButtonResult>
           </div>
         </div>

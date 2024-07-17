@@ -34,7 +34,7 @@ export const Step4 = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -63,7 +63,7 @@ export const Step4 = ({
       ) : (
         <div className="flex flex-col items-center gap-4 h-screen overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-green-300">
           <Label className="text-[25px] font-light">Autoclaves</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white">
+          <Card className="md:w-[500px] max-w-4xl bg-[#031125] text-white">
             <CardContent className="mt-7">
               <Table>
                 <TableHeader>
@@ -115,7 +115,7 @@ export const Step4 = ({
             </CardContent>
           </Card>
           <Label className="text-[25px] font-light mt-3">Lavadoras Termo</Label>
-          <Card className="w-[500px] max-w-4xl bg-[#031125] text-white mb-5">
+          <Card className="md:w-[500px] max-w-4xl bg-[#031125] text-white mb-5">
             <CardContent className="mt-7">
               <Table>
                 <TableHeader>

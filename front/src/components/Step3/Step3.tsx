@@ -89,7 +89,7 @@ export const Step3 = () => {
           Número cirurgias/sala/dia:
         </InputForm>
       </div>
-      <div className="flex flex-row lg:flex-row w-full justify-between gap-4">
+      <div className="flex flex-row lg:flex-row w-full justify-between items-end gap-4">
         <div className="flex flex-col w-full lg:w-1/2">
           <Label className="mb-[8.7px]">Tipo de processamento?</Label>
           <Select
@@ -121,7 +121,7 @@ export const Step3 = () => {
         </div>
       </div>
 
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4 items-end">
         <InputForm
           type="number"
           onChange={(e) => setNumeroLeitosInternacao(Number(e.target.value))}

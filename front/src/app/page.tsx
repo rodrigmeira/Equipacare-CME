@@ -104,19 +104,19 @@ export default function Page() {
       };
 
       try {
-        const formspreeData = {
-          Nome: nomeCompleto,
-          Email: email,
-          Contato: telefone,
-          Hospital: nomeHospital,
-          CNPJ: cnpj,
-          Cargo: cargo,
-          CEP: cep,
-          Cidade: cidade,
-          UF: uf,
-        };
+        // const formspreeData = {
+        //   Nome: nomeCompleto,
+        //   Email: email,
+        //   Contato: telefone,
+        //   Hospital: nomeHospital,
+        //   CNPJ: cnpj,
+        //   Cargo: cargo,
+        //   CEP: cep,
+        //   Cidade: cidade,
+        //   UF: uf,
+        // };
 
-        await axios.post("https://formspree.io/f/xldrdabb", formspreeData);
+        // await axios.post("https://formspree.io/f/xldrdabb", formspreeData);
 
         const dias = Object.keys(diasDaSemana).map((key, index) => {
           if (Object.values(diasDaSemana)[index]) {

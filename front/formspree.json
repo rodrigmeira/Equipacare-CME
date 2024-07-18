@@ -1,0 +1,13 @@
+{
+  "forms": {
+    "contact": {
+      "name": "New lead",
+      "actions": [
+        {
+          "type": "email",
+          "to": "robertox70@gmail.com"
+        }
+      ]
+    }
+  }
+}

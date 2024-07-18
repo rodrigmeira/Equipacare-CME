@@ -38,7 +38,7 @@ export const Step2 = () => {
 
   return (
     <div className="flex flex-col gap-6 my-6">
-      <div className="flex flex-col gap-4 w-full lg:w-1/2">
+      <div className="flex flex-col gap-4 w-full">
         <Label>Qual é o momento atual do empreendimento?</Label>
         <Select
           onValueChange={(value: string) => setMomentoEmpreendimento(value)}

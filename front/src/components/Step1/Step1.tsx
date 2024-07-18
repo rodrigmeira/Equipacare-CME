@@ -66,7 +66,7 @@ export const Step1 = () => {
       >
         Nome Completo:
       </InputForm>
-      <div className="flex flex-row justify-between gap-4">
+      <div className="flex flex-col lg:flex-row justify-between gap-4">
         <InputForm
           type="email"
           id="email"
@@ -97,7 +97,7 @@ export const Step1 = () => {
       >
         Nome do hospital:
       </InputForm>
-      <div className="flex flex-row justify-between gap-4">
+      <div className="flex flex-col lg:flex-row justify-between gap-4">
         <InputForm
           type="text"
           id="cnpj"
@@ -119,7 +119,7 @@ export const Step1 = () => {
           Cargo atual:
         </InputForm>
       </div>
-      <div className="flex flex-row justify-between gap-4">
+      <div className="flex flex-col lg:flex-row justify-between gap-4">
         <InputForm
           type="text"
           id="cep"
@@ -160,7 +160,7 @@ export const Step1 = () => {
         Bairro:
       </InputForm>
 
-      <div className="flex flex-row justify-between gap-4">
+      <div className="flex flex-col lg:flex-row justify-between gap-4">
         <InputForm
           type="text"
           id="cidade"

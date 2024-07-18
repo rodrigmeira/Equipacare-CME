@@ -69,11 +69,11 @@ Inicie o servidor:
 ## :octocat: Contribuidores:
 
 <a title="Roberto Júnior" href="https://github.com/robertoDCJ">
-  <img src="https://avatars.githubusercontent.com/u/8580665?v=4" width="100" style="border-radius:50%">
+  <img src="https://avatars.githubusercontent.com/u/145286529?v=4" width="100" style="border-radius:50%">
 </a>
 <a title="Rodrigo Brandão" href="https://github.com/rodrigmeira">
   <img src="https://avatars.githubusercontent.com/u/114089132?v=4" width="100" style="border-radius:50%">
 </a>
 <a title="Léo Rieg" href="https://github.com/RiegL">
-  <img src="https://avatars.githubusercontent.com/u/123082600?v=4" width="100" style="border-radius:50%">
+  <img src="https://avatars.githubusercontent.com/u/98495876?v=4" width="100" style="border-radius:50%">
 </a>

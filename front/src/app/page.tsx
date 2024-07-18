@@ -272,7 +272,7 @@ export default function Page() {
             numeroLavadoras={numeroLavadoras}
           />
         )}
-        <div className="flex items-center justify-center absolute bottom-0 left-0 right-0 mb-16">
+        <div className="flex items-center justify-center absolute bottom-1 left-0 right-0 mb-2">
           {count < 4 && (
             <ButtonForm disabled={isNextButtonDisabled}>Próximo</ButtonForm>
           )}

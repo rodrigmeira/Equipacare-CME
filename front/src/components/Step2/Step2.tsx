@@ -38,11 +38,12 @@ export const Step2 = () => {
 
   return (
     <div className="flex flex-col gap-6 my-6">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full lg:w-1/2">
         <Label>Qual é o momento atual do empreendimento?</Label>
         <Select
           onValueChange={(value: string) => setMomentoEmpreendimento(value)}
           value={momentoEmpreendimento}
+          
         >
           <SelectTrigger className="mt-1">
             <SelectValue placeholder="Selecione uma opção..." />

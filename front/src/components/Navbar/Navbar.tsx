@@ -40,7 +40,7 @@ export const Navbar = () => {
           <MenuIcon />
         </IconButton>
         <Drawer
-          anchor="left"
+          anchor="right"
           open={drawerOpen}
           onClose={toggleDrawer(false)}
           sx={{ width: "500px" }}

@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Equipa-banner" src="./public/banner.png" width="100%">
+  <img alt="Equipa-banner" src="./front/public/banner.png" width="100%">
 </p>
 
 <h1 align="center">

@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img alt="Equipa-banner" src="./public/banner.png" width="100%">
+</p>
 
-## Getting Started
+<h1 align="center">
+  Projeto: Equipacare CME
+</h1>
 
-First, run the development server:
+<p style="text-align:center">
+  
+  <img src="http://img.shields.io/static/v1?label=STATUS%20DO%20PROJETO:&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
+</p>
+
+## 👨🏻‍💻 Sobre
+
+Este repositório contém o código-fonte e os recursos relacionados ao desenvolvimento do formulário e calculadora CME para a empresa Equipacare. O projeto foi desenvolvido pelos alunos do curso TECH da [Escola DNC](https://www.escoladnc.com.br/).
+
+A ferramenta foi desenvolvida com o objetivo de proporcionar uma solução digital para dimensionar equipamentos de esterilização em hospitais, apresentando cálculos precisos, recomendações de marcas, e captando leads qualificados para a Equipacare.
+
+### Tecnologias utilizadas
+
+- Next.js: Framework React para renderização do lado do servidor e roteamento.
+- TypeScript: Linguagem de programação para adicionar tipagem estática ao código.
+- TailwindCSS: Framework de CSS para estilização rápida e responsiva.
+- MySQL: Banco de dados relacional utilizado para armazenar e gerenciar os dados de forma eficiente.
+- NodeJS: Ambiente de execução de JavaScript do lado do servidor que permite a construção de aplicações rápidas e escaláveis.
+- ExpressJS: Framework web para Node.js que simplifica o desenvolvimento de aplicações web e APIs.
+
+## 💻 Funcionalidades
+
+- Calculadora de Dimensionamento de Equipamentos de Esterilização;
+- Captação de Leads Qualificados;
+- Interface de Usuário Intuitiva e Responsiva;
+- Automação e Digitalização dos Processos;
+- Responsividade para dispositivos móveis;
+
+## 🖥️ Demo da aplicação:
+
+> Você pode estar acessando o projeto clicando neste [link](https://equipacare-cme.vercel.app) ou digitando no navegador: https://equipacare-cme.vercel.app
+
+## ⚙️ Como executar a aplicação:
+
+Você precisará ter instalado o [Node.js](https://nodejs.org/en) para utilizar comandos npm e o [Git](https://git-scm.com/) instalado na sua máquina.
+
+Clone o projeto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/rodrigmeira/Equipacare-CME.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navegue até o diretório do projeto:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd Equipacare-CME
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Instale as dependências:
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Inicie o servidor:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## :octocat: Contribuidores:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<a title="Roberto Júnior" href="https://github.com/robertoDCJ">
+  <img src="https://avatars.githubusercontent.com/u/8580665?v=4" width="100" style="border-radius:50%">
+</a>
+<a title="Rodrigo Brandão" href="https://github.com/rodrigmeira">
+  <img src="https://avatars.githubusercontent.com/u/114089132?v=4" width="100" style="border-radius:50%">
+</a>
+<a title="Léo Rieg" href="https://github.com/RiegL">
+  <img src="https://avatars.githubusercontent.com/u/123082600?v=4" width="100" style="border-radius:50%">
+</a>
